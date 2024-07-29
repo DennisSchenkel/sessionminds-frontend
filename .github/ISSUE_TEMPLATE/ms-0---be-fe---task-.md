@@ -11,8 +11,8 @@ Short description of the task to be done.
 
 ## Task Criteria
 
-- Task criteria 1
+- [] Task criteria 1
 
-- Task criteria 2
+- [] Task criteria 2
 
-- Task criteria 3
+- [] Task criteria 3
