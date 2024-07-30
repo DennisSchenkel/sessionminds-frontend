@@ -1,6 +1,29 @@
 # Session Minds Documentation
 
 
+
+## User Experience
+
+### Design
+
+#### Color Scheme
+
+
+
+#### Imagery
+
+To give categories unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
+
+
+#### Typography
+
+
+
+#### Mockups
+
+
+
+
 ## Agile Project Management
 
 This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.
@@ -13,7 +36,7 @@ The final structure looks like this:
 - (MS-1) - USER STORY: User profiles
 - (MS-1) - FE - TASK: Profile information page
 
-Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story and task were used.
+Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
 
 
@@ -28,10 +51,31 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 ### Tasks
 
 
+### Technologies Used
+
+#### Languages
+
+- HTML
+- CSS
+- Python
+- JavaScrips
+- ReactJS
+
+#### Frameworks
+
+#### Modules & Libraries
+
+#### Programs & Tools
+
+
+
+
+
 
 ## Credits
 
 ### Code Sources
 
 **Profile App (BE)**
+
 In this project, the Django profile app with its structure is greatly inspired and by part copied from the Code Institute examples, although customized in many places.
