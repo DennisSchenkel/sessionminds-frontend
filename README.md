@@ -26,3 +26,12 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 
 
 ### Tasks
+
+
+
+## Credits
+
+### Code Sources
+
+**Profile App (BE)**
+In this project, the Django profile app with its structure is greatly inspired and by part copied from the Code Institute examples, although customized in many places.
