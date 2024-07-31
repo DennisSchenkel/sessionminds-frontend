@@ -1,28 +1,18 @@
 # Session Minds Documentation
 
-
-
 ## User Experience
 
 ### Design
 
 #### Color Scheme
 
-
-
 #### Imagery
 
 To give categories unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
 
-
 #### Typography
 
-
-
 #### Mockups
-
-
-
 
 ## Agile Project Management
 
@@ -38,18 +28,15 @@ The final structure looks like this:
 
 Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
-
-
 ### Milestones
-
-
 
 ### User Stories
 
-
-
 ### Tasks
 
+## Development
+
+### Database
 
 ### Technologies Used
 
@@ -67,10 +54,25 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 
 #### Programs & Tools
 
+**Vite & React**
 
+Vite as a build tool was used to set up a ReactJS app, since create-react-app (CRA) is no longer the recommended method.<br>
+I chose to use Vite because I ran into several issues of deprecated code and vulnerabilities when using CRA, and I wasn't able to fix them.<br>
+[More about vite](https://vitejs.dev/guide/)<br>
+<br>
+Vite came with some additional ESlint rules I used.<br>
 
+### Deployment
 
+### Testing
 
+### Issues During Development
+
+**(BE) 405 Get method now allowed**
+
+When setting up the backend django rest framework and loading the API URLs using a browser, the PUT and POST views were showing the 405 method and stating, that I was doing a GET request<br>
+Nevertheless, I was able to create and update new entries.<br>
+This issue continues to happen, but I tried if calling the API using the frontend would lead to a flawless behavior.<br>
 
 ## Credits
 
