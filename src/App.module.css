@@ -37,6 +37,13 @@
   padding: 2em;
 }
 
-.read-the-docs {
+.readthedocs {
   color: #888;
+}
+
+.buttonlink {
+  color: #61dafb;
+}
+.buttonlink:hover {
+  color: #fb61ec;
 }
