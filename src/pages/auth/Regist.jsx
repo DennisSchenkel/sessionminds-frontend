@@ -15,14 +15,14 @@ const Regist = () => {
   const [regData, setRegData] = useState(
     {
       email: "",
-      password1: "",
-      password2: ""
+      password: "",
+      passwordConf: ""
     }
   );
   
   // const [errors, setErrors] = useState({});
 
-  const { email, password1, password2 } = regData;
+  const { email, password, passwordConf } = regData;
 
   const navigate = useNavigate();
 
@@ -70,14 +70,14 @@ const Regist = () => {
               //))
               }
               
-              <Form.Group className="mb-3" controlId="password1">
+              <Form.Group className="mb-3" controlId="password">
                 <Form.Label className="d-none">Password</Form.Label>
                 <Form.Control
                   className={styles.Input}
                   type="password"
                   placeholder="Password"
-                  name="password1"
-                  value={password1}
+                  name="password"
+                  value={password}
                   onChange={handleChange}
                   />
               </Form.Group>
@@ -86,14 +86,14 @@ const Regist = () => {
               //))
               }
 
-              <Form.Group className="mb-3" controlId="password2">
+              <Form.Group className="mb-3" controlId="passwordConf">
                 <Form.Label className="d-none">Password Confirmation</Form.Label>
                 <Form.Control
                   className={styles.Input}
                   type="password"
                   placeholder="Password Confirmation"
-                  name="password2"
-                  value={password2}
+                  name="passwordConf"
+                  value={passwordConf}
                   onChange={handleChange}
                   />
               </Form.Group>
