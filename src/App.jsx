@@ -1,13 +1,14 @@
-import {Route, Routes, Link, Outlet} from 'react-router-dom'
-import styles from './App.module.css'
-import Test from "./components/Test";
-import Home from "./components/Home";
+import {Route, Routes, Outlet} from "react-router-dom"
+import styles from "./App.module.css"
+import Tools from "./pages/Tools";
+import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Regist from "./pages/auth/Regist";
-
+import Home from "./pages/Home";
+import Topics from "./pages/Topics";
+import Contributors from "./pages/Contributors";
 
 import "./api/axiosDefault";
-
 
 export default function App() {
 
@@ -20,24 +21,22 @@ const testGetUserList = async () => {
 testGetUserList();
 
   return (
-    <div className={styles.App}>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/regist">Regist</Link>
-      <Link to="/test">Test</Link>
-      <p className={styles.readthedocs}>
-        Click on the Vite and React logos to learn more
-      </p>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/regist" element={<Regist />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="*" element={<div>404 Page Not Found</div>} />
-      </Routes>
-      <Outlet />
-    </div>
+    <>
+      <Header />
+      <div className={styles.Container}>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/regist" element={<Regist />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/topics" element={<Topics />} />
+          <Route path="/contributors" element={<Contributors />} />
+          <Route path="*" element={<div>404 Page Not Found</div>} />
+        </Routes>
+        <Outlet />
+      </div>
+    </>
   )
 }
 

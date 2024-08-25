@@ -22,7 +22,7 @@ export default function Login ( )   {
 
   const { email, password } = loginData;
 
-  const { setUser } = useContext(UserContext);  // Verwende den Benutzerkontext
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -38,13 +38,15 @@ export default function Login ( )   {
     console.log("Login submitted");                 // For debugging
     try {
       const response = await axios.post("/login/", loginData);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("accessToken", response.data.access);
+      localStorage.setItem("refreshToken", response.data.refresh);
       localStorage.setItem("user_id", response.data.user_id);
       setUser(response.data);
       console.log(response.data.user_id);
       navigate("/");
     }
     catch (err) {
+      console.error("Login error:", err.response?.data);          // For debugging
      // setErrors(err.response?.data)
     }
   }
