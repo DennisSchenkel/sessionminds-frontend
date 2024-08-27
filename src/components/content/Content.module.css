@@ -1,5 +1,23 @@
+h1 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0rem;
+}
+
 .content {
+  border-right: 1px solid #d9e1ec;
   padding-top: 1rem;
-  padding-left: 3rem;
+  padding-right: 3rem;
   padding-bottom: 1rem;
+  min-height: 500px;
+}
+
+.headline-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #d9e1ec;
 }

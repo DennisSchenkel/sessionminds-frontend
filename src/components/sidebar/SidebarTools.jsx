@@ -1,7 +1,16 @@
+import styles from "./Sidebar.module.css";
+
 export default function SidebarTools() {
     return (
         <div>
-        <h1>Topics</h1>
+            <div className={`row ${styles['headline-row']}`}>
+                <div className="col-8">
+                    <h2>Topics</h2>
+                </div>
+                <div className="col-4 text-end">
+                    All | Top
+                </div>
+            </div>
 
         <ul>    
             <li>Topic 1</li>

@@ -3,7 +3,7 @@ import Sidebar from "../components/sidebar/Sidebar"
 
 export default function Home() {
     return (
-        <div className="row">
+        <div className="row g-0">
         
             <div className="col-8">
                 <Content />

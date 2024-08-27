@@ -1,7 +1,16 @@
+import styles from "./Sidebar.module.css";
+
 export default function SidebarHome() {
     return (
         <div>
-        <h1>Top Contributors</h1>
+            <div className={`row ${styles['headline-row']}`}>
+                <div className="col-8">
+                    <h2>Top Contributors</h2>
+                </div>
+                <div className="col-4 text-end">
+                    Tools | Votes
+                </div>
+            </div>
 
         <ul>    
             <li>Contributor 1</li>

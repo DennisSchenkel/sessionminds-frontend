@@ -1,9 +1,9 @@
-import Sidebar from "../components/sidebar/Sidebar"
 import Content from "../components/content/Content"
+import Sidebar from "../components/sidebar/Sidebar"
 
 export default function Tools() {
     return (
-        <div className="row">
+        <div className="row g-0">
         
             <div className="col-8">
                 <Content />
