@@ -1,3 +1,4 @@
+import ToolsSidebarItemList from "../tools/ToolsSidebarItemList";
 import styles from "./Sidebar.module.css";
 
 export default function SidebarTopics() {
@@ -12,13 +13,10 @@ export default function SidebarTopics() {
                 </div>
             </div>
 
-        <ul>    
-            <li>Tool 1</li>
-            <li>Tool 2</li>
-            <li>Tool 3</li>
-            <li>Tool 4</li>
-            <li>Tool 5</li>
-        </ul>
+            <ToolsSidebarItemList />
+            <ToolsSidebarItemList />
+            <ToolsSidebarItemList />
+            <ToolsSidebarItemList />
         </div>
     )
     }

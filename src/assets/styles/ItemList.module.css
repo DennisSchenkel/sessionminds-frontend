@@ -1,0 +1,38 @@
+.list-item {
+    margin-bottom: 1rem;
+  }
+  
+.list-item-icon {
+display: flex;
+align-items: center;
+}
+
+.list-item-desc {
+display: flex;
+align-items: center;
+}
+
+.list-item-desc-text {
+font-size: 1rem;
+}
+
+.list-item-desc-misc {
+font-size: 0.8rem;
+color: #6e7a8a;
+}
+
+.list-item-vote-container {
+display: flex;
+justify-content: end;
+align-items: center;
+}
+
+.list-item-vote {
+width: 70px;
+height: 70px;
+border: 0.5px solid #d9e1ec;
+border-radius: 5%;
+display: flex;
+flex-direction: column;
+align-items: center;  
+}

@@ -1,4 +1,5 @@
 import styles from "./Sidebar.module.css";
+import SidebarItemListContributors from "../contributors/ContributorsSidebarItemList";
 
 export default function SidebarHome() {
     return (
@@ -12,13 +13,8 @@ export default function SidebarHome() {
                 </div>
             </div>
 
-        <ul>    
-            <li>Contributor 1</li>
-            <li>Contributor 2</li>
-            <li>Contributor 3</li>
-            <li>Contributor 4</li>
-            <li>Contributor 5</li>
-        </ul>
+            <SidebarItemListContributors />
+            <SidebarItemListContributors />
         </div>
     )
     }

@@ -1,12 +1,14 @@
 import styles from "./Content.module.css";
 import ToolsListItem from "../tools/ToolsListItem";
+import TopicsListItem from "../topics/TopicsListItem";
 
 export default function ContentHome() {
     return (
     <>
+        <h1>Explore</h1>
         <div className="pb-5">
             <div className={`row ${styles["headline-row"]}`}>
-                <h1>Top Tools</h1>
+                <h2>Top Tools</h2>
             </div>
        
             <ToolsListItem />
@@ -17,7 +19,7 @@ export default function ContentHome() {
         </div>
         <div className="pb-5">
             <div className={`row ${styles["headline-row"]}`}>
-                <h1>Latest Tools</h1>
+                <h2>Latest Tools</h2>
             </div>
 
             <ToolsListItem />
@@ -27,10 +29,14 @@ export default function ContentHome() {
         </div>
         <div className="pb-5">
             <div className={`row ${styles["headline-row"]}`}>
-                <h1>Top Topics</h1>
+                <h2>Top Topics</h2>
             </div>
-                <p>Welcome to the home page</p>
-        </div>
+
+            <TopicsListItem />
+            <TopicsListItem />
+            <TopicsListItem />
+
+            </div>
     </>
     )
     }

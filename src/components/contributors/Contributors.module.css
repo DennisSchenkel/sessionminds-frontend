@@ -1,9 +1,7 @@
-.content {
-  border-right: 1px solid #d9e1ec;
-  padding-top: 1rem;
-  padding-right: 3rem;
+.sidebar {
+  padding-top: 1.4rem;
+  padding-left: 3rem;
   padding-bottom: 1rem;
-  min-height: 500px;
 }
 
 .headline-row {
@@ -12,3 +10,5 @@
   margin-bottom: 1rem;
   border-bottom: 1px solid #d9e1ec;
 }
+
+

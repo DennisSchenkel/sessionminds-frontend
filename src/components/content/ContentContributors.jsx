@@ -1,3 +1,4 @@
+import ContributorsListItem from "../contributors/ContributorsListItem";
 import styles from "./Content.module.css";
 
 export default function ContentContributors() {
@@ -12,7 +13,10 @@ export default function ContentContributors() {
             </div>
         </div>
 
-        <p>Welcome to the home page</p>
+        <ContributorsListItem />
+        <ContributorsListItem />
+        <ContributorsListItem />
+
     </div>
     )
     }
