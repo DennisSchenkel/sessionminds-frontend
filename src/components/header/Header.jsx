@@ -1,9 +1,9 @@
+import styles from "./Header.module.css";
+import { Form, Button, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { Link } from "react-router-dom";
-import styles from "./Header.module.css";
-import { Form, Button } from "react-bootstrap";
-
+import logo from "../../assets/images/logo.svg";
 
 
 export default function Header() {
@@ -33,12 +33,17 @@ export default function Header() {
 
     return (
       <>
+
+        <div className={`${styles["debugging"]}`}>
+          Debugging: {profile ? <p>Profile vorhanden <br />{profile.image}</p> : <p>No profile</p>}
+        </div>
+
         <div className={`${styles.header} px-4`}>
           <div className="row d-flex align-items-center g-0">
 
             <div className="row col-3 g-0">
               <div className="col-4">
-                <img src="https://img.logoipsum.com/331.svg" alt="Logo" />
+                <Image src={logo} alt="Logo" />
               </div>
               <div className="col-8 d-flex align-items-center">
                 <Form className="d-flex">
@@ -56,16 +61,16 @@ export default function Header() {
 
               <ul className="nav justify-content-center">
                 <li>
-                  <Link className={`${styles['nav-link']}`} to="/">Home</Link>
+                  <Link className={`${styles["nav-link"]}`} to="/">Home</Link>
                 </li>
                 <li>
-                  <Link className={`${styles['nav-link']}`} to="/tools">Tools</Link>
+                  <Link className={`${styles["nav-link"]}`} to="/tools">Tools</Link>
                 </li>
                 <li>
-                  <Link className={`${styles['nav-link']}`} to="/topics">Topics</Link>
+                  <Link className={`${styles["nav-link"]}`} to="/topics">Topics</Link>
                 </li>
                 <li>
-                  <Link className={`${styles['nav-link']}`} to="/contributors">Contributors</Link>
+                  <Link className={`${styles["nav-link"]}`} to="/contributors">Contributors</Link>
                 </li>
               </ul>
             </div>
@@ -74,17 +79,18 @@ export default function Header() {
               <>
               <ul className="nav justify-content-center">
                 <li>
-                    <Link className={`${styles['nav-link']}`}  to="/login">Login</Link>
+                    <Link className={`${styles["nav-link"]}`}  to="/login">Login</Link>
                 </li>
                 <li>
-                  <Link className={`${styles['nav-link']}`}  to="/regist">Regist</Link>
+                  <Link className={`${styles["nav-link"]}`}  to="/regist">Regist</Link>
                 </li>
               </ul>
+
               </>
+              
               }
             </div>
           </div>
-          Debugging: {profile ? <p>Profile vorhanden <br />{profile.image}</p> : <p>No profile</p>}
 
         </div>
 

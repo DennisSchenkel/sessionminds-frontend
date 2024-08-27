@@ -1,10 +1,10 @@
 import styles from "./Sidebar.module.css";
-import SidebarItemListContributors from "../contributors/ContributorsSidebarItemList";
+import ContributorsSidebarItemList from "../contributors/ContributorsSidebarItemList";
 
 export default function SidebarHome() {
     return (
         <div>
-            <div className={`row ${styles['headline-row']}`}>
+            <div className={`row ${styles["headline-row"]}`}>
                 <div className="col-8">
                     <h2>Top Contributors</h2>
                 </div>
@@ -13,8 +13,9 @@ export default function SidebarHome() {
                 </div>
             </div>
 
-            <SidebarItemListContributors />
-            <SidebarItemListContributors />
+            <ContributorsSidebarItemList />
+            <ContributorsSidebarItemList />
         </div>
     )
     }
+

@@ -1,9 +1,10 @@
 import styles from "./Content.module.css";
+import ToolsListItem from "../tools/ToolsListItem";
 
 export default function ContentTools() {
     return (
     <>
-    <div className={`row ${styles['headline-row']}`}>
+    <div className={`row ${styles["headline-row"]}`}>
         <div className="col-8">
             <h1>Tools</h1>
         </div>
@@ -12,7 +13,9 @@ export default function ContentTools() {
         </div>
     </div>
     <div>
-        <p>Welcome to the home page</p>
+        <ToolsListItem />
+        <ToolsListItem />
+        <ToolsListItem />
     </div>
     </>
     )

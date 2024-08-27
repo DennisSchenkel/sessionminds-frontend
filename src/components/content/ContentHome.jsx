@@ -5,7 +5,6 @@ import TopicsListItem from "../topics/TopicsListItem";
 export default function ContentHome() {
     return (
     <>
-        <h1>Explore</h1>
         <div className="pb-5">
             <div className={`row ${styles["headline-row"]}`}>
                 <h2>Top Tools</h2>

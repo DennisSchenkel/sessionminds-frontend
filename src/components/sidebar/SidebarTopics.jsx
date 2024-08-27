@@ -1,10 +1,10 @@
-import ToolsSidebarItemList from "../tools/ToolsSidebarItemList";
 import styles from "./Sidebar.module.css";
+import ToolsSidebarItemList from "../tools/ToolsSidebarItemList";
 
 export default function SidebarTopics() {
     return (
         <div>
-            <div className={`row ${styles['headline-row']}`}>
+            <div className={`row ${styles["headline-row"]}`}>
                 <div className="col-8">
                     <h2>Tools</h2>
                 </div>

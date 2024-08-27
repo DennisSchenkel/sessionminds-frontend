@@ -7,11 +7,10 @@
   text-decoration: none;
 }
 
-.nav-link-color {
-  color: #61dafb;
-  font-weight: 600;
-  text-decoration: none;
+.nav-link:hover {
+  color: #1e7e94;
 }
+
 
 .header {
     padding: 1rem;
@@ -22,4 +21,13 @@
 .vertical-center {
   display: flex;
   align-items: center;
+}
+
+
+
+
+
+.debugging {
+  position: absolute;
+  right: 20px;
 }

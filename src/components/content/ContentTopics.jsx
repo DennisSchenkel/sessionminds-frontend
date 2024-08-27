@@ -1,9 +1,10 @@
 import styles from "./Content.module.css";
+import TopicsListItem from "../topics/TopicsListItem";
 
 export default function ContentTopics() {
     return (
     <>
-    <div className={`row ${styles['headline-row']}`}>
+    <div className={`row ${styles["headline-row"]}`}>
         <div className="col-8">
             <h1>Topics</h1>
         </div>
@@ -12,7 +13,10 @@ export default function ContentTopics() {
         </div>
     </div>
     <div>
-        <p>Welcome to the home page</p>
+        <TopicsListItem />
+        <TopicsListItem />
+        <TopicsListItem />
+
     </div>
     </>
     )

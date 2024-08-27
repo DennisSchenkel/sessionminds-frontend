@@ -1,6 +1,6 @@
 import styles from "../../assets/styles/ItemList.module.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function ToolsListItem() {
 

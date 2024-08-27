@@ -4,7 +4,7 @@ import styles from "./Content.module.css";
 export default function ContentContributors() {
     return (
     <div>
-        <div className={`row ${styles['headline-row']}`}>
+        <div className={`row ${styles["headline-row"]}`}>
             <div className="col-8">
                 <h1>Top Contributors</h1>
             </div>
