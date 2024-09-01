@@ -1,9 +1,9 @@
-import styles from "./Content.module.css";
-import ToolsListItem from "../tools/ToolsListItem";
+
 import axios from "../../api/axiosDefault";
+import ToolsSidebarListItem from "./ToolsSidebarListItem";
 import { useEffect, useState } from "react";
 
-export default function ContentTools() {
+export default function TopicsSidebarList() {
 
     const [tools, setTools] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,25 +28,13 @@ export default function ContentTools() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
-    console.log("Tools: " + JSON.stringify(tools));             // For debugging
-
     return (
-    <>
-    <div className={`row ${styles["headline-row"]}`}>
-        <div className="col-8">
-            <h1>Tools</h1>
-        </div>
-        <div className="col-4 text-end">
-            Top | Latest
-        </div>
-    </div>
-    <div>
+        <>
+            
+            {tools.map((tool) => (
+                <ToolsSidebarListItem key={tool.id} tool={tool} />
+            ))}
 
-        {tools.map((tool) => (
-            <ToolsListItem key={tool.id} tool={tool} />
-        ))}
-
-    </div>
-    </>
+        </>
     )
-    }
+}

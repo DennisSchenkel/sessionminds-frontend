@@ -21,14 +21,19 @@ export const UserProvider = ({ children }) => {
   
           if (accessToken && userId) {
             // Fetch user data
-            const userResponse = await axios.get(`/users/${userId}/`, { headers: { Authorization: `Token ${accessToken}` } });
+            const userResponse = await axios.get(
+              `/users/${userId}/`,
+              { headers: { Authorization: `Bearer ${accessToken}` } }
+            );
             setUser(userResponse.data);
   
             // Fetch profile data
-            const profileResponse = await axios.get(`/users/${userId}/profile/`, { headers: { Authorization: `Token ${accessToken}` } });
+            const profileResponse = await axios.get(
+              `/users/${userId}/profile/`,
+              { headers: { Authorization: `Bearer ${accessToken}` } }
+            );
             setProfile(profileResponse.data);
-          } else {
-            console.error("Token or user ID not found.");
+
           }
         } catch (err) {
           setError(err);

@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.css";
-import TopicsSidebarItemList from "../topics/TopicsSidebarItemList";
-import ToolsSidebarItemList from "../tools/ToolsSidebarItemList";
+import TopicsSidebarList from "../topics/TopicsSidebarList";
+import ToolsSidebarList from "../tools/ToolsSidebarList";
 
 export default function SidebarContributors() {
     return (
@@ -15,9 +15,7 @@ export default function SidebarContributors() {
                 </div>
             </div>
 
-            <TopicsSidebarItemList />
-            <TopicsSidebarItemList />
-            <TopicsSidebarItemList />
+            <TopicsSidebarList />
 
         </div>
         <div>
@@ -29,9 +27,9 @@ export default function SidebarContributors() {
                     Top | Latest
                 </div>
             </div>
-            <ToolsSidebarItemList />
-            <ToolsSidebarItemList />
-            <ToolsSidebarItemList />
+
+            <ToolsSidebarList />
+
         </div>
         </>
     )

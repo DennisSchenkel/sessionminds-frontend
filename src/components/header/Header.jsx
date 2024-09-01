@@ -33,11 +33,6 @@ export default function Header() {
 
     return (
       <>
-
-        <div className={`${styles["debugging"]}`}>
-          Debugging: {profile ? <p>Profile vorhanden <br />{profile.image}</p> : <p>No profile</p>}
-        </div>
-
         <div className={`${styles.header} px-4`}>
           <div className="row d-flex align-items-center g-0">
 
@@ -92,6 +87,10 @@ export default function Header() {
             </div>
           </div>
 
+        </div>
+
+        <div className={`${styles["debugging"]} bg-info`}>
+          Debugging: {profile ? <p>Profile vorhanden <br />{profile.image}</p> : <p>No profile</p>}
         </div>
 
       </>

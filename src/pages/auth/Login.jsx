@@ -26,28 +26,39 @@ export default function Login ( )   {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     setLoginData({
       ...loginData,
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     console.log("Login submitted");                 // For debugging
+    console.log(loginData);
     try {
       const response = await axios.post("/login/", loginData);
-      localStorage.setItem("accessToken", response.data.access);
-      localStorage.setItem("refreshToken", response.data.refresh);
+      console.log(response.data);
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
       localStorage.setItem("user_id", response.data.user_id);
       setUser(response.data);
       console.log(response.data.user_id);
       navigate("/");
     }
-    catch (err) {
-      console.error("Login error:", err.response?.data);          // For debugging
+    catch (error) {
      // setErrors(err.response?.data)
+      if (error.response) {
+        console.error("Error data:", error.response.data);
+        console.error("Error status:", error.response.status);
+        console.error("Error headers:", error.response.headers);
+        // Optionally, set error state to display the error message in the UI
+        // setErrors(error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      }
+
     }
   }
 

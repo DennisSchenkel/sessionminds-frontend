@@ -1,5 +1,5 @@
 import styles from "./Sidebar.module.css";
-import ContributorsSidebarItemList from "../contributors/ContributorsSidebarItemList";
+import ContributorsSidebarList from "../contributors/ContributorsSidebarList";
 
 export default function SidebarHome() {
     return (
@@ -13,8 +13,8 @@ export default function SidebarHome() {
                 </div>
             </div>
 
-            <ContributorsSidebarItemList />
-            <ContributorsSidebarItemList />
+            <ContributorsSidebarList />
+
         </div>
     )
     }

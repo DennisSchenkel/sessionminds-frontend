@@ -2,64 +2,75 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
     baseURL: "http://127.0.0.1:9000",
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFToken",
     headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "application/json",
     },
-    withCredentials: true
 });
 
+// Füge einen Interceptor hinzu, um den Authorization-Header für jede Anfrage zu setzen
+axiosInstance.interceptors.request.use(
+    config => {
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+            config.headers["Authorization"] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
+
+// Interceptor für die Behandlung von 401-Fehlern (Token-Aktualisierung)
 axiosInstance.interceptors.response.use(
     response => response,
     async (error) => {
-      const originalRequest = error.config;
-  
-      if (error.response.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-  
-        const refreshToken = localStorage.getItem("refreshToken");
-        
-        if (refreshToken) {
-          try {
-            const response = await axios.post("/token/refresh/", { refresh: refreshToken });
-            const newAccessToken = response.data.access;
-  
-            localStorage.setItem("token", newAccessToken);
-  
-            axiosInstance.defaults.headers.common["Authorization"] = `Token ${newAccessToken}`;
-            originalRequest.headers["Authorization"] = `Token ${newAccessToken}`;
-  
-            return axiosInstance(originalRequest);
-          } catch (error) {
-            console.error("Token refresh failed:", error);
-            logoutUser();
-          }
-        }
-      }
-  
-      return Promise.reject(error);
-    }
-  );
-  
+        const originalRequest = error.config;
 
-// Logout function
+        if (error.response && error.response.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+
+            const refreshToken = localStorage.getItem("refreshToken");
+            
+            if (refreshToken) {
+                try {
+                    const response = await axios.post("/api/token/refresh/", { refresh: refreshToken });
+                    const newAccessToken = response.data.access;
+
+                    localStorage.setItem("accessToken", newAccessToken);
+
+                    // Setze den neuen Token für die Wiederholung der ursprünglichen Anfrage
+                    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
+                    originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+
+                    // Wiederhole die ursprüngliche Anfrage mit dem neuen Token
+                    return axiosInstance(originalRequest);
+                } catch (error) {
+                    console.error("Token refresh failed:", error);
+                    logoutUser();
+                }
+            }
+        }
+
+        return Promise.reject(error);
+    }
+);
+
+// Logout-Funktion
 const logoutUser = () => {
-    // Clear the token and user ID from localStorage
+    // Lösche Token und User-Daten aus localStorage
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user_id");
-  
-    // If the UserContext is available, clear the user and profile
+
+    // Wenn UserContext vorhanden ist, setze User und Profil auf null
     if (window.UserContext) {
       window.UserContext.setUser(null);
       window.UserContext.setProfile(null);
     }
-  
-    // Redirect to the login page
-    window.location.href = "/";
-  };
 
+    // Weiterleitung zur Login-Seite
+    window.location.href = "/";
+};
 
 export default axiosInstance;
-

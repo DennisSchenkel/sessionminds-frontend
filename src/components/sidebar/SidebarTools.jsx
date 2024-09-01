@@ -1,5 +1,5 @@
 import styles from "./Sidebar.module.css";
-import TopicsSidebarItemList from "../topics/TopicsSidebarItemList";
+import TopicsSidebarList from "../topics/TopicsSidebarList";
 
 export default function SidebarTools() {
     return (
@@ -13,9 +13,7 @@ export default function SidebarTools() {
                 </div>
             </div>
 
-            <TopicsSidebarItemList />
-            <TopicsSidebarItemList />
-            <TopicsSidebarItemList />
+            <TopicsSidebarList />
 
         </div>
     )

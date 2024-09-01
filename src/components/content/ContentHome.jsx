@@ -10,9 +10,8 @@ export default function ContentHome() {
                 <h2>Top Tools</h2>
             </div>
        
-            <ToolsListItem />
-            <ToolsListItem />
-            <ToolsListItem />
+            Test Row 1
+            
 
         
         </div>
@@ -21,9 +20,7 @@ export default function ContentHome() {
                 <h2>Latest Tools</h2>
             </div>
 
-            <ToolsListItem />
-            <ToolsListItem />
-            <ToolsListItem />
+            Test Row 2
 
         </div>
         <div className="pb-5">
@@ -31,9 +28,7 @@ export default function ContentHome() {
                 <h2>Top Topics</h2>
             </div>
 
-            <TopicsListItem />
-            <TopicsListItem />
-            <TopicsListItem />
+            Test Row 3
 
             </div>
     </>

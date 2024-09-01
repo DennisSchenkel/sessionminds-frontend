@@ -1,9 +1,9 @@
-import styles from "./Content.module.css";
-import TopicsListItem from "../topics/TopicsListItem";
+
 import axios from "../../api/axiosDefault";
+import TopicsSidebarListItem from "./TopicsSidebarListItem";
 import { useEffect, useState } from "react";
 
-export default function ContentTopics() {
+export default function TopicsSidebarList() {
 
     const [topics, setTopics] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,25 +28,13 @@ export default function ContentTopics() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
-    console.log("Topics: " + JSON.stringify(topics));             // For debugging
-
     return (
-    <>
-    <div className={`row ${styles["headline-row"]}`}>
-        <div className="col-8">
-            <h1>Topics</h1>
-        </div>
-        <div className="col-4 text-end">
-            All | Top
-        </div>
-    </div>
-    <div>
-    
-        {topics.map((topic) => (
-            <TopicsListItem key={topic.id} topic={topic} />
-        ))}
+        <>
+            
+            {topics.map((topic) => (
+                <TopicsSidebarListItem key={topic.id} topic={topic} />
+            ))}
 
-    </div>
-    </>
+        </>
     )
-    }
+}
