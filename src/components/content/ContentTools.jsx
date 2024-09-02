@@ -28,8 +28,6 @@ export default function ContentTools() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
-    console.log("Tools: " + JSON.stringify(tools));             // For debugging
-
     return (
     <>
     <div className={`row ${styles["headline-row"]}`}>

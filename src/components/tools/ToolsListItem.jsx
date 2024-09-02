@@ -30,7 +30,7 @@ export default function ToolsListItem({tool}) {
                     <div className={`${styles["list-item-desc-text"]}`}>{tool.short_description}</div>
                     <div className={`${styles["list-item-desc-misc"]}`}>
                         <FontAwesomeIcon icon={faComment} /> 62<span> &#183; </span>
-                        {topicsList}<span> &#183; </span>{tool.profile.first_name} {tool.profile.last_name}
+                        {topicsList}<span> &#183; </span>{tool.profile.first_name} {tool.profile.last_name}<span> &#183; </span>{tool.created}
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@ export default function ToolsListItem({tool}) {
                         <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
                     </div>
                     <div>
-                        145
+                        {tool.vote_count}
                     </div>
                 </div>
             </div>

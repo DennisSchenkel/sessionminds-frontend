@@ -28,8 +28,6 @@ export default function ContentTopics() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
-    console.log("Topics: " + JSON.stringify(topics));             // For debugging
-
     return (
     <>
     <div className={`row ${styles["headline-row"]}`}>

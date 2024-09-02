@@ -74,6 +74,13 @@ When setting up the backend django rest framework and loading the API URLs using
 Nevertheless, I was able to create and update new entries.<br>
 This issue continues to happen, but I tried if calling the API using the frontend would lead to a flawless behavior.<br>
 
+**(BE) 403 HTTP 403 Forbidden**
+
+Message shown: "CSRF Failed: CSRF token missing"
+
+When using the Django Rest Framework API Frontend, Updating and Deleting of content is not possible. This might be due to the wrong authentication methode used.
+When using the API with JWT, everything works just finde.
+
 **Athentication token not deleting**
 
 When testing the behavior of the access token and the authentication token, an error occurred. The tokens still worked after their lifetime, and blacklisting on refresh didn't work.
