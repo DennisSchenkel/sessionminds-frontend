@@ -9,6 +9,6 @@
 .headline-row {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 14px;
   border-bottom: 1px solid #d9e1ec;
 }

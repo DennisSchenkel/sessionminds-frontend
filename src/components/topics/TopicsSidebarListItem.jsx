@@ -10,7 +10,7 @@ export default function TopicsSidebarListItem({topic}) {
 
             <div className={`${styles["sidebar-item-icon"]} col-2`}>
                 <div>
-                    <img src="https://via.placeholder.com/60" alt="..." />
+                    <img src="https://via.placeholder.com/50" alt="..." />
                 </div>
             </div>  
             <div className={`${styles["sidebar-item-desc"]} col-10 ps-2`}>

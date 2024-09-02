@@ -6,10 +6,12 @@
 }
 
 .Container {
+  max-width: 1216px;
   margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1216px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 h1 {
