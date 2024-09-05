@@ -18,9 +18,8 @@ export default function ToolsListItem({tool}) {
 
     return (
         <div className={`${styles["list-item"]} row g-0`}>
-
             <div className={`${styles["list-item-icon"]} col-1`}>
-                <div>
+                <div id="tool-icon">
                     <img src="https://via.placeholder.com/60" alt="..." />
                 </div>
             </div>  

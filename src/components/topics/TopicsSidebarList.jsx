@@ -64,7 +64,6 @@ export default function TopicsSidebarList() {
             {topics.map((topic) => (
                 <TopicsSidebarListItem key={topic.id} topic={topic} />
             ))}
-
         </>
     )
 }

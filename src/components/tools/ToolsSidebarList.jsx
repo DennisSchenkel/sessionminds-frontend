@@ -31,7 +31,7 @@ export default function ToolsSidebarList() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div>
+        <>
             <div className={`row ${styles["headline-row"]}`}>
                 <div className="col-8">
                     <h2>Tools</h2>
@@ -64,7 +64,6 @@ export default function ToolsSidebarList() {
             {tools.map((tool) => (
                 <ToolsSidebarListItem key={tool.id} tool={tool} />
             ))}
-
-        </div>
+        </>
     )
-    }
+}

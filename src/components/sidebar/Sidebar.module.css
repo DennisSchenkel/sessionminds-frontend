@@ -34,3 +34,7 @@ h4 {
   font-size: 0.8rem;
   color: #6e7a8a;
 }
+
+.sidebar-profile-image {
+  border-radius: 50%;
+ }
