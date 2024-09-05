@@ -29,10 +29,7 @@ export default function ContentContributors() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
-
-
-    console.log(contributors);
-    
+   
     return (
         <>
         <div className={`row ${styles["headline-row"]}`}>

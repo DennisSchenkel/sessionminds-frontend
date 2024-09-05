@@ -52,6 +52,8 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 
 #### Modules & Libraries
 
+- [Emoji Picker React (v4)](https://www.npmjs.com/package/emoji-picker-react?activeTab=readme)
+
 #### Programs & Tools
 
 **Vite & React**

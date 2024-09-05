@@ -18,8 +18,8 @@ export default function TopicsSidebarList() {
                 setTopics(response.data || []);
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Failed to load tools.');
+                console.error("Error fetching data:", error);
+                setError("Failed to load tools.");
                 setLoading(false);
             }
         };

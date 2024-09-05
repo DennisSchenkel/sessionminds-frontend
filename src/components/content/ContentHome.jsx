@@ -1,7 +1,20 @@
 import styles from "./Content.module.css";
+import EmojiPicker from "emoji-picker-react";
+import { Emoji } from "emoji-picker-react";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+
 
 
 export default function ContentHome() {
+
+    const [emoji, setEmoji] = useState(null);
+
+    const onEmojiClick = (emojiData) => {
+        setEmoji(emojiData.unified);
+    };
+
+
     return (
     <>
         <div className="pb-3">
@@ -30,6 +43,18 @@ export default function ContentHome() {
             Test Row 3
 
             </div>
+
+
+        <div>
+            <EmojiPicker onEmojiClick={onEmojiClick} />
+            <Button onClick={() => setEmoji(null)}>Delete Icon</Button>
+        </div>
+
+        <div>
+            <Emoji unified={emoji} size={64} />
+        </div>
+
+
     </>
     )
     }
