@@ -2,6 +2,7 @@ import styles from "../../assets/styles/ItemList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
+import { Emoji } from "emoji-picker-react";
 
 function getTopicsList(tool) {
     if (tool.topics.length > 1) {
@@ -15,12 +16,13 @@ function getTopicsList(tool) {
 export default function ToolsListItem({tool}) {
 
     const topicsList = getTopicsList(tool);
+    const icon = tool.icon.toLowerCase();
 
     return (
         <div className={`${styles["list-item"]} row g-0`}>
             <div className={`${styles["list-item-icon"]} col-1`}>
                 <div id="tool-icon">
-                    <img src="https://via.placeholder.com/60" alt="..." />
+                    <Emoji unified={icon} size={40} />                    
                 </div>
             </div>  
             <div className={`${styles["list-item-desc"]} col-9 ps-2`}>

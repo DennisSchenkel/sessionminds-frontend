@@ -70,6 +70,7 @@ export default function Header() {
               </ul>
             </div>
             <div className="col-3 text-end">
+              {user ? <><Link to="/tools/editor">Add Tool</Link></> : <></>}
               {user ? <><p>Welcome, {user.id}</p><button onClick={logoutUser}>Logout</button></> : 
               <>
               <ul className="nav justify-content-center">

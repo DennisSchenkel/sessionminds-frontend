@@ -2,31 +2,45 @@ import styles from "./Content.module.css";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import EmojiPicker from "emoji-picker-react";
+import { Emoji } from "emoji-picker-react";
 
 export default function ContentToolEditor() {
 
     const [topics, setTopics] = useState([]);
+    const [emoji, setEmoji] = useState(null);
 
-  const getTopics = async () => {
+    const [tool, setTool] = useState({
+        title: "",
+        topic_ids: [1],
+        short_description: "",
+        full_description: "",
+        instructions: "",
+        icon: "26aa",
+    });
+
+    const getTopics = async () => {
         try {
-            const response = await axios.get("/topics/");
-            console.log("API Response:", response.data); // Logging the API response
-            setTopics(response.data);
+            const unsortedResponse = await axios.get("/topics/");
+            const response = unsortedResponse.data.sort((a, b) => a.id - b.id);
+            console.log("API Response:", response);                        // Logging the API response
+            setTopics(response);
         } catch (error) {
             console.error("Error fetching topics:", error);
         }
     };
 
+    const onEmojiClick = (emojiData) => {
+        setEmoji(emojiData.unified);
+        setTool((prevTool) => ({
+            ...prevTool,
+            icon: emojiData.unified,
+        }));
+    };
 
-
-
-    const [tool, setTool] = useState({
-        title: "",
-        topics: [],
-        short_description: "",
-        full_description: "",
-        instructions: ""
-    });
+    const handleTopicChange = (event) => {
+        setTool({...tool, topic_ids: [parseInt(event.target.value)]});
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,14 +54,10 @@ export default function ContentToolEditor() {
             });
     };
 
-    const handleTopicChange = (event) => {
-        const value = event.target.value;
-        setTool({...tool, topic_ids: [parseInt(value)]});
-    }
-
     useEffect(() => {
         getTopics();
     }, []);
+
 
     return (
     <>
@@ -55,10 +65,9 @@ export default function ContentToolEditor() {
         <h1>Tools</h1>
         <p>Here you can create a new tool or edit an existing one.</p>
     </div>
-        <Form>
-            
-            <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Label className={`${styles["editor-title"]}`}> Title</Form.Label>
+        <Form> 
+            <Form.Group className="mb-4" controlId="TitleInput">
+                <Form.Label className={`${styles["editor-title"]}`}>Title</Form.Label>
                 <Form.Control 
                     type="text" 
                     required 
@@ -66,17 +75,17 @@ export default function ContentToolEditor() {
                     aria-required="true" 
                     aria-describedby="titleHelp"
                     onChange={(event) => setTool({...tool, title: event.target.value})}
+                    value={tool.title}
                 />
             </Form.Group>
-            <Form.Group className="mb-4" controlId="exampleForm.Dropdown">
+            <Form.Group className="mb-4" controlId="TopicDropdown">
                 <Form.Label className={`${styles["editor-title"]}`}>Topic</Form.Label>
                 <Form.Select 
                     required
-                    defaultValue={1}
-                    aria-label="Tool Type" 
+                    aria-label="Tool Topic" 
                     aria-required="true" 
-                    aria-labelledby="topicLabel"
                     onChange={handleTopicChange}
+                    value={tool.topic_ids[0]}
                 >
                     {topics.map((topic) => (
                         <option key={topic.id} value={topic.id}>
@@ -85,7 +94,37 @@ export default function ContentToolEditor() {
                     ))}
                 </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
+            <Form.Group controlId="ToolIcon">
+                <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
+            </Form.Group>
+            <div className="row">
+                <div  className="col-6 pb-3">
+                    <EmojiPicker
+                        onEmojiClick={onEmojiClick}
+                        skinTonesDisabled="false" 
+                        height={500}
+                        width="100%"
+                        aria-label="Tool Icon" 
+                        aria-required="true"
+                    />
+                </div>
+                <div className="col-6 d-flex flex-column align-items-center">                    
+                    <div className="py-5">
+                        {emoji !== null && (
+                            <h3>Selected Topic Icon:</h3>
+                        )}
+                    </div>
+                    <div className="pb-5 text-center">
+                        <Emoji unified={emoji} size={64} />
+                    </div>
+                    <div className="text-center">
+                        {emoji !== null && (
+                            <Button onClick={() => setEmoji(null)}>Delete Icon</Button>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <Form.Group className="mb-4" controlId="Textarea1">
                 <Form.Label className={`${styles["editor-title"]}`}>Short-Description</Form.Label>
                 <Form.Control 
                     as="textarea" 
@@ -95,9 +134,10 @@ export default function ContentToolEditor() {
                     aria-required="true"
                     aria-describedby="short_descriptionHelp"
                     onChange={(event) => setTool({...tool, short_description: event.target.value})}
+                    value={tool.short_description}
                 />
             </Form.Group>
-            <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
+            <Form.Group className="mb-4" controlId="Textarea2">
                 <Form.Label className={`${styles["editor-title"]}`}>Description</Form.Label>
                 <Form.Control 
                     as="textarea" 
@@ -107,9 +147,10 @@ export default function ContentToolEditor() {
                     aria-required="true"
                     aria-describedby="full_descriptionHelp"
                     onChange={(event) => setTool({...tool, full_description: event.target.value})}
+                    value={tool.full_description}
                 />
             </Form.Group>
-            <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
+            <Form.Group className="mb-4" controlId="Textarea3">
                 <Form.Label className={`${styles["editor-title"]}`}>Instructions</Form.Label>
                 <Form.Control 
                     as="textarea" 
@@ -119,6 +160,7 @@ export default function ContentToolEditor() {
                     aria-required="true"
                     aria-describedby="instructionsHelp"
                     onChange={(event) => setTool({...tool, instructions: event.target.value})}
+                    value={tool.instructions}
                 />
             </Form.Group>
             <Button 
@@ -130,8 +172,6 @@ export default function ContentToolEditor() {
                 Save Tool
             </Button>
         </Form>
-
-    
     </>
     )
     }
