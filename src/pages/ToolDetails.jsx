@@ -1,7 +1,7 @@
 import Content from "../components/content/Content"
 import Sidebar from "../components/sidebar/Sidebar"
 
-export default function Tools() {
+export default function ToolDetails() {
 
     return (
         <div className="row g-0">

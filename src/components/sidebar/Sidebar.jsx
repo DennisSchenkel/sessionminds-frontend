@@ -1,17 +1,24 @@
+import { useLocation } from "react-router-dom";
 import SidebarHome from "./SidebarHome";
 import SidebarTools from "./SidebarTools";
+import SidebarToolAuthor from "./SidebarToolAuthor";
 import SidebarTopics from "./SidebarTopics";
 import SidebarContributors from "./SidebarContributors";
-import styles from "./Sidebar.module.css"
+import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
+    const location = useLocation();
+    const path = location.pathname;
 
     return (
-        <div className={styles.sidebar} >
-            {location.pathname === "/" && <SidebarHome />}
-            {location.pathname === "/tools" && <SidebarTools />}
-            {location.pathname === "/topics" && <SidebarTopics />}
-            {location.pathname === "/contributors" && <SidebarContributors />}
+        <div className={styles.sidebar}>
+            {path === "/" && <SidebarHome />}
+            {path === "/tools" && <SidebarTools />}
+            {path.startsWith("/tools/") && path.split('/').length === 3 && <SidebarToolAuthor />}
+            {path === "/tools/editor" && <SidebarTools />}
+            {path.startsWith("/tools/editor/") && path.split('/').length === 4 && <SidebarTools />}
+            {path === "/topics" && <SidebarTopics />}
+            {path === "/contributors" && <SidebarContributors />}
         </div>
-    )
-    }
+    );
+}

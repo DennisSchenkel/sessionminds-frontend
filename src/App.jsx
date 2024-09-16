@@ -1,11 +1,12 @@
 import {Route, Routes, Outlet} from "react-router-dom"
 import styles from "./App.module.css"
-import Tools from "./pages/Tools";
-import ToolEditor from "./pages/ToolEditor";
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Regist from "./pages/auth/Regist";
 import Home from "./pages/Home";
+import Tools from "./pages/Tools";
+import ToolEditor from "./pages/ToolEditor";
+import ToolDetails from "./pages/ToolDetails";
 import Topics from "./pages/Topics";
 import Contributors from "./pages/Contributors";
 
@@ -31,7 +32,9 @@ testGetUserList();
           <Route path="/login" element={<Login />} />
           <Route path="/regist" element={<Regist />} />
           <Route path="/tools" element={<Tools />} />
+          <Route path="/tools/:slug" element={<ToolDetails />} />
           <Route path="/tools/editor" element={<ToolEditor />} />
+          <Route path="/tools/editor/:slug" element={<ToolEditor />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="*" element={<div>404 Page Not Found</div>} />

@@ -1,7 +1,8 @@
 import Content from "../components/content/Content"
 import Sidebar from "../components/sidebar/Sidebar"
 
-export default function ToolsEditor() {
+export default function ToolEditor() {
+
     return (
         <div className="row g-0">
         
@@ -15,4 +16,4 @@ export default function ToolsEditor() {
             
         </div>
     )
-    }
+}

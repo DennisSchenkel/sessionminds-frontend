@@ -1,18 +1,25 @@
+import { useLocation } from "react-router-dom";
 import ContentHome from "./ContentHome";
 import ContentTools from "./ContentTools";
-import ContentToolEdidor from "./ContentToolEditor";
+import ContentToolDetails from "./ContentToolDetails";
+import ContentToolEditor from "./ContentToolEditor";
 import ContentTopics from "./ContentTopics";
 import ContentContributors from "./ContentContributors";
-import styles from "./Content.module.css"
+import styles from "./Content.module.css";
 
 export default function Content() {
+    const location = useLocation();
+    const path = location.pathname;
+
     return (
         <div className={styles.content}>
-            {location.pathname === "/" && <ContentHome />}
-            {location.pathname === "/tools" && <ContentTools />}
-            {location.pathname === "/tools/editor" && <ContentToolEdidor />}
-            {location.pathname === "/topics" && <ContentTopics />}
-            {location.pathname === "/contributors" && <ContentContributors />}
+            {path === "/" && <ContentHome />}
+            {path === "/tools" && <ContentTools />}
+            {path.startsWith("/tools/") && path.split('/').length === 3 && <ContentToolDetails />}
+            {path === "/tools/editor" && <ContentToolEditor />}
+            {path.startsWith("/tools/editor/") && path.split('/').length === 4 && <ContentToolEditor />}
+            {path === "/topics" && <ContentTopics />}
+            {path === "/contributors" && <ContentContributors />}
         </div>
-    )
+    );
 }

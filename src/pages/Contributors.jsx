@@ -2,6 +2,7 @@ import Content from "../components/content/Content"
 import Sidebar from "../components/sidebar/Sidebar"
 
 export default function Contributors() {
+
     return (
         <div className="row g-0">
 
@@ -15,4 +16,4 @@ export default function Contributors() {
             
         </div>
     )
-    }
+}

@@ -19,16 +19,20 @@ export default function ContentToolEditor() {
         icon: "26aa",
     });
 
-    const getTopics = async () => {
-        try {
-            const unsortedResponse = await axios.get("/topics/");
-            const response = unsortedResponse.data.sort((a, b) => a.id - b.id);
-            console.log("API Response:", response);                        // Logging the API response
-            setTopics(response);
-        } catch (error) {
-            console.error("Error fetching topics:", error);
-        }
-    };
+    useEffect(() => {
+        const getTopics = async () => {
+            try {
+                const unsortedResponse = await axios.get("/topics/");
+                const response = unsortedResponse.data.sort((a, b) => a.id - b.id);
+                console.log("API Response:", response);                        // Logging the API response
+                setTopics(response);
+            } catch (error) {
+                console.error("Error fetching topics:", error);
+            }
+        };
+
+        getTopics();
+    }, []);
 
     const onEmojiClick = (emojiData) => {
         setEmoji(emojiData.unified);
@@ -53,11 +57,6 @@ export default function ContentToolEditor() {
                 console.error('Error:', error);
             });
     };
-
-    useEffect(() => {
-        getTopics();
-    }, []);
-
 
     return (
     <>
