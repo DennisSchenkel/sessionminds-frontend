@@ -1,3 +1,13 @@
+h4 {
+  font-size: 1rem;
+  margin-bottom: 0rem;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
 .sidebar {
   padding-top: 1.4rem;
   padding-left: 3rem;
@@ -11,13 +21,12 @@
   border-bottom: 1px solid #d9e1ec;
 }
 
-h4 {
-  font-size: 1rem;
-  margin-bottom: 0rem;
-}
-
 .sidebar-item {
   margin-bottom: 1rem;
+}
+
+.sidebar-item:hover {
+  background-image: radial-gradient(circle, #47d0f538, white);
 }
 
 .sidebar-item-icon {
@@ -37,4 +46,4 @@ h4 {
 
 .sidebar-profile-image {
   border-radius: 50%;
- }
+}
