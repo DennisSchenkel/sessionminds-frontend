@@ -4,8 +4,7 @@ import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { Emoji } from "emoji-picker-react";
 import axios from "../../api/axiosDefault";
-import { useEffect, useState, useCallback } from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
@@ -55,7 +54,7 @@ export default function ToolsListItem({ tool }) {
     }, [tool.id]);
 
     useEffect(() => {
-        fetchToolData(); // Initialer Fetch für Tool-Daten
+        fetchToolData();
     }, [tool.id, fetchToolData]);
 
     useEffect(() => {

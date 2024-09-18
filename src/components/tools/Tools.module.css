@@ -58,3 +58,12 @@
     margin-bottom: 14px;
     border-bottom: 1px solid #d9e1ec;
 }
+  
+.tool-details-vote-user-has-voted {
+    background-color: #2d92d5;
+}
+
+.tool-details-vote:hover {
+    background-color: #f5f8fa;
+    cursor: pointer;
+}

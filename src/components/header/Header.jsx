@@ -70,6 +70,7 @@ export default function Header() {
               </ul>
             </div>
             <div className="col-3 text-end">
+              {profile ? <Image src={profile.image} width={40} /> : ""}
               {user ? <><Link to="/tools/editor">Add Tool</Link></> : <></>}
               {user ? <><p>Welcome, {user.id}</p><button onClick={logoutUser}>Logout</button></> : 
               <>
@@ -89,11 +90,6 @@ export default function Header() {
           </div>
 
         </div>
-
-        <div className={`${styles["debugging"]} bg-info`}>
-          Debugging: {profile ? <p>Profile vorhanden <br />{profile.image}</p> : <p>No profile</p>}
-        </div>
-
       </>
     )
     }

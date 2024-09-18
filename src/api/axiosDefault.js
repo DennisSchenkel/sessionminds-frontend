@@ -127,8 +127,6 @@ const logoutUser = () => {
     if (isLoggedOut) return;
     isLoggedOut = true;
 
-    console.log("Logout function called");
-
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("user_id");
@@ -138,9 +136,6 @@ const logoutUser = () => {
         window.UserContext.setUser(null);
         window.UserContext.setProfile(null);
     }
-
-    console.log("Access Token:", localStorage.getItem("access"));
-    console.log("Refresh Token:", localStorage.getItem("refresh"));
 
     // Redirect to home page
     window.location.href = "/";
