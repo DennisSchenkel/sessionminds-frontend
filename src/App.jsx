@@ -1,4 +1,4 @@
-import {Route, Routes, Outlet} from "react-router-dom"
+import { Route, Routes, Outlet } from "react-router-dom"
 import styles from "./App.module.css"
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";

@@ -10,8 +10,8 @@ export default function Header() {
 
     const logoutUser = () => {
         // Clear the token and user ID from localStorage
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
         localStorage.removeItem("user_id");
       
         // If the UserContext is available, clear the user and profile

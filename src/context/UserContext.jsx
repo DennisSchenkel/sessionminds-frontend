@@ -16,21 +16,21 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const accessToken = localStorage.getItem("accessToken");
+          const access = localStorage.getItem("access");
           const userId = localStorage.getItem("user_id");
   
-          if (accessToken && userId) {
+          if (access && userId) {
             // Fetch user data
             const userResponse = await axios.get(
               `/users/${userId}/`,
-              { headers: { Authorization: `Bearer ${accessToken}` } }
+              { headers: { Authorization: `Bearer ${access}` } }
             );
             setUser(userResponse.data);
   
             // Fetch profile data
             const profileResponse = await axios.get(
               `/users/${userId}/profile/`,
-              { headers: { Authorization: `Bearer ${accessToken}` } }
+              { headers: { Authorization: `Bearer ${access}` } }
             );
             setProfile(profileResponse.data);
 

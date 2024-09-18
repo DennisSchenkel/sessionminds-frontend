@@ -58,6 +58,11 @@ a {
   line-height: 0.7;
 }
 
+.list-item-vote-user-has-voted {
+  background-color: #2d92d5;
+}
+
+
 .list-item-vote:hover {
   background-color: #f5f8fa;
   cursor: pointer;

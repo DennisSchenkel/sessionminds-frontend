@@ -5,8 +5,8 @@ export default function Logout() {
     async function logout() {
         try {
             const response = await axios.post("/logout/");
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
             localStorage.removeItem("user_id");
             console.log(response.data);
         }

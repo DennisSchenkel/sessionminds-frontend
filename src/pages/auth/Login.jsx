@@ -40,8 +40,8 @@ export default function Login ( )   {
     try {
       const response = await axios.post("/login/", loginData);
       console.log(response.data);
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("access", response.data.access);
+      localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("user_id", response.data.user_id);
       setUser(response.data);
       console.log(response.data.user_id);

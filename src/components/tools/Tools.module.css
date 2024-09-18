@@ -36,6 +36,10 @@
     align-items: center;  
 }
 
+.tool-details-vote-user-has-voted {
+    background-color: #2d92d5;
+}
+
 .tool-details-vote-icon {
     padding-top: 5px;
 }

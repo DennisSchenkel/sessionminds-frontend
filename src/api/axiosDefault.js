@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 // Füge einen Interceptor hinzu, um den Authorization-Header für jede Anfrage zu setzen
 axiosInstance.interceptors.request.use(
     config => {
-        const token = localStorage.getItem("accessToken");
+        const token = localStorage.getItem("access");
         if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }
@@ -30,14 +30,14 @@ axiosInstance.interceptors.response.use(
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
-            const refreshToken = localStorage.getItem("refreshToken");
+            const refresh = localStorage.getItem("refresh");
             
-            if (refreshToken) {
+            if (refresh) {
                 try {
-                    const response = await axios.post("/api/token/refresh/", { refresh: refreshToken });
+                    const response = await axios.post("/api/token/refresh/", { refresh: refresh });
                     const newAccessToken = response.data.access;
 
-                    localStorage.setItem("accessToken", newAccessToken);
+                    localStorage.setItem("access", newAccessToken);
 
                     // Setze den neuen Token für die Wiederholung der ursprünglichen Anfrage
                     axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
@@ -59,8 +59,8 @@ axiosInstance.interceptors.response.use(
 // Logout-Funktion
 const logoutUser = () => {
     // Lösche Token und User-Daten aus localStorage
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
     localStorage.removeItem("user_id");
 
     // Wenn UserContext vorhanden ist, setze User und Profil auf null
