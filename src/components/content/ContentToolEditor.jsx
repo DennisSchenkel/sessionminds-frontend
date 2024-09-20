@@ -12,6 +12,7 @@ export default function ContentToolEditor() {
 
     const { id } = useParams();
     const { user } = useContext(UserContext);
+    const [is_owner, setIsOwner] = useState(false);
 
     console.log("ID: " + id);
 
@@ -20,7 +21,7 @@ export default function ContentToolEditor() {
 
     const [tool, setTool] = useState({
         title: "",
-        topic_ids: 0,
+        topic_ids: [],
         short_description: "",
         full_description: "",
         instructions: "",
@@ -62,12 +63,13 @@ export default function ContentToolEditor() {
                 const existingTool = await axios.get(`/tools/${id}`);
                 console.log("Existing Tool ID: " + existingTool.data.id);
                 console.log("Existing Tool Owner: " + existingTool.data.is_owner);
+                setIsOwner(existingTool.data.is_owner);
                     if (existingTool.data.is_owner) {
                         console.log("Existing Tool Title: " + existingTool.data.title);
                         setTool(
                             {
                                 title: existingTool.data.title,
-                                topic_ids: existingTool.data.topic_ids,
+                                topic_ids: existingTool.data.topics.map(topic => topic.id),
                                 short_description: existingTool.data.short_description,
                                 full_description: existingTool.data.full_description,
                                 instructions: existingTool.data.instructions,
@@ -108,13 +110,26 @@ export default function ContentToolEditor() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(JSON.stringify(tool));
-        axios.post("/tools/", tool)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+
+        if (id && is_owner) {
+            console.log("User is owner of tool");
+            axios.put(`/tools/${id}/`, tool)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+        else {
+            axios.post("/tools/", tool)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
     };
 
     if (loading) return <p>Loading...</p>;
