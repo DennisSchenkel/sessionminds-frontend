@@ -1,38 +1,97 @@
 import styles from "./Content.module.css";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import { Form, Button } from "react-bootstrap";
 import EmojiPicker from "emoji-picker-react";
 import { Emoji } from "emoji-picker-react";
 
 export default function ContentToolEditor() {
 
+    const { id } = useParams();
+    const { user } = useContext(UserContext);
+
+    console.log("ID: " + id);
+
     const [topics, setTopics] = useState([]);
     const [emoji, setEmoji] = useState(null);
 
     const [tool, setTool] = useState({
         title: "",
-        topic_ids: [1],
+        topic_ids: 0,
         short_description: "",
         full_description: "",
         instructions: "",
         icon: "26aa",
     });
+ 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const itemsPerPage = 100;
+
+
 
     useEffect(() => {
+
         const getTopics = async () => {
             try {
-                const unsortedResponse = await axios.get("/topics/");
-                const response = unsortedResponse.data.sort((a, b) => a.id - b.id);
-                console.log("API Response:", response);                        // Logging the API response
+                const unsortedResponse = await axios.get("/topics/", {
+                    params: {
+                        page_size: itemsPerPage,
+                    },
+                });
+                const response = unsortedResponse.data.results.sort((a, b) => a.id - b.id);
                 setTopics(response);
-            } catch (error) {
-                console.error("Error fetching topics:", error);
+                setLoading(false);
+                }
+            catch (error) {
+                console.error("Error fetching data:", error);
+                setError("Failed to load tools.");
+                setLoading(false);
             }
         };
-
         getTopics();
-    }, []);
+
+
+        const getExistingToolOrCreateNew = async () => {
+            if (id) {
+                try {
+                const existingTool = await axios.get(`/tools/${id}`);
+                console.log("Existing Tool ID: " + existingTool.data.id);
+                console.log("Existing Tool Owner: " + existingTool.data.is_owner);
+                    if (existingTool.data.is_owner) {
+                        console.log("Existing Tool Title: " + existingTool.data.title);
+                        setTool(
+                            {
+                                title: existingTool.data.title,
+                                topic_ids: existingTool.data.topic_ids,
+                                short_description: existingTool.data.short_description,
+                                full_description: existingTool.data.full_description,
+                                instructions: existingTool.data.instructions,
+                                icon: existingTool.data.icon,
+                            }
+                        );
+                        setEmoji(existingTool.data.icon);
+                    }
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            } else {
+                setTool({
+                    title: "",
+                    topic_ids: [0],
+                    short_description: "",
+                    full_description: "",
+                    instructions: "",
+                    icon: "26aa",
+                });
+            }
+        }
+        getExistingToolOrCreateNew();
+    }, [id, user]);
 
     const onEmojiClick = (emojiData) => {
         setEmoji(emojiData.unified);
@@ -57,6 +116,9 @@ export default function ContentToolEditor() {
                 console.error('Error:', error);
             });
     };
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
     <>
@@ -84,7 +146,7 @@ export default function ContentToolEditor() {
                     aria-label="Tool Topic" 
                     aria-required="true" 
                     onChange={handleTopicChange}
-                    value={tool.topic_ids[0]}
+                    value={tool.topic_ids}
                 >
                     {topics.map((topic) => (
                         <option key={topic.id} value={topic.id}>

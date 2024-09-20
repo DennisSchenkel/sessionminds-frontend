@@ -108,8 +108,19 @@ export default function ContentToolDetails() {
                     <p>{toolDetails.short_description}</p>
                 </div>
             </div>
-
-                Edit tool
+                {toolDetails.is_owner ? 
+                    <>
+                        <Link to={`/editor/${toolDetails.id}/`} className="btn btn-primary">
+                        Edit tool
+                        </Link>
+                    </>
+                    
+                    : 
+                    
+                    null
+                    
+                }
+                
 
             <div className="col-auto text-center">
                 <div className={`${styles["tool-details-vote-container"]}`}>

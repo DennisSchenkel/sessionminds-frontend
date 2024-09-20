@@ -34,7 +34,7 @@ export default function App() {
             }
           />
           <Route path="/editor" element={<ToolEditor />} />
-          <Route path="/editor/:slug" element={<ToolEditor />} />
+          <Route path="/editor/:id" element={<ToolEditor />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="*" element={<div>404 Page Not Found</div>} />
