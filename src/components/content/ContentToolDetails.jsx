@@ -15,6 +15,8 @@ export default function ContentToolDetails() {
     const { slug } = useParams();
     const { user } = useContext(UserContext);
 
+    const navigate = useNavigate();
+
     const [toolDetails, setToolDetails] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -42,13 +44,9 @@ export default function ContentToolDetails() {
         }
     }, [slug]);
 
-
     useEffect(() => {
-
         fetchToolData();
     }, [fetchToolData]);
-
-
 
     const upVoteHandler = useCallback(async () => {
         const toolVoteData = { tool: toolDetails.id };
@@ -85,28 +83,19 @@ export default function ContentToolDetails() {
         }
     }, [voteId, fetchToolData]);
     
-
-
-    const navigate = useNavigate();
-
-
     if (loading) {
         return <div>Loading...</div>;
     }
-    console.log("Tool ID:", toolDetails.id);
-
 
     return (
         <>
         <div className="pb-3">
-          <Link
+            <Link
                 to={'..'}
-                onClick={(e) => {
-                e.preventDefault();
+                onClick={() => {
                 navigate(-1);
                 }}
-
-                >Go Back</Link>
+            >Go Back</Link>
         </div>
         <div className="row pb-4">
             <div className="col row">
@@ -119,6 +108,8 @@ export default function ContentToolDetails() {
                     <p>{toolDetails.short_description}</p>
                 </div>
             </div>
+
+                Edit tool
 
             <div className="col-auto text-center">
                 <div className={`${styles["tool-details-vote-container"]}`}>
@@ -199,12 +190,6 @@ export default function ContentToolDetails() {
                 <FontAwesomeIcon icon={faArrowUpFromBracket} />
                 <span> Share</span>
             </div>
-
-
-
-
-
-
 
         </div>
         <div className="pb-4">     

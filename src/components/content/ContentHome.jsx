@@ -1,8 +1,60 @@
 import styles from "./Content.module.css";
-
-
+import ToolsListItem from "../tools/ToolsListItem";
+import TopicsListItem from "../topics/TopicsListItem";
+import axios from "../../api/axiosDefault";
+import { useEffect, useState } from "react";
 
 export default function ContentHome() {
+
+    const [topTools, setTopTools] = useState([]);
+    const [latestTools, setLatestTools] = useState([]);
+    const [topTopics, setTopTopics] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Number of items per page
+    const itemsPerPage = 4;
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const responseTop = await axios.get(`/tools/`, {
+                    params: {
+                        ordering: "votes",
+                        page_size: itemsPerPage,
+                    },
+                });
+                setTopTools(responseTop.data.results || []);
+                const responseLatest = await axios.get(`/tools/`, {
+                    params: {
+                        ordering: "latest",
+                        page_size: itemsPerPage,
+                    },
+                });
+                setLatestTools(responseLatest.data.results || []);
+                const responseTopics = await axios.get(`/topics/`, {
+                    params: {
+                        ordering: "top",
+                        page_size: itemsPerPage,
+                    },
+                });
+                setTopTopics((responseTopics.data.results || []));
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setError("Failed to load tools.");
+                setLoading(false);
+            }
+        };
+    
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (error) return <p>{error}</p>;
 
     return (
     <>
@@ -16,21 +68,26 @@ export default function ContentHome() {
             <div className={`row ${styles["headline-row"]}`}>
                 <h2>Top Tools</h2>
             </div>
-            Test Row 1
+            {topTools.map((tool) => (
+                <ToolsListItem key={tool.id} tool={tool} />
+            ))}
         </div>
         <div className="pb-4">
             <div className={`row ${styles["headline-row"]}`}>
                 <h2>Latest Tools</h2>
             </div>
-            Test Row 2
+            {latestTools.map((tool) => (
+                <ToolsListItem key={tool.id} tool={tool} />
+            ))}
         </div>
         <div className="pb-4">
             <div className={`row ${styles["headline-row"]}`}>
                 <h2>Top Topics</h2>
             </div>
 
-            Test Row 3
-
+            {topTopics.map((topic) => (
+                <TopicsListItem key={topic.id} topic={topic} />
+            ))}
             </div>
     </>
     )

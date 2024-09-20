@@ -11,11 +11,19 @@ export default function ToolsSidebarList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Number of items per page
+    const itemsPerPage = 4;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/tools/?ordering=${order}`);
-                setTools(response.data || []);
+                const response = await axios.get(`/tools/`, {
+                    params: {
+                        ordering: order,
+                        page_size: itemsPerPage,
+                    },
+                });
+                setTools(response.data.results || []);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -26,6 +34,12 @@ export default function ToolsSidebarList() {
 
         fetchData();
     }, [order]);
+
+    const handleOrderChange = (newOrder) => {
+        if (newOrder !== order) {
+            setOrder(newOrder);
+        }
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -38,7 +52,7 @@ export default function ToolsSidebarList() {
                 </div>
                 <div className="col-4 text-end">
                     <span
-                        onClick={() => setOrder("votes")}
+                        onClick={() => handleOrderChange("votes")}
                         style={{
                             cursor: "pointer",
                             color: order === "votes" ? "#2da7c8" : "black",
@@ -49,7 +63,7 @@ export default function ToolsSidebarList() {
                     </span>
                     |
                     <span
-                        onClick={() => setOrder("latest")}
+                        onClick={() => handleOrderChange("latest")}
                         style={{
                             cursor: "pointer",
                             color: order === "latest" ? "#2da7c8" : "black",

@@ -70,25 +70,22 @@ export default function Header() {
               </ul>
             </div>
             <div className="col-3 text-end">
-              {profile ? <Image src={profile.image} width={40} /> : ""}
-              {user ? <><Link to="/tools/editor">Add Tool</Link></> : <></>}
+              {profile ? <Image src={profile.image} width={40} /> : <></>}
+              {user ? <Link to="/editor">Add Tool</Link> : <></>}
               {user ? <><p>Welcome, {user.id}</p><button onClick={logoutUser}>Logout</button></> : 
               <>
-              <ul className="nav justify-content-center">
-                <li>
-                    <Link className={`${styles["nav-link"]}`}  to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link className={`${styles["nav-link"]}`}  to="/regist">Regist</Link>
-                </li>
-              </ul>
-
+                <ul className="nav justify-content-center">
+                  <li>
+                      <Link className={`${styles["nav-link"]}`}  to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link className={`${styles["nav-link"]}`}  to="/regist">Regist</Link>
+                  </li>
+                </ul>
               </>
-              
               }
             </div>
           </div>
-
         </div>
       </>
     )

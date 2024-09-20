@@ -11,11 +11,19 @@ export default function TopicsSidebarList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Number of items per page
+    const itemsPerPage = 4;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/topics/?ordering=${order}`);
-                setTopics(response.data || []);
+                const response = await axios.get(`/topics/`, {
+                    params: {
+                        ordering: order,
+                        page_size: itemsPerPage,
+                    },
+                });
+                setTopics(response.data.results || []);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -26,6 +34,12 @@ export default function TopicsSidebarList() {
 
         fetchData();
     }, [order]);
+
+    const handleOrderChange = (newOrder) => {
+        if (newOrder !== order) {
+            setOrder(newOrder);
+        }
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -38,7 +52,7 @@ export default function TopicsSidebarList() {
                 </div>
                 <div className="col-4 text-end">
                     <span
-                        onClick={() => setOrder("top")}
+                        onClick={() => handleOrderChange("top")}
                         style={{
                             cursor: "pointer",
                             color: order === "top" ? "#2da7c8" : "black",
@@ -49,7 +63,7 @@ export default function TopicsSidebarList() {
                     </span>
                     |
                     <span
-                        onClick={() => setOrder("title")}
+                        onClick={() => handleOrderChange("title")}
                         style={{
                             cursor: "pointer",
                             color: order === "title" ? "#2da7c8" : "black",

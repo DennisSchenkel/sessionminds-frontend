@@ -1,8 +1,7 @@
 .tool-details-icon {
     display: flex;
-    flex-direction: column;  
-    justify-content: center;
-    margin-top: -40px;
+    flex-direction: column;
+    margin-top: 10px;
 }
 
 .tool-details-title {

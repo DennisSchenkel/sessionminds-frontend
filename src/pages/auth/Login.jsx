@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Col, Form, Image, Row } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
-
 import styles from "../../assets/styles/LoginReg.module.css";
 import btnStyles from "../../assets/styles/Button.module.css";
 import appStyles from "../../App.module.css";

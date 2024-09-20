@@ -11,11 +11,19 @@ export default function ContentContributors() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Number of items per page
+    const itemsPerPage = 4;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/profiles/?ordering=${order}`);
-                setContributors(response.data || []);
+                const response = await axios.get(`/profiles/`, {
+                    params: {
+                        ordering: order,
+                        page_size: itemsPerPage,
+                    },
+                });
+                setContributors(response.data.results || []);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -26,6 +34,12 @@ export default function ContentContributors() {
 
         fetchData();
     }, [order]);
+
+    const handleOrderChange = (newOrder) => {
+        if (newOrder !== order) {
+            setOrder(newOrder);
+        }
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -38,7 +52,7 @@ export default function ContentContributors() {
             </div>
             <div className="col-4 text-end">            
                 <span
-                    onClick={() => setOrder("tools")}
+                    onClick={() => handleOrderChange("tools")}
                     style={{
                         cursor: "pointer",
                         color: order === "tools" ? "#2da7c8" : "black",
@@ -49,7 +63,7 @@ export default function ContentContributors() {
                 </span>
                 |
                 <span
-                    onClick={() => setOrder("votes")}
+                    onClick={() => handleOrderChange("votes")}
                     style={{
                         cursor: "pointer",
                         color: order === "votes" ? "#2da7c8" : "black",

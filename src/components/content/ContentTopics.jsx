@@ -1,5 +1,6 @@
 import styles from "./Content.module.css";
 import TopicsListItem from "../topics/TopicsListItem";
+import Paginator from "../utilities/Paginator";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
 
@@ -11,11 +12,28 @@ export default function ContentTopics() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    // Number of items per page
+    const itemsPerPage = 4;
+
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (page = 1) => {
+            setLoading(true);
+            setError(null);
             try {
-                const response = await axios.get(`/topics/?ordering=${order}`);
-                setTopics(response.data || []);
+                const response = await axios.get(`/topics/`, {
+                    params: {
+                        ordering: order,
+                        page: page,
+                        page_size: itemsPerPage,
+                    },
+                });
+                setTopics(response.data.results || []);
+                setCurrentPage(page);
+                setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -24,8 +42,19 @@ export default function ContentTopics() {
             }
         };
 
-        fetchData();
-    }, [order]);
+        fetchData(currentPage);
+    }, [order, currentPage]);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handleOrderChange = (newOrder) => {
+        if (newOrder !== order) {
+            setOrder(newOrder);
+            setCurrentPage(1);
+        }
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -38,7 +67,7 @@ export default function ContentTopics() {
         </div>
         <div className="col-4 text-end">
             <span
-                onClick={() => setOrder("top")}
+                onClick={() => handleOrderChange("top")}
                 style={{
                     cursor: "pointer",
                     color: order === "top" ? "#2da7c8" : "black",
@@ -49,7 +78,7 @@ export default function ContentTopics() {
             </span>
             |
             <span
-                onClick={() => setOrder("title")}
+                onClick={() => handleOrderChange("title")}
                 style={{
                     cursor: "pointer",
                     color: order === "title" ? "#2da7c8" : "black",
@@ -67,6 +96,13 @@ export default function ContentTopics() {
         ))}
 
     </div>
+    <div className="d-flex justify-content-center mt-4">
+            <Paginator
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
+        </div>
     </>
     )
     }

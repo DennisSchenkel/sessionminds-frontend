@@ -5,7 +5,7 @@ import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { Emoji } from "emoji-picker-react";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState, useContext, useCallback } from "react";
-import { UserContext } from "../../context/UserContext";
+import {UserContext} from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 

@@ -16,8 +16,8 @@ export default function Content() {
             {path === "/" && <ContentHome />}
             {path === "/tools" && <ContentTools />}
             {path.startsWith("/tools/") && path.split('/').length === 3 && <ContentToolDetails />}
-            {path === "/tools/editor" && <ContentToolEditor />}
-            {path.startsWith("/tools/editor/") && path.split('/').length === 4 && <ContentToolEditor />}
+            {path === "/editor" && <ContentToolEditor />}
+            {path.startsWith("/editor/") && path.split('/').length === 4 && <ContentToolEditor />}
             {path === "/topics" && <ContentTopics />}
             {path === "/contributors" && <ContentContributors />}
         </div>
