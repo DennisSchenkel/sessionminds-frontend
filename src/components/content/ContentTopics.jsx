@@ -17,7 +17,7 @@ export default function ContentTopics() {
     const [totalPages, setTotalPages] = useState(1);
 
     // Number of items per page
-    const itemsPerPage = 4;
+    const itemsPerPage = 10;
 
     useEffect(() => {
         const fetchData = async (page = 1) => {

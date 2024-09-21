@@ -61,11 +61,8 @@ export default function ContentToolEditor() {
             if (id) {
                 try {
                 const existingTool = await axios.get(`/tools/${id}`);
-                console.log("Existing Tool ID: " + existingTool.data.id);
-                console.log("Existing Tool Owner: " + existingTool.data.is_owner);
                 setIsOwner(existingTool.data.is_owner);
                     if (existingTool.data.is_owner) {
-                        console.log("Existing Tool Title: " + existingTool.data.title);
                         setTool(
                             {
                                 title: existingTool.data.title,
@@ -114,20 +111,30 @@ export default function ContentToolEditor() {
         if (id && is_owner) {
             console.log("User is owner of tool");
             axios.put(`/tools/${id}/`, tool)
-                .then((response) => {
-                    console.log(response);
-                })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    console.error("Error:", error);
                 });
         }
         else {
             axios.post("/tools/", tool)
                 .then((response) => {
-                    console.log(response);
+                    window.location.replace(`/tools/${response.data.slug}`);
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    console.error("Error:", error);
+                });
+        }
+    };
+
+    const handleDelete = (event) => {
+        event.preventDefault();
+        if (id && is_owner) {
+            axios.delete(`/tools/${id}/`)
+                .then(() => {
+                    window.location.replace("/");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
                 });
         }
     };
@@ -159,7 +166,8 @@ export default function ContentToolEditor() {
                 <Form.Select 
                     required
                     aria-label="Tool Topic" 
-                    aria-required="true" 
+                    aria-required="true"
+                    multiple={true}
                     onChange={handleTopicChange}
                     value={tool.topic_ids}
                 >
@@ -248,6 +256,14 @@ export default function ContentToolEditor() {
                 Save Tool
             </Button>
         </Form>
+        <Button 
+            variant="danger" 
+            type="delete" 
+            aria-label="Delete Tool"
+            onClick={handleDelete}
+        >
+            Delete Tool
+        </Button>
     </>
     )
     }
