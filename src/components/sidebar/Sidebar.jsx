@@ -18,6 +18,7 @@ export default function Sidebar() {
             {path === "/tools/editor" && <SidebarTools />}
             {path.startsWith("/tools/editor/") && path.split('/').length === 4 && <SidebarTools />}
             {path === "/topics" && <SidebarTopics />}
+            {path.startsWith("/topics/") && path.split('/').length === 3 && <SidebarTools />}
             {path === "/contributors" && <SidebarContributors />}
         </div>
     );

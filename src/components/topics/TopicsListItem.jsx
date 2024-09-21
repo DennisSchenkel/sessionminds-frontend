@@ -15,8 +15,10 @@ export default function TooicsListItem({topic}) {
             </div>  
             <div className={`${styles["list-item-desc"]} col-11 ps-2`}>
                 <div>
+                    <a href={`/topics/${topic.slug}`}>
                     <h3>{topic.title}</h3>
                     <div className={`${styles["list-item-desc-misc"]}`}>{topic.tool_count} {toolOrTools}</div>
+                    </a>
                 </div>
             </div>
         </div>

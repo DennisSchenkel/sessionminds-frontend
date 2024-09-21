@@ -4,6 +4,7 @@ import ContentTools from "./ContentTools";
 import ContentToolDetails from "./ContentToolDetails";
 import ContentToolEditor from "./ContentToolEditor";
 import ContentTopics from "./ContentTopics";
+import ContentTopicToolList from "./ContentTopicToolList";
 import ContentContributors from "./ContentContributors";
 import styles from "./Content.module.css";
 
@@ -19,6 +20,7 @@ export default function Content() {
             {path === "/editor" && <ContentToolEditor />}
             {path.startsWith("/editor/") && path.split('/').length === 4 && <ContentToolEditor />}
             {path === "/topics" && <ContentTopics />}
+            {path.startsWith("/topics/") && path.split('/').length === 3 && <ContentTopicToolList />}
             {path === "/contributors" && <ContentContributors />}
         </div>
     );

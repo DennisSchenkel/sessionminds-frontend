@@ -11,6 +11,7 @@ import Tools from "./pages/Tools";
 import ToolEditor from "./pages/ToolEditor";
 import ToolDetails from "./pages/ToolDetails";
 import Topics from "./pages/Topics";
+import TopicDetails from "./pages/TopicDetails";
 import Contributors from "./pages/Contributors";
 
 import "./api/axiosDefault";
@@ -66,6 +67,7 @@ export default function App() {
           />
           <Route path="/editor/:id" element={<ToolEditor />} />
           <Route path="/topics" element={<Topics />} />
+          <Route path="/topics/:slug" element={<TopicDetails />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="*" element={<div>404 Page Not Found</div>} />
         </Routes>

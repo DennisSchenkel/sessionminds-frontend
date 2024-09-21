@@ -18,8 +18,10 @@ export default function TopicsSidebarListItem({topic}) {
             </div>  
             <div className={`${styles["sidebar-item-desc"]} col-10 ps-2`}>
                 <div>
-                    <h4>{topic.title}</h4>
-                    <div className={`${styles["sidebar-item-desc-misc"]}`}>{topic.tool_count} {toolOrTools}</div>
+                    <a href={`/topics/${topic.slug}`}>
+                        <h4>{topic.title}</h4>
+                        <div className={`${styles["sidebar-item-desc-misc"]}`}>{topic.tool_count} {toolOrTools}</div>
+                    </a>
                 </div>
             </div>
             

@@ -72,7 +72,7 @@ export default function Header() {
             <div className="col-3 text-end">
               {profile ? <Image src={profile.image} width={40} /> : <></>}
               {user ? <Link to="/editor">Add Tool</Link> : <></>}
-              {user ? <><p>Welcome, {user.id}</p><button onClick={logoutUser}>Logout</button></> : 
+              {user ? <><p>Welcome, {user.first_name}</p><button onClick={logoutUser}>Logout</button></> : 
               <>
                 <ul className="nav justify-content-center">
                   <li>
