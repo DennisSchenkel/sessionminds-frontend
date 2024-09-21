@@ -21,7 +21,6 @@ export default function SidebarToolAuthor() {
             try {
                 const response = await axios.get(`/tools/tool/${slug}`);
                 const profile = response.data.profile;
-                console.log("API Response:", profile);                        // Logging the API response
                 setToolAuthor(profile);
             } catch (error) {
                 console.error("Error fetching tool:", error);

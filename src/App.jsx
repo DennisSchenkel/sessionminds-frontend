@@ -1,4 +1,6 @@
-import { Route, Routes, Outlet } from "react-router-dom"
+import { Route, Routes, Outlet, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Alert } from "react-bootstrap";
 import styles from "./App.module.css"
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
@@ -15,10 +17,39 @@ import "./api/axiosDefault";
 
 export default function App() {
 
+  const location = useLocation();
+  const [alert, setAlert] = useState({ message: "", variant: "" });
+
+  useEffect(() => {
+    if (location.state && location.state.message) {
+      setAlert({
+        message: location.state.message,
+        variant: location.state.variant || "info",
+      });
+
+      // Set a timer to clear the alert message after 5 seconds
+      const timer = setTimeout(() => {
+        setAlert({ message: "", variant: "" });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
+
   return (
     <>
       <Header />
       <div className={styles.Container}>
+        {alert.message && 
+          
+          <Alert 
+            variant={alert.variant} 
+            onClose={() => setAlert({ message: "", variant: "" })} 
+            dismissible
+            >
+            {alert.message}
+          </Alert>
+          }        
         <Routes>
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
@@ -33,7 +64,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/editor" element={<ToolEditor />} />
           <Route path="/editor/:id" element={<ToolEditor />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/contributors" element={<Contributors />} />

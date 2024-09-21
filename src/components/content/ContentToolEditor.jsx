@@ -1,7 +1,7 @@
 import styles from "./Content.module.css";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Form, Button } from "react-bootstrap";
@@ -10,11 +10,10 @@ import { Emoji } from "emoji-picker-react";
 
 export default function ContentToolEditor() {
 
+    const navigate = useNavigate();
     const { id } = useParams();
     const { user } = useContext(UserContext);
     const [is_owner, setIsOwner] = useState(false);
-
-    console.log("ID: " + id);
 
     const [topics, setTopics] = useState([]);
     const [emoji, setEmoji] = useState(null);
@@ -106,11 +105,17 @@ export default function ContentToolEditor() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(JSON.stringify(tool));
-
         if (id && is_owner) {
-            console.log("User is owner of tool");
             axios.put(`/tools/${id}/`, tool)
+                .then((response) => {
+                    navigate(`/tools/${response.data.slug}`, { 
+                        state: { 
+                            message: `${tool.title} was updated successfully!`, 
+                            variant: "success"
+                        }
+                    }
+                );
+                })                
                 .catch((error) => {
                     console.error("Error:", error);
                 });
@@ -118,8 +123,14 @@ export default function ContentToolEditor() {
         else {
             axios.post("/tools/", tool)
                 .then((response) => {
-                    window.location.replace(`/tools/${response.data.slug}`);
-                })
+                    navigate(`/tools/${response.data.slug}`, { 
+                        state: { 
+                            message: `${tool.title} was created successfully!`, 
+                            variant: "success"
+                        }
+                    }
+                );
+                })  
                 .catch((error) => {
                     console.error("Error:", error);
                 });
@@ -131,8 +142,14 @@ export default function ContentToolEditor() {
         if (id && is_owner) {
             axios.delete(`/tools/${id}/`)
                 .then(() => {
-                    window.location.replace("/");
-                })
+                    navigate("/", { 
+                        state: { 
+                            message: `${tool.title} was deleted!`, 
+                            variant: "danger"
+                        }
+                    }
+                );
+                })  
                 .catch((error) => {
                     console.error("Error:", error);
                 });
@@ -178,9 +195,9 @@ export default function ContentToolEditor() {
                     ))}
                 </Form.Select>
             </Form.Group>
-            <Form.Group controlId="ToolIcon">
+            <Form.Group>
                 <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
-            </Form.Group>
+            
             <div className="row">
                 <div  className="col-6 pb-3">
                     <EmojiPicker
@@ -208,6 +225,7 @@ export default function ContentToolEditor() {
                     </div>
                 </div>
             </div>
+            </Form.Group>
             <Form.Group className="mb-4" controlId="Textarea1">
                 <Form.Label className={`${styles["editor-title"]}`}>Short-Description</Form.Label>
                 <Form.Control 
