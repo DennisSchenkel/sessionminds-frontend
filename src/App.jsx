@@ -5,6 +5,8 @@ import styles from "./App.module.css"
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Regist from "./pages/auth/Regist";
+import Profile from "./pages/profile/Profile";
+import ProfileEditor from "./pages/profile/ProfileEditor";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
 import Home from "./pages/Home";
 import Tools from "./pages/Tools";
@@ -56,6 +58,14 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/regist" element={<Regist />} />
+          <Route path="/profile/:slug" element={<Profile />} />
+          <Route path="/profile/editor/:slug" 
+            element={
+            <ProtectedRoute>
+              <ProfileEditor />
+            </ProtectedRoute>
+              }
+          />
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/:slug" element={<ToolDetails />} />
           <Route path="/editor"

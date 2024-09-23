@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Col, Form, Image, Row } from "react-bootstrap";
-// import { Alert } from "react-bootstrap";
+import { Button, Container, Col, Form, Row } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 import styles from "../../assets/styles/LoginReg.module.css";
 import btnStyles from "../../assets/styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import axios from "../../api/axiosDefault";
-
 
 const Regist = () => {
 
@@ -19,8 +18,8 @@ const Regist = () => {
       passwordConf: ""
     }
   );
-  
-  // const [errors, setErrors] = useState({});
+
+  const [errors, setErrors] = useState({});
 
   const { email, password, passwordConf } = regData;
 
@@ -33,17 +32,25 @@ const Regist = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Registration submitted");                 // For debugging
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await axios.post("/register/", regData);
-      navigate("/login");
+      await axios.post("/register/", regData)
+        .then((response) => {
+          navigate("/login", { 
+              state: { 
+                  message: `Account created for ${response.data.email}. Please log in.`, 
+                  variant: "success"
+              }
+          });
+          }
+      );
+    } catch (error) {
+        if (error.response) {
+          setErrors(error.response.data);
+      }
     }
-    catch (err) {
-     // setErrors(err.response?.data)
-    }
-  }
+  };
 
   return (
     <Row className={styles.Row}>
@@ -64,9 +71,9 @@ const Regist = () => {
                   />
               </Form.Group>                 
               
-              {// errors.email?.map((message, index) => (
-              //  <Alert variant="warning" key={index}>{message}</Alert>
-              //))
+              {errors.email?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
               }
               
               <Form.Group className="mb-3" controlId="password">
@@ -80,9 +87,9 @@ const Regist = () => {
                   onChange={handleChange}
                   />
               </Form.Group>
-              {//errors.password1?.map((message, index) => (
-              //  <Alert variant="warning" key={index}>{message}</Alert>
-              //))
+              {errors.password?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
               }
 
               <Form.Group className="mb-3" controlId="passwordConf">
@@ -96,11 +103,15 @@ const Regist = () => {
                   onChange={handleChange}
                   />
               </Form.Group>
-              {//errors.password2?.map((message, index) => (
-              //  <Alert variant="warning" key={index}>{message}</Alert>
-              //))
+              {errors.passwordConf?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
               }
 
+              {errors.non_field_errors?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
+              }
               <Button 
                 className={ `${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}` }
                 variant="primary"
@@ -121,12 +132,6 @@ const Regist = () => {
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
       >
-        <Image
-          className={`${appStyles.FillerImage}`}
-          src={
-            "https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"
-          }
-        />
       </Col>
     </Row>
   );
