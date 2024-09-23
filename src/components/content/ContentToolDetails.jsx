@@ -19,11 +19,13 @@ export default function ContentToolDetails() {
 
     const [toolDetails, setToolDetails] = useState({});
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const [voteCount, setVoteCount] = useState(toolDetails.vote_count);
     const [userHasVoted, setUserHasVoted] = useState(false);
     const [voteId, setVoteId] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showVoteModal, setShowVoteModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     
 
     const fetchToolData = useCallback(async () => {
@@ -83,6 +85,25 @@ export default function ContentToolDetails() {
         }
     }, [voteId, fetchToolData]);
     
+    const handleDelete = (event) => {
+        event.preventDefault();
+        if (toolDetails.id && toolDetails.is_owner) {
+            axios.delete(`/tools/${toolDetails.id}/`)
+                .then(() => {
+                    navigate("/", { 
+                        state: { 
+                            message: `${toolDetails.title} was deleted!`, 
+                            variant: "danger"
+                        }
+                    }
+                );
+                })  
+                .catch((error) => {
+                    setError(error.response.data);
+                });
+        }
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -154,7 +175,7 @@ export default function ContentToolDetails() {
                 (          
 
                         <div className={`${styles["tool-details-vote"]} justify-content-center`}
-                        onClick={() => setShowModal(true)}>
+                        onClick={() => setShowVoteModal(true)}>
                             <div className={`${styles["tool-details-vote-icon"]}`}>
                                 <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
                             </div>
@@ -164,9 +185,9 @@ export default function ContentToolDetails() {
                         </div>
 
                 )}
-                {showModal && 
+                {showVoteModal && 
                 
-                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal show={showVoteModal} onHide={() => setShowVoteModal(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>Log in first!</Modal.Title>
                     </Modal.Header>
@@ -177,7 +198,7 @@ export default function ContentToolDetails() {
                         </p>    
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        <Button variant="secondary" onClick={() => setShowVoteModal(false)}>
                             No thanks!
                         </Button>
                         <Link to="/login">
@@ -212,6 +233,55 @@ export default function ContentToolDetails() {
             <h2>Instructions</h2>
             <p>{toolDetails.instructions}</p>
         </div>
+
+        {/* Only show delete button if user is the owner of the tool*/ }
+        {toolDetails.id ?
+        <Button 
+            variant="danger" 
+            type="delete" 
+            aria-label="Delete Tool"
+            onClick={() => setShowDeleteModal(true)}
+        >
+            Delete Tool
+        </Button>
+        : null
+        }
+
+       
+
+        {showDeleteModal && 
+                
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Log in first!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>
+                        Do you really want to delete this tool?
+                        </p>    
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button 
+                            variant="danger" 
+                            type="delete" 
+                            aria-label="Delete Tool"
+                            onClick={handleDelete}
+                        >
+                            Delete Tool!
+                        </Button>
+
+                        <Link onClick={() => setShowDeleteModal(false)}>
+                            <Button variant="primary">
+                                No, keep it!
+                            </Button>
+                        </Link>
+                    </Modal.Footer>
+                </Modal>
+                
+                
+                }
+
+
 
         <div className={`${styles["tool-details-comments-headline-row"]}`}>
             <h2>Comments</h2>

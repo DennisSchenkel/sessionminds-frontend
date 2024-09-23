@@ -10,8 +10,6 @@ export default function Profile() {
 
     const [profileData, setProfileData] = useState({});
 
-    console.log(slug);
-
     useEffect(() => {
         const fetchProfile = async () => {
           try {
@@ -26,15 +24,11 @@ export default function Profile() {
       }, [slug]);
 
 
-
-
-
-
     return (
         <div>
         <h1>Profile</h1>
         <p>{profileData.first_name}</p>
-        {profileData.is_owner ? <><Button>Edit profile</Button></> : ""}
+        {profileData.is_owner ? <Button href={`/profile/editor/${slug}/`} >Edit profile</Button> : <></>}
         </div>
     );
     }

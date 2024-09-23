@@ -46,8 +46,28 @@ export const UserProvider = ({ children }) => {
       fetchData();
     }, []);
 
+    const updateProfile = async (updatedProfile) => {
+      try {
+        setLoading(true);
+        const access = localStorage.getItem("access");
+        const userId = localStorage.getItem("user_id");
+  
+        const response = await axios.put(
+          `/users/${userId}/profile/`,
+          updatedProfile,
+          { headers: { Authorization: `Bearer ${access}` } }
+        );
+        setProfile(response.data);
+      } catch (err) {
+        setError(err);
+        console.error("Error updating profile:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
   return (
-    <UserContext.Provider value={{loading, setLoading, user, setUser, profile, setProfile, error, setError}}>
+    <UserContext.Provider value={{loading, setLoading, user, setUser, profile, setProfile, updateProfile, error, setError}}>
       {children}
     </UserContext.Provider>
   );

@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert, Container, Image } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {
 
-  const { profile: userProfile } = useContext(UserContext);
+  const { profile: userProfile, updateProfile } = useContext(UserContext);
 
   const [profileData, setProfileData] = useState({
     first_name: "",
@@ -25,30 +24,23 @@ export default function ProfileEditor() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get(`/profiles/${userProfile.id}/`);
-        const profile = response.data;
-        setProfileData({
-          first_name: profile.first_name || "",
-          last_name: profile.last_name || "",
-          job_title: profile.job_title || "",
-          profile_description: profile.profile_description || "",
-          linkedin: profile.linkedin || "",
-          twitter: profile.twitter || "",
-          facebook: profile.facebook || "",
-          instagram: profile.instagram || "",
-          image: null,
-        });
-        if (profile.image) {
-          setPreviewImage(profile.image);
-        }
-      } catch (error) {
-        console.error("Failed to fetch profile:", error);
+    if (userProfile) {
+      setProfileData({
+        first_name: userProfile.first_name || "",
+        last_name: userProfile.last_name || "",
+        job_title: userProfile.job_title || "",
+        profile_description: userProfile.profile_description || "",
+        linkedin: userProfile.linkedin || "",
+        twitter: userProfile.twitter || "",
+        facebook: userProfile.facebook || "",
+        instagram: userProfile.instagram || "",
+        image: null,
+      });
+      if (userProfile.image) {
+        setPreviewImage(userProfile.image);
       }
-    };
-    fetchProfile();
-  }, [userProfile.id]);
+    }
+  }, [userProfile]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -61,11 +53,11 @@ export default function ProfileEditor() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const validTypes = ["image/jpeg", "image/png"];
+      const validTypes = ["image/jpg", "image/jpeg", "image/png"];
       if (!validTypes.includes(file.type)) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          image: ["Image file is not a valid format! (jpeg, png)"],
+          image: ["Image file is not a valid format! (jpg, jpeg, png)"],
         }));
         return;
       }
@@ -90,9 +82,9 @@ export default function ProfileEditor() {
   };
 
   const validateImage = (file) => {
-    const validTypes = ["image/jpeg", "image/png"];
+    const validTypes = ["image/jpg", "image/jpeg", "image/png"];
     if (!validTypes.includes(file.type)) {
-      return "Image file is not a valid format! (jpeg, png)";
+      return "Image file is not a valid format! (jpg, jpeg, png)";
     }
     if (file.size > 2 * 1024 * 1024) { // 2MB
       return "Image file is too large! (max 2MB)";
@@ -126,16 +118,12 @@ export default function ProfileEditor() {
     }
 
     try {
-      await axios.put(`/profiles/${userProfile.id}/`, formData)
-        .then((response) => {
-          navigate(`/profile/${response.data.slug}`, { 
-              state: { 
-                  message: `${profileData.first_name} was updated successfully!`, 
-                  variant: "success"
-              }
-          }
-      );
-        
+      await updateProfile(formData);
+      navigate(`/profile/${userProfile.slug}`, {
+        state: {
+          message: `The profile of ${profileData.first_name} was successfully updated!`,
+          variant: "success",
+        },
       });
     } catch (error) {
       if (error.response && error.response.data) {
@@ -148,12 +136,12 @@ export default function ProfileEditor() {
   };
 
   return (
-    <Container className="mt-5">
-      <h2>Complete Your Profile</h2>
+    <Container className="my-5">
+      <h2>Edit Your Profile</h2>
       <Form onSubmit={handleSubmit}>
         {/* First Name */}
         <Form.Group className="mb-3" controlId="first_name">
-          <Form.Label>First Name *</Form.Label>
+          <Form.Label>First Name (Required for participaring in the community)</Form.Label>
           <Form.Control
             type="text"
             name="first_name"
@@ -169,7 +157,7 @@ export default function ProfileEditor() {
 
         {/* Last Name */}
         <Form.Group className="mb-3" controlId="last_name">
-          <Form.Label>Last Name *</Form.Label>
+          <Form.Label>Last Name (Required for participaring in the community)</Form.Label>
           <Form.Control
             type="text"
             name="last_name"

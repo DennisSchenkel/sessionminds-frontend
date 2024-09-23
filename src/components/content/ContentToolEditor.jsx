@@ -32,8 +32,6 @@ export default function ContentToolEditor() {
 
     const itemsPerPage = 100;
 
-
-
     useEffect(() => {
 
         const getTopics = async () => {
@@ -48,8 +46,7 @@ export default function ContentToolEditor() {
                 setLoading(false);
                 }
             catch (error) {
-                console.error("Error fetching data:", error);
-                setError("Failed to load tools.");
+                setError("Failed to load topics.");
                 setLoading(false);
             }
         };
@@ -75,7 +72,7 @@ export default function ContentToolEditor() {
                         setEmoji(existingTool.data.icon);
                     }
                 } catch (error) {
-                    console.error("Error fetching data:", error);
+                    setError("Failed to load tool.");
                 }
             } else {
                 setTool({
@@ -117,7 +114,7 @@ export default function ContentToolEditor() {
                 );
                 })                
                 .catch((error) => {
-                    console.error("Error:", error);
+                    setError(error.response.data);
                 });
         }
         else {
@@ -132,29 +129,12 @@ export default function ContentToolEditor() {
                 );
                 })  
                 .catch((error) => {
-                    console.error("Error:", error);
+                    setError(error.response.data);
                 });
         }
     };
 
-    const handleDelete = (event) => {
-        event.preventDefault();
-        if (id && is_owner) {
-            axios.delete(`/tools/${id}/`)
-                .then(() => {
-                    navigate("/", { 
-                        state: { 
-                            message: `${tool.title} was deleted!`, 
-                            variant: "danger"
-                        }
-                    }
-                );
-                })  
-                .catch((error) => {
-                    console.error("Error:", error);
-                });
-        }
-    };
+
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -166,6 +146,7 @@ export default function ContentToolEditor() {
         <p>Here you can create a new tool or edit an existing one.</p>
     </div>
         <Form> 
+            {/* Title */}
             <Form.Group className="mb-4" controlId="TitleInput">
                 <Form.Label className={`${styles["editor-title"]}`}>Title</Form.Label>
                 <Form.Control 
@@ -178,6 +159,8 @@ export default function ContentToolEditor() {
                     value={tool.title}
                 />
             </Form.Group>
+
+            {/* Topic */}
             <Form.Group className="mb-4" controlId="TopicDropdown">
                 <Form.Label className={`${styles["editor-title"]}`}>Topic</Form.Label>
                 <Form.Select 
@@ -195,37 +178,40 @@ export default function ContentToolEditor() {
                     ))}
                 </Form.Select>
             </Form.Group>
+
+            {/* Icon */}
             <Form.Group>
                 <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
-            
-            <div className="row">
-                <div  className="col-6 pb-3">
-                    <EmojiPicker
-                        onEmojiClick={onEmojiClick}
-                        skinTonesDisabled="false" 
-                        height={500}
-                        width="100%"
-                        aria-label="Tool Icon" 
-                        aria-required="true"
-                    />
-                </div>
-                <div className="col-6 d-flex flex-column align-items-center">                    
-                    <div className="py-5">
-                        {emoji !== null && (
-                            <h3>Selected Topic Icon:</h3>
-                        )}
+                    <div className="row">
+                        <div  className="col-6 pb-3">
+                            <EmojiPicker
+                                onEmojiClick={onEmojiClick}
+                                skinTonesDisabled="false" 
+                                height={500}
+                                width="100%"
+                                aria-label="Tool Icon" 
+                                aria-required="true"
+                            />
+                        </div>
+                        <div className="col-6 d-flex flex-column align-items-center">                    
+                            <div className="py-5">
+                                {emoji !== null && (
+                                    <h3>Selected Topic Icon:</h3>
+                                )}
+                            </div>
+                            <div className="pb-5 text-center">
+                                <Emoji unified={emoji} size={64} />
+                            </div>
+                            <div className="text-center">
+                                {emoji !== null && (
+                                    <Button onClick={() => setEmoji(null)}>Delete Icon</Button>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    <div className="pb-5 text-center">
-                        <Emoji unified={emoji} size={64} />
-                    </div>
-                    <div className="text-center">
-                        {emoji !== null && (
-                            <Button onClick={() => setEmoji(null)}>Delete Icon</Button>
-                        )}
-                    </div>
-                </div>
-            </div>
             </Form.Group>
+
+            {/* Short-Description */}
             <Form.Group className="mb-4" controlId="Textarea1">
                 <Form.Label className={`${styles["editor-title"]}`}>Short-Description</Form.Label>
                 <Form.Control 
@@ -239,6 +225,8 @@ export default function ContentToolEditor() {
                     value={tool.short_description}
                 />
             </Form.Group>
+
+            {/* Full-Description */}
             <Form.Group className="mb-4" controlId="Textarea2">
                 <Form.Label className={`${styles["editor-title"]}`}>Description</Form.Label>
                 <Form.Control 
@@ -252,6 +240,8 @@ export default function ContentToolEditor() {
                     value={tool.full_description}
                 />
             </Form.Group>
+
+            {/* Instructions */}
             <Form.Group className="mb-4" controlId="Textarea3">
                 <Form.Label className={`${styles["editor-title"]}`}>Instructions</Form.Label>
                 <Form.Control 
@@ -265,6 +255,7 @@ export default function ContentToolEditor() {
                     value={tool.instructions}
                 />
             </Form.Group>
+
             <Button 
                 variant="primary" 
                 type="submit" 
@@ -274,14 +265,6 @@ export default function ContentToolEditor() {
                 Save Tool
             </Button>
         </Form>
-        <Button 
-            variant="danger" 
-            type="delete" 
-            aria-label="Delete Tool"
-            onClick={handleDelete}
-        >
-            Delete Tool
-        </Button>
     </>
     )
     }

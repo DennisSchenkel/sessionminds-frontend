@@ -15,13 +15,36 @@ import ToolDetails from "./pages/ToolDetails";
 import Topics from "./pages/Topics";
 import TopicDetails from "./pages/TopicDetails";
 import Contributors from "./pages/Contributors";
+import { UserContext } from "./context/UserContext";
+import { useContext } from "react";
 
 import "./api/axiosDefault";
 
 export default function App() {
 
   const location = useLocation();
+  const { loading, profile } = useContext(UserContext);  
+
   const [alert, setAlert] = useState({ message: "", variant: "" });
+  const [profileAlert, setProfileAlert] = useState({ message: "" });
+
+  useEffect(() => {
+    if (profile) {
+      if (!profile.first_name || !profile.last_name) {
+        setProfileAlert({
+          message: (
+            <>
+              For contribution in the community, you need to have your first name and last name in your profile. Please update your profile{' '}
+              <a href={`/profile/editor/${profile.slug}`}>here</a>.
+            </>
+          ),
+          variant: "warning",
+        });
+      } else {
+        setProfileAlert({ message: "" });
+      }
+    }
+  }, [profile]);
 
   useEffect(() => {
     if (location.state && location.state.message) {
@@ -39,20 +62,30 @@ export default function App() {
     }
   }, [location.state]);
 
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <Header />
       <div className={styles.Container}>
-        {alert.message && 
-          
-          <Alert 
-            variant={alert.variant} 
-            onClose={() => setAlert({ message: "", variant: "" })} 
-            dismissible
-            >
-            {alert.message}
-          </Alert>
-          }        
+      {profileAlert.message && 
+        <Alert variant={profileAlert.variant || "info"}>
+          {profileAlert.message}
+        </Alert>
+      }
+
+      {alert.message && 
+        <Alert 
+          variant={alert.variant} 
+          onClose={() => setAlert({ message: "", variant: "" })} 
+          dismissible
+        >
+          {alert.message}
+        </Alert>
+      }   
         <Routes>
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />

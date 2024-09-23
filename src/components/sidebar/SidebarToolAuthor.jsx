@@ -79,7 +79,7 @@ export default function SidebarToolAuthor() {
                 </Col>
 
                 <Col className="text-center">
-                    <Button variant="secondary">
+                    <Button variant="secondary" href={`../profile/${toolAuthor.slug}`}>
                     Go to profile
                     </Button>
                 </Col>
