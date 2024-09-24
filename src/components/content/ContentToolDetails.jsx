@@ -124,7 +124,7 @@ export default function ContentToolDetails() {
                     <Emoji unified={toolDetails.icon} size={40} />
                 </div>
                 <div className={`${styles["tool-details-title"]} col-auto row`}>
-                <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topics[0].title}</p>
+                    <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topics[0].title}</p>
                     <h1>{toolDetails.title}</h1>
                     <p>{toolDetails.short_description}</p>
                 </div>
@@ -135,86 +135,71 @@ export default function ContentToolDetails() {
                         Edit tool
                         </Link>
                     </>
-                    
-                    : 
-                    
+                    :
                     null
-                    
                 }
                 
-
             <div className="col-auto text-center">
                 <div className={`${styles["tool-details-vote-container"]}`}>
-                {user ? (
-                    userHasVoted ? 
-
-
-
-                        
-                        <div className={`${styles["tool-details-vote"]} justify-content-center ${styles["tool-details-vote-user-has-voted"]}`}
-                            onClick={downVoteHandler}>
-                            <div className={`${styles["tool-details-vote-icon"]}`}>
-                                <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
+                    {user ? (
+                        userHasVoted ? 
+                            <div className={`${styles["tool-details-vote"]} justify-content-center ${styles["tool-details-vote-user-has-voted"]}`}
+                                onClick={downVoteHandler}>
+                                <div className={`${styles["tool-details-vote-icon"]}`}>
+                                    <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
+                                </div>
+                                <div className={`${styles["tool-details-vote-number"]} text-center`}>
+                                    {voteCount}
+                                </div>
                             </div>
-                            <div className={`${styles["tool-details-vote-number"]} text-center`}>
-                                {voteCount}
+                        :
+                            <div className={`${styles["tool-details-vote"]} justify-content-center`}
+                                onClick={upVoteHandler}>
+                                <div className={`${styles["tool-details-vote-icon"]}`}>
+                                    <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
+                                </div>
+                                <div className={`${styles["tool-details-vote-number"]} text-center`}>
+                                    {voteCount}
+                                </div>
                             </div>
-                        </div>
-                    :
-                        <div className={`${styles["tool-details-vote"]} justify-content-center`}
-                            onClick={upVoteHandler}>
-                            <div className={`${styles["tool-details-vote-icon"]}`}>
-                                <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
+                        )
+                        :
+                        (          
+                            <div className={`${styles["tool-details-vote"]} justify-content-center`}
+                            onClick={() => setShowVoteModal(true)}>
+                                <div className={`${styles["tool-details-vote-icon"]}`}>
+                                    <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
+                                </div>
+                                <div className={`${styles["tool-details-vote-number"]} text-center`}>
+                                    {voteCount}
+                                </div>
                             </div>
-                            <div className={`${styles["tool-details-vote-number"]} text-center`}>
-                                {voteCount}
-                            </div>
-                        </div>
-                )
-                :
-                (          
 
-                        <div className={`${styles["tool-details-vote"]} justify-content-center`}
-                        onClick={() => setShowVoteModal(true)}>
-                            <div className={`${styles["tool-details-vote-icon"]}`}>
-                                <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
-                            </div>
-                            <div className={`${styles["tool-details-vote-number"]} text-center`}>
-                                {voteCount}
-                            </div>
-                        </div>
-
-                )}
-                {showVoteModal && 
-                
-                <Modal show={showVoteModal} onHide={() => setShowVoteModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Log in first!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                        Sorry, you are not logged in.<br />
-                        Please log in to vote for this tool.
-                        </p>    
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setShowVoteModal(false)}>
-                            No thanks!
-                        </Button>
-                        <Link to="/login">
-                            <Button variant="primary">
-                                Log in
-                            </Button>
-                        </Link>
-                    </Modal.Footer>
-                </Modal>
-                
-                
-                }
-
-
-
-
+                        )
+                    }
+                    {showVoteModal && 
+                        <Modal show={showVoteModal} onHide={() => setShowVoteModal(false)}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Log in first!</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <p>
+                                Sorry, you are not logged in.<br />
+                                Please log in to vote for this tool.
+                                </p>    
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={() => setShowVoteModal(false)}>
+                                    No thanks!
+                                </Button>
+                                <Link to="/login">
+                                    <Button variant="primary">
+                                        Log in
+                                    </Button>
+                                </Link>
+                            </Modal.Footer>
+                        </Modal>
+                    }
                 </div>
             </div>
 
@@ -235,7 +220,7 @@ export default function ContentToolDetails() {
         </div>
 
         {/* Only show delete button if user is the owner of the tool*/ }
-        {toolDetails.id ?
+        {toolDetails.is_owner ?
         <Button 
             variant="danger" 
             type="delete" 
@@ -247,41 +232,34 @@ export default function ContentToolDetails() {
         : null
         }
 
-       
+        {showDeleteModal &&     
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Log in first!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                    Do you really want to delete this tool?
+                    </p>    
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button 
+                        variant="danger" 
+                        type="delete" 
+                        aria-label="Delete Tool"
+                        onClick={handleDelete}
+                    >
+                        Delete Tool!
+                    </Button>
 
-        {showDeleteModal && 
-                
-                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Log in first!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                        Do you really want to delete this tool?
-                        </p>    
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button 
-                            variant="danger" 
-                            type="delete" 
-                            aria-label="Delete Tool"
-                            onClick={handleDelete}
-                        >
-                            Delete Tool!
+                    <Link onClick={() => setShowDeleteModal(false)}>
+                        <Button variant="primary">
+                            No, keep it!
                         </Button>
-
-                        <Link onClick={() => setShowDeleteModal(false)}>
-                            <Button variant="primary">
-                                No, keep it!
-                            </Button>
-                        </Link>
-                    </Modal.Footer>
-                </Modal>
-                
-                
-                }
-
-
+                    </Link>
+                </Modal.Footer>
+            </Modal>        
+        }
 
         <div className={`${styles["tool-details-comments-headline-row"]}`}>
             <h2>Comments</h2>
