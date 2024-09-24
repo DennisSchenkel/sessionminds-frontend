@@ -71,7 +71,7 @@ export default function Header() {
             </div>
             <div className="col-3 text-end">
               {user ? <Button href="/editor" className="mx-3">Add Tool</Button> : <></>}
-              {profile ? <><Image src={profile.image} width={40} /> <a href={`/profile/${profile.slug}`}>Profile</a></> : <></>}
+              {profile ? <><Image src={profile.image} width={40} className="rounded-circle" /> <a href={`/profile/${profile.slug}`}>Profile</a></> : <></>}
               {user ? <><p>Welcome, {profile?.first_name ? <>{profile.first_name}</> : <>Nobody</>}</p><button onClick={logoutUser}>Logout</button></> : 
               <>
                 <ul className="nav justify-content-center">

@@ -5,7 +5,7 @@ import styles from "./App.module.css"
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Regist from "./pages/auth/Regist";
-import Profile from "./pages/profile/Profile";
+import Profile from "./pages/Profile";
 import ProfileEditor from "./pages/profile/ProfileEditor";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
 import Home from "./pages/Home";

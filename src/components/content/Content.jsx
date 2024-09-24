@@ -6,6 +6,7 @@ import ContentToolEditor from "./ContentToolEditor";
 import ContentTopics from "./ContentTopics";
 import ContentTopicToolList from "./ContentTopicToolList";
 import ContentContributors from "./ContentContributors";
+import Profile from "../../pages/profile/Profile";
 import styles from "./Content.module.css";
 
 export default function Content() {
@@ -22,6 +23,7 @@ export default function Content() {
             {path === "/topics" && <ContentTopics />}
             {path.startsWith("/topics/") && path.split('/').length === 3 && <ContentTopicToolList />}
             {path === "/contributors" && <ContentContributors />}
+            {path.startsWith("/profile/") && path.split('/').length === 3 && <Profile />}
         </div>
     );
 }

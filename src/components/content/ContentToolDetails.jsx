@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -110,6 +110,10 @@ export default function ContentToolDetails() {
 
     return (
         <>
+        <Alert variant="danger" show={error} onClose={() => setError(null)} dismissible>
+            {error}
+        </Alert>
+
         <div className="pb-3">
             <Link
                 to={'..'}
@@ -123,21 +127,22 @@ export default function ContentToolDetails() {
                 <div className={`${styles["tool-details-icon"]} col-auto`}>
                     <Emoji unified={toolDetails.icon} size={40} />
                 </div>
-                <div className={`${styles["tool-details-title"]} col-auto row`}>
+                <div className={`${styles["tool-details-title"]} col-auto mb-5`}>
                     <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topics[0].title}</p>
                     <h1>{toolDetails.title}</h1>
                     <p>{toolDetails.short_description}</p>
                 </div>
+                <div className="pb-4">     
+                    <h2>Description</h2>
+                    <p>{toolDetails.full_description}</p>
+                </div>
+                <div className="pb-4">     
+                    <h2>Instructions</h2>
+                    <p>{toolDetails.instructions}</p>
+                </div>
+
             </div>
-                {toolDetails.is_owner ? 
-                    <>
-                        <Link to={`/editor/${toolDetails.id}/`} className="btn btn-primary">
-                        Edit tool
-                        </Link>
-                    </>
-                    :
-                    null
-                }
+                
                 
             <div className="col-auto text-center">
                 <div className={`${styles["tool-details-vote-container"]}`}>
@@ -201,36 +206,36 @@ export default function ContentToolDetails() {
                         </Modal>
                     }
                 </div>
-            </div>
-
-            <div>
+                <div className="d-grid gap-2">
+                    {toolDetails.is_owner ? 
+                        <>
+                            <Link to={`/editor/${toolDetails.id}/`} className="btn btn-primary">
+                            Edit tool
+                            </Link>
+                        </>
+                        :
+                        null
+                    }
+                    {/* Only show delete button if user is the owner of the tool*/ }
+                    {toolDetails.is_owner ?
+                    <Button 
+                        variant="danger" 
+                        type="delete" 
+                        aria-label="Delete Tool"
+                        onClick={() => setShowDeleteModal(true)}
+                    >
+                        Delete Tool
+                    </Button>
+                    : null
+                    }
+                </div>
+                <div className="mt-2">
                 <FontAwesomeIcon icon={faArrowUpFromBracket} />
                 <span> Share</span>
+                </div> 
             </div>
 
         </div>
-        <div className="pb-4">     
-            <h2>Description</h2>
-            <p>{toolDetails.full_description}</p>
-
-        </div>
-        <div className="pb-4">     
-            <h2>Instructions</h2>
-            <p>{toolDetails.instructions}</p>
-        </div>
-
-        {/* Only show delete button if user is the owner of the tool*/ }
-        {toolDetails.is_owner ?
-        <Button 
-            variant="danger" 
-            type="delete" 
-            aria-label="Delete Tool"
-            onClick={() => setShowDeleteModal(true)}
-        >
-            Delete Tool
-        </Button>
-        : null
-        }
 
         {showDeleteModal &&     
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
