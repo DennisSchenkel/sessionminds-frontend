@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Col, Form, Image, Row } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
+import { Alert } from "react-bootstrap";
 import styles from "../../assets/styles/LoginReg.module.css";
 import btnStyles from "../../assets/styles/Button.module.css";
 import appStyles from "../../App.module.css";
@@ -17,7 +18,7 @@ export default function Login ( )   {
     }
   );
   
-  // const [errors, setErrors] = useState({});
+  const [error, setError] = useState({});
 
   const { email, password } = loginData;
 
@@ -34,26 +35,18 @@ export default function Login ( )   {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Login submitted");                 // For debugging
-    console.log(loginData);
     try {
       const response = await axios.post("/login/", loginData);
-      console.log(response.data);
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
       localStorage.setItem("user_id", response.data.user_id);
       setUser(response.data);
-      console.log(response.data.user_id);
       navigate("/");
     }
     catch (error) {
-     // setErrors(err.response?.data)
+      setError(error.response?.data)
       if (error.response) {
-        console.error("Error data:", error.response.data);
-        console.error("Error status:", error.response.status);
-        console.error("Error headers:", error.response.headers);
-        // Optionally, set error state to display the error message in the UI
-        // setErrors(error.response.data);
+        setError(error.response.data);
       } else if (error.request) {
         console.error("No response received:", error.request);
       }
@@ -81,9 +74,9 @@ export default function Login ( )   {
                   />
               </Form.Group>                 
               
-              {// errors.email?.map((message, index) => (
-              //  <Alert variant="warning" key={index}>{message}</Alert>
-              //))
+              {error.email?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
               }
               
               <Form.Group className="mb-3" controlId="password">
@@ -97,10 +90,16 @@ export default function Login ( )   {
                   onChange={handleChange}
                   />
               </Form.Group>
-              {//errors.password1?.map((message, index) => (
-              //  <Alert variant="warning" key={index}>{message}</Alert>
-              //))
+              {error.password?.map((message, index) => (
+                <Alert variant="warning" key={index}>{message}</Alert>
+              ))
               }
+
+              {error.non_field_errors?.map((message, index) => (
+                <Alert variant="danger" key={index}>
+                  {message}
+                </Alert>
+              ))}
 
               <Button 
                 className={ `${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}` }

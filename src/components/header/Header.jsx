@@ -3,27 +3,10 @@ import { Form, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import Logout from "../../pages/auth/Logout";
 import logo from "../../assets/images/logo.svg";
 
-
 export default function Header() {
-
-    const logoutUser = () => {
-        // Clear the token and user ID from localStorage
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
-        localStorage.removeItem("user_id");
-      
-        // If the UserContext is available, clear the user and profile
-        if (window.UserContext) {
-          window.UserContext.setUser(null);
-          window.UserContext.setProfile(null);
-        }
-      
-        // Redirect to the login page
-        window.location.href = "/";
-      };
-    
 
     const { loading, user, profile } = useContext(UserContext);
 
@@ -72,7 +55,7 @@ export default function Header() {
             <div className="col-3 text-end">
               {user ? <Button href="/editor" className="mx-3">Add Tool</Button> : <></>}
               {profile ? <><Image src={profile.image} width={40} className="rounded-circle" /> <a href={`/profile/${profile.slug}`}>Profile</a></> : <></>}
-              {user ? <><p>Welcome, {profile?.first_name ? <>{profile.first_name}</> : <>Nobody</>}</p><button onClick={logoutUser}>Logout</button></> : 
+              {user ? <><p>Welcome, {profile?.first_name ? <>{profile.first_name}</> : <>Nobody</>}</p><Logout /></> : 
               <>
                 <ul className="nav justify-content-center">
                   <li>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert, Container, Image } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {
 
@@ -119,7 +120,9 @@ export default function ProfileEditor() {
 
     try {
       await updateProfile(formData);
-      navigate(`/profile/${userProfile.slug}`, {
+      const response = await axios.get(`/users/${userProfile.id}/profile/`);
+      const newSlug = response.data.slug;
+      navigate(`/profile/${newSlug}`, {
         state: {
           message: `The profile of ${profileData.first_name} was successfully updated!`,
           variant: "success",

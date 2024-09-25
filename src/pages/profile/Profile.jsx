@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Button, Image } from "react-bootstrap";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Button, Image, Modal } from "react-bootstrap";
 import ToolsListItem from "../../components/tools/ToolsListItem";
 import axios from "../../api/axiosDefault";
 
@@ -8,11 +8,15 @@ import axios from "../../api/axiosDefault";
 export default function Profile() {
 
     const { slug } = useParams();
+    const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const [profileData, setProfileData] = useState({});
     const [tools, setTools] = useState([]);
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -33,7 +37,7 @@ export default function Profile() {
           const response = await axios.get(`/tools/user/${profileData.user_id}/`);
           const tools = response.data.results;
           setTools(tools);
-          console.log(tools);
+          setLoading(false);
         } catch (error) {
           setError(error)
         }
@@ -42,6 +46,32 @@ export default function Profile() {
         fetchProfileTools();
       }
     }, [profileData]);
+
+
+    const handleDelete = (event) => {
+      event.preventDefault();
+      if (profileData.id && profileData.is_owner) {
+        axios.delete(`/users/${profileData.user_id}/delete/`)
+          .then(() => {
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+            localStorage.removeItem("user_id");
+            navigate("/", { 
+                state: { 
+                    message: `Profile was deleted!`, 
+                    variant: "danger"
+                }
+            }
+          );
+          })  
+          .catch((error) => {
+              setError(error.response.data);
+          });
+      }
+  };
+
+
+    if (loading) return <p>Loading...</p>;
 
     return (
       <>
@@ -53,7 +83,7 @@ export default function Profile() {
             <Image src={profileData.image} width={150} className="rounded-circle" />
             <div className="d-grid gap-2">
               {profileData.is_owner ? <Button href={`/profile/editor/${slug}/`} className="mt-4">Edit profile</Button> : <></>}
-              {profileData.is_owner ? <Button href={`/profile/editor/${slug}/`} className="mt-2 wd-300" variant="danger">Delete profile</Button> : <></>}
+              {profileData.is_owner ? <Button onClick={() => setShowDeleteModal(true)} className="mt-2 wd-300" variant="danger">Delete profile</Button> : <></>}
             </div>
 
           </div>
@@ -85,6 +115,37 @@ export default function Profile() {
               <ToolsListItem key={tool.id} tool={tool} />
             ))}
         </div>
+
+        {showDeleteModal &&     
+          <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+              <Modal.Header closeButton>
+                  <Modal.Title>Delete Session Minds Profile</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                  <p>
+                  Do you really want to delete you profile?
+                  </p>    
+              </Modal.Body>
+              <Modal.Footer>
+                  <Button 
+                      variant="danger" 
+                      type="delete" 
+                      aria-label="Delete Tool"
+                      onClick={handleDelete}
+                  >
+                      Delete Profile!
+                  </Button>
+
+                  <Link onClick={() => setShowDeleteModal(false)}>
+                      <Button variant="primary">
+                          No, keep it!
+                      </Button>
+                  </Link>
+              </Modal.Footer>
+          </Modal>        
+        }
+
+
       </>
     );
     }
