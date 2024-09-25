@@ -78,15 +78,22 @@ export default function ContentContributors() {
     
     <div>
 
-        {contributors.map((contributor) => (
-            contributor.first_name && contributor.last_name && contributor.tool_count != 0 ?
-            <ContributorsListItem key={contributor.id} contributor={contributor} />
-            :
-            <></>
+
+        {contributors
+        .filter(contributor => 
+            contributor.first_name && 
+            contributor.last_name && 
+            contributor.tool_count !== 0
+        )
+        .map(contributor => (
+            <ContributorsListItem 
+                key={contributor.id} 
+                contributor={contributor} 
+            />
         ))
-
-
         }
+
+        
     </div>
     </>
     )
