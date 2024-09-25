@@ -128,7 +128,7 @@ export default function ContentToolDetails() {
                     <Emoji unified={toolDetails.icon} size={40} />
                 </div>
                 <div className={`${styles["tool-details-title"]} col-auto mb-5`}>
-                    <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topics[0].title}</p>
+                    <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topic.title}</p>
                     <h1>{toolDetails.title}</h1>
                     <p>{toolDetails.short_description}</p>
                 </div>

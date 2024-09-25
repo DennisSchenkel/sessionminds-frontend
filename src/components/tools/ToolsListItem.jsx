@@ -9,19 +9,13 @@ import {UserContext} from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
-function getTopicsList(tool) {
-    if (tool.topics.length > 1) {
-        return `${tool.topics[0].title} " | " + ${tool.topics[1].title}`;
-    } else {
-        return tool.topics[0].title;
-    }
-}
+
 
 export default function ToolsListItem({ tool }) {
 
     const { user } = useContext(UserContext);
 
-    const topicsList = getTopicsList(tool);
+
     const icon = tool.icon.toLowerCase();
 
     const [voteCount, setVoteCount] = useState(tool.vote_count);
@@ -121,7 +115,7 @@ export default function ToolsListItem({ tool }) {
                             <div className={`${styles["list-item-desc-text"]}`}>{tool.short_description}</div>
                             <div className={`${styles["list-item-desc-misc"]}`}>
                                 <FontAwesomeIcon icon={faComment} /> 62<span> &#183; </span>
-                                {topicsList}<span> &#183; </span>{tool.profile.first_name} {tool.profile.last_name}<span> &#183; </span>{tool.created}
+                                {tool.topic.title}<span> &#183; </span>{tool.profile.first_name} {tool.profile.last_name}<span> &#183; </span>{tool.created}
                                 {tool.is_owner}
                             </div>
                         </div>

@@ -68,7 +68,7 @@ export default function ProfileEditor() {
         }));
         return;
       }
-
+  
       setProfileData((prevData) => ({
         ...prevData,
         image: file,
@@ -79,7 +79,7 @@ export default function ProfileEditor() {
         image: null,
       }));
     }
-  };
+  };  
 
   const validateImage = (file) => {
     const validTypes = ["image/jpg", "image/jpeg", "image/png"];
@@ -94,7 +94,6 @@ export default function ProfileEditor() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors({});
 
     const formData = new FormData();
     formData.append("first_name", profileData.first_name);
@@ -105,6 +104,7 @@ export default function ProfileEditor() {
     formData.append("twitter", profileData.twitter);
     formData.append("facebook", profileData.facebook);
     formData.append("instagram", profileData.instagram);
+
     if (profileData.image) {
       const imageError = validateImage(profileData.image);
       if (imageError) {

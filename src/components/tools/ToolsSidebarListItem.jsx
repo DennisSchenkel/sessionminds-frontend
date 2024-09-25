@@ -18,7 +18,7 @@ export default function ToolsSidebarListItem({tool}) {
                     
                         <div>
                             <h4>{tool.title}</h4>
-                            <div className={`${styles["sidebar-item-desc-misc"]}`}>{tool.vote_count} {voteOrVotes}<span> &#183; </span>{tool.topics[0].title}<span> &#183; </span>{tool.created}</div>
+                            <div className={`${styles["sidebar-item-desc-misc"]}`}>{tool.vote_count} {voteOrVotes}<span> &#183; </span>{tool.topic.title}<span> &#183; </span>{tool.created}</div>
                         </div>
                     
                 </div>

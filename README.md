@@ -87,6 +87,10 @@ When using the API with JWT, everything works just finde.
 
 When testing the behavior of the access token and the authentication token, an error occurred. The tokens still worked after their lifetime, and blacklisting on refresh didn't work.
 
+**Localhost as baseURL on Heroku Frontend**
+
+When deploying the backend and frontend, the baseURL for the API in React was still set to the localhost of the local developmant computer. This caused issues when ever somebody else, not using the development computer, was using the app.
+
 ## Credits
 
 ### Code Sources

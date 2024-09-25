@@ -76,7 +76,10 @@ export default function ContributorsSidebarItemList() {
             </div>
 
             {contributors.map((contributor) => (
+                contributor.first_name && contributor.last_name && contributor.tool_count != 0 ?
                 <ContributorsSidebarListItem key={contributor.id} contributor={contributor} />
+                :
+                <></>
             ))}
         </>
     )

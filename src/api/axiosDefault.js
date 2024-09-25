@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://sessionminds-be-f5283499a47c.herokuapp.com/",
+    baseURL: "http://127.0.0.1:9000",                                                                       //Set the base URL of the API to Heroku
     headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
     },
 });
 

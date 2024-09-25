@@ -20,7 +20,7 @@ export default function ContentToolEditor() {
 
     const [tool, setTool] = useState({
         title: "",
-        topic_ids: [],
+        topic_id: "",
         short_description: "",
         full_description: "",
         instructions: "",
@@ -62,7 +62,7 @@ export default function ContentToolEditor() {
                         setTool(
                             {
                                 title: existingTool.data.title,
-                                topic_ids: existingTool.data.topics.map(topic => topic.id),
+                                topic_id: existingTool.data.topic.id,
                                 short_description: existingTool.data.short_description,
                                 full_description: existingTool.data.full_description,
                                 instructions: existingTool.data.instructions,
@@ -77,7 +77,7 @@ export default function ContentToolEditor() {
             } else {
                 setTool({
                     title: "",
-                    topic_ids: [0],
+                    topic_id: "",
                     short_description: "",
                     full_description: "",
                     instructions: "",
@@ -95,10 +95,6 @@ export default function ContentToolEditor() {
             icon: emojiData.unified,
         }));
     };
-
-    const handleTopicChange = (event) => {
-        setTool({...tool, topic_ids: [parseInt(event.target.value)]});
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -167,9 +163,8 @@ export default function ContentToolEditor() {
                     required
                     aria-label="Tool Topic" 
                     aria-required="true"
-                    multiple={true}
-                    onChange={handleTopicChange}
-                    value={tool.topic_ids}
+                    onChange={(event) => setTool({...tool, topic_id: event.target.value})}
+                    value={tool.topic_id}
                 >
                     {topics.map((topic) => (
                         <option key={topic.id} value={topic.id}>
@@ -196,7 +191,7 @@ export default function ContentToolEditor() {
                         <div className="col-6 d-flex flex-column align-items-center">                    
                             <div className="py-5">
                                 {emoji !== null && (
-                                    <h3>Selected Topic Icon:</h3>
+                                    <h3>Selected Tool Icon:</h3>
                                 )}
                             </div>
                             <div className="pb-5 text-center">
