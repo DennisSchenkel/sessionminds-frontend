@@ -79,7 +79,7 @@ export default function Profile() {
         </div>
 
         <div className="mt-5">
-            {profileData.tool_count ? <><h2>Tools</h2><hr /></> : <></>}
+            {profileData.tool_count ? <><h2>Tools ({profileData.tool_count})</h2><hr /></> : <></>}
             
             {tools.map((tool) => (
               <ToolsListItem key={tool.id} tool={tool} />

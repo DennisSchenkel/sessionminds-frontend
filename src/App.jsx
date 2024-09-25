@@ -108,7 +108,13 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/editor/:id" element={<ToolEditor />} />
+          <Route path="/editor/:id" 
+            element={
+              <ProtectedRoute>
+                <ToolEditor />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/topics" element={<Topics />} />
           <Route path="/topics/:slug" element={<TopicDetails />} />
           <Route path="/contributors" element={<Contributors />} />
