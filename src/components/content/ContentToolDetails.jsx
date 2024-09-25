@@ -1,7 +1,6 @@
 import styles from "../tools/Tools.module.css";
 import { useEffect, useState, useContext, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import axios from "../../api/axiosDefault";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Emoji } from "emoji-picker-react";
@@ -9,6 +8,9 @@ import { UserContext } from "../../context/UserContext";
 import { Modal, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import CommentForm from "../utilities/CommentForm";
+
+import axios from "../../api/axiosDefault";
 
 export default function ContentToolDetails() {
         
@@ -270,6 +272,7 @@ export default function ContentToolDetails() {
             <h2>Comments</h2>
         </div>
 
+        <CommentForm />
         </>
     )
     }

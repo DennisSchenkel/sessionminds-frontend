@@ -14,7 +14,6 @@ export default function Logout() {
 
     const logout = async () => {
         try {
-            console.log("Logout");
             const response = await axios.post("/logout/")
             if (response.status === 200) {
                 localStorage.removeItem("access");
@@ -44,7 +43,7 @@ export default function Logout() {
                 {message}
             </Alert>
         ))}      
-        <button onClick={logout}>Logout</button>
+        <span onClick={logout}>Logout</span>
         </div>
     )
 }

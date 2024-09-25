@@ -112,7 +112,7 @@ export default function Login ( )   {
 
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/login">
+          <Link className={styles.Link} to="/regist">
             Not registered? <span>Signup now!</span>
           </Link>
         </Container>
