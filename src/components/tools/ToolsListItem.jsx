@@ -3,13 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { Emoji } from "emoji-picker-react";
-import axios from "../../api/axiosDefault";
 import { useEffect, useState, useContext, useCallback } from "react";
 import {UserContext} from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
-
+import axios from "../../api/axiosDefault";
 
 export default function ToolsListItem({ tool }) {
 
@@ -100,7 +99,7 @@ export default function ToolsListItem({ tool }) {
             setError("Failed to remove vote.");
         }
     }, [voteId, fetchToolData]);
-    
+
     if (error) return <p>{error}</p>;
 
     return (
@@ -117,7 +116,7 @@ export default function ToolsListItem({ tool }) {
                             <h3>{tool.title}</h3>
                             <div className={`${styles["list-item-desc-text"]}`}>{tool.short_description}</div>
                             <div className={`${styles["list-item-desc-misc"]}`}>
-                                <FontAwesomeIcon icon={faComment} /> 62<span> &#183; </span>
+                                <FontAwesomeIcon icon={faComment} /> {tool.comments.length}<span> &#183; </span>
                                 {tool.topic.title}<span> &#183; </span>{tool.profile.first_name} {tool.profile.last_name}<span> &#183; </span>{tool.created}
                                 {tool.is_owner}
                             </div>
