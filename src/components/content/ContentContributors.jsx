@@ -26,7 +26,6 @@ export default function ContentContributors() {
                 setContributors(response.data.results || []);
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
@@ -77,8 +76,6 @@ export default function ContentContributors() {
     
     
     <div>
-
-
         {contributors
         .filter(contributor => 
             contributor.first_name && 
@@ -92,9 +89,7 @@ export default function ContentContributors() {
             />
         ))
         }
-
-        
     </div>
     </>
     )
-    }
+}

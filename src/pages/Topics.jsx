@@ -5,7 +5,6 @@ export default function Topics() {
 
     return (
         <div className="row g-0">
-        
             <div className="col-12 col-md-8">
                 <Content />
             </div>
@@ -13,7 +12,6 @@ export default function Topics() {
             <div className="col-md-4 d-none d-md-block">
                 <Sidebar />
             </div>
-            
         </div>
     )
 }

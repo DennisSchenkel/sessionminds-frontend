@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
@@ -10,7 +10,15 @@ export default function Logout() {
     const navigate = useNavigate();
     const [error, setError] = useState({});
 
-    const { setUser, setProfile } = useContext(UserContext);
+    const { user, setUser, setProfile } = useContext(UserContext);
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/");
+        }
+    }
+    , [user, navigate]);
+
 
     const logout = async () => {
         try {
@@ -38,12 +46,12 @@ export default function Logout() {
 
     return (
         <div>
-        {error.non_field_errors?.map((message, index) => (
-            <Alert variant="danger" key={index}>
-                {message}
-            </Alert>
-        ))}      
-        <span onClick={logout}>Logout</span>
+            {error.non_field_errors?.map((message, index) => (
+                <Alert variant="danger" key={index}>
+                    {message}
+                </Alert>
+            ))}      
+            <span onClick={logout}>Logout</span>
         </div>
     )
 }

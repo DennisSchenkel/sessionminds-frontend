@@ -22,6 +22,8 @@ export default function ToolsListItem({ tool }) {
     const [userHasVoted, setUserHasVoted] = useState(false);
     const [voteId, setVoteId] = useState(null);
     const [showModal, setShowModal] = useState(false);
+
+    const [error, setError] = useState(null);
     
     const fetchToolData = useCallback(async () => {
         try {
@@ -29,7 +31,7 @@ export default function ToolsListItem({ tool }) {
             const voteCount = response.data.vote_count;
             setVoteCount(voteCount);
         } catch (error) {
-            console.error("Error fetching tool data:", error);
+            setError("Failed to load tool data.");
         }
     }, [tool.id]);
 
@@ -41,7 +43,7 @@ export default function ToolsListItem({ tool }) {
                 setUserHasVoted(user_has_voted);
                 setVoteId(vote_id);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                setError("Failed to load vote data.");
             }
         };
         fetchData();
@@ -58,7 +60,7 @@ export default function ToolsListItem({ tool }) {
                 const voteCount = response.data.vote_count;
                 setVoteCount(voteCount);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                setError("Failed to load tool data.");
             }
         };
         fetchData();
@@ -77,13 +79,13 @@ export default function ToolsListItem({ tool }) {
                 setVoteId(voteId);
             }
         } catch (error) {
-            console.error("Error submitting vote:", error);
+            setError("Failed to submit vote.");
         }
     }, [tool.id, fetchToolData]);
 
     const downVoteHandler = useCallback(async () => {
         if (!voteId) {
-            console.log("No vote_id available, cannot remove vote.");
+            setError("Vote ID is missing.");
             return;
         }        
         try {
@@ -95,10 +97,11 @@ export default function ToolsListItem({ tool }) {
                 setVoteId(null);
             }
         } catch (error) {
-            console.error("Error submitting vote:", error);
+            setError("Failed to remove vote.");
         }
     }, [voteId, fetchToolData]);
     
+    if (error) return <p>{error}</p>;
 
     return (
         <>
@@ -182,9 +185,7 @@ export default function ToolsListItem({ tool }) {
                                 </Button>
                             </Link>
                         </Modal.Footer>
-                    </Modal>
-                    
-                    
+                    </Modal>  
                     }
                 </div>
             </div>

@@ -63,7 +63,6 @@ export default function App() {
     }
   }, [location.state]);
 
-
   if (loading) {
     return <p>Loading...</p>;
   }

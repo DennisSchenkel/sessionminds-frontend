@@ -6,11 +6,9 @@ export default function TopicsSidebarListItem({topic}) {
     const toolOrTools = topic.tool_count === 1 ? "Tool" : "Tools";
     const icon = topic.icon.icon_code.toLowerCase();
 
-
     return (
 
         <div className={`${styles["sidebar-item"]} row g-0`}>
-
             <div className={`${styles["sidebar-item-icon"]} col-2 justify-content-center`}>
                 <div>
                     <Emoji unified={icon} size="40" />
@@ -23,10 +21,7 @@ export default function TopicsSidebarListItem({topic}) {
                         <div className={`${styles["sidebar-item-desc-misc"]}`}>{topic.tool_count} {toolOrTools}</div>
                     </a>
                 </div>
-            </div>
-            
+            </div>       
         </div>
-
     )
-
 }

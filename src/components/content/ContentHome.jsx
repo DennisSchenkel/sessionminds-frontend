@@ -42,7 +42,6 @@ export default function ContentHome() {
                 setTopTopics((responseTopics.data.results || []));
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
@@ -91,4 +90,4 @@ export default function ContentHome() {
             </div>
     </>
     )
-    }
+}

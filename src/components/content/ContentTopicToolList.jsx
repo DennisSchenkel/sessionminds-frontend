@@ -34,12 +34,9 @@ export default function ContentTopicToolList() {
                 setIcon(response.data.icon.icon_code.toLowerCase());
             }
             catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load topic.");
             }
         };
-
-
 
         const fetchToolsData = async (page = 1) => {
             setLoading(true);
@@ -57,7 +54,6 @@ export default function ContentTopicToolList() {
                 setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
@@ -125,4 +121,4 @@ export default function ContentTopicToolList() {
         </div>
     </>
     )
-    }
+}

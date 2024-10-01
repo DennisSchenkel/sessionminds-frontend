@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Col, Form, Row } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../context/UserContext";
+
 
 import styles from "../../assets/styles/LoginReg.module.css";
 import btnStyles from "../../assets/styles/Button.module.css";
@@ -11,6 +14,15 @@ import axios from "../../api/axiosDefault";
 
 const Regist = () => {
 
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const [regData, setRegData] = useState(
     {
       email: "",
@@ -19,11 +31,8 @@ const Regist = () => {
     }
   );
 
-  const [errors, setErrors] = useState({});
-
   const { email, password, passwordConf } = regData;
-
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setRegData({

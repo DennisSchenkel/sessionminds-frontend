@@ -26,7 +26,6 @@ export default function ToolsSidebarList() {
                 setTools(response.data.results || []);
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
@@ -74,7 +73,6 @@ export default function ToolsSidebarList() {
                     </span>
                 </div>
             </div>
-
             {tools.map((tool) => (
                 <ToolsSidebarListItem key={tool.id} tool={tool} />
             ))}

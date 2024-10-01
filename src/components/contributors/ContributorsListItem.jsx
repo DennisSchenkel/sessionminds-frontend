@@ -3,7 +3,6 @@ import Image from "react-bootstrap/Image";
 
 export default function ContributorsListItem({contributor}) {
 
-
     const toolOrTools = contributor.tool_count === 1 ? "Tool" : "Tools";
     const voteOrVote    = contributor.total_votes === 1 ? "Vote" : "Votes";
 
@@ -13,10 +12,9 @@ export default function ContributorsListItem({contributor}) {
 
                 <div className={`${styles["list-item-icon"]} col-auto`}>
                     <div>
-                        <Image src={contributor.image} alt="..." width={60} height={60} className={`${styles["list-item-profile-image"]}`}/>
+                        <Image src={contributor.image} alt={`Profile image of ${contributor.first_name} ${contributor.last_name}`} width={60} height={60} className={`${styles["list-item-profile-image"]}`}/>
                     </div>
                 </div>  
-                
                 <div className={`${styles["list-item-desc"]} col-auto ps-2`}>
                     <div>
                         <h3>{contributor.first_name} {contributor.last_name}</h3>
@@ -26,5 +24,4 @@ export default function ContributorsListItem({contributor}) {
             </div>
         </a>
     )
-
 }

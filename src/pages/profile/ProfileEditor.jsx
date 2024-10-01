@@ -134,7 +134,7 @@ export default function ProfileEditor() {
       } else {
         setErrors({ non_field_errors: ["An unexpected error occurred."] });
       }
-      console.error("Failed to update profile:", error);
+      setErrors({ non_field_errors: ["An unexpected error occurred."] });
     }
   };
 

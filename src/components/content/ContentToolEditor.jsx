@@ -52,7 +52,6 @@ export default function ContentToolEditor() {
         };
         getTopics();
 
-
         const getExistingToolOrCreateNew = async () => {
             if (id) {
                 try {
@@ -129,8 +128,6 @@ export default function ContentToolEditor() {
                 });
         }
     };
-
-
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
@@ -262,4 +259,4 @@ export default function ContentToolEditor() {
         </Form>
     </>
     )
-    }
+}

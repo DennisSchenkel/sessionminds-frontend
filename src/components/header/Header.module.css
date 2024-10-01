@@ -11,7 +11,6 @@
   color: #1e7e94;
 }
 
-
 .header {
     padding: 1rem;
     background-color: #f5f7fa;
@@ -22,9 +21,6 @@
   display: flex;
   align-items: center;
 }
-
-
-
 
 .dropdownmenu {
   background-color: #f9f9f9;

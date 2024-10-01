@@ -18,7 +18,6 @@ export default function CommentListElement({comment, onDeletingComment}) {
             }
         }
         catch (error) {
-            console.error("Error when deleting the comment:", error);
             onDeletingComment(comment.id, "Error when deleting the comment. Please try again later.", "danger");
         }
         finally {

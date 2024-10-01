@@ -36,7 +36,6 @@ export default function ContentTools() {
                 setTotalPages(Math.ceil(response.data.count / itemsPerPage));
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
@@ -103,4 +102,4 @@ export default function ContentTools() {
         </div>
     </>
     )
-    }
+}

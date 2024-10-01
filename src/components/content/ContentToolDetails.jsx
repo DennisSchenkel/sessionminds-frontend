@@ -65,13 +65,12 @@ export default function ContentToolDetails() {
                 setVoteId(voteId);
             }
         } catch (error) {
-            console.error("Error submitting vote:", error);
+            setError("Error submitting vote.");
         }
     }, [toolDetails.id, fetchToolData]);
 
     const downVoteHandler = useCallback(async () => {
         if (!voteId) {
-            console.log("No vote_id available, cannot remove vote.");
             return;
         }        
         try {
@@ -83,7 +82,7 @@ export default function ContentToolDetails() {
                 setVoteId(null);
             }
         } catch (error) {
-            console.error("Error submitting vote:", error);
+            setError("Error submitting vote.");
         }
     }, [voteId, fetchToolData]);
     
@@ -292,8 +291,6 @@ export default function ContentToolDetails() {
                 <h2>Instructions</h2>
                 <p>{toolDetails.instructions}</p>
             </div>
-
-
         <div className={`${styles["tool-details-comments-headline-row"]}`}>
             <h3>Comments</h3>
         </div>
@@ -315,4 +312,4 @@ export default function ContentToolDetails() {
         <CommentForm toolId={toolDetails.id} onAddingComment={handleNewComment} />
         </>
     )
-    }
+}

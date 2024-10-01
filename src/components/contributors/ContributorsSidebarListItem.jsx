@@ -9,7 +9,6 @@ export default function ContributorsSidebarListItem({contributor}) {
     return (
         <a href={`/profile/${contributor.slug}`}>
             <div className={`${styles["sidebar-item"]} row g-0`}>
-
                 <div className={`${styles["sidebar-item-icon"]} col-auto`}>
                     <div>
                         <Image src={contributor.image} alt={`Profile image of ${contributor.first_name} ${contributor.last_name}`} width={50} height={50} className={`${styles["sidebar-profile-image"]}`}/>

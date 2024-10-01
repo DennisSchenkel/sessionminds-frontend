@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Col, Form, Image, Row } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
@@ -10,7 +10,16 @@ import appStyles from "../../App.module.css";
 import axios from "../../api/axiosDefault";
 
 export default function Login ( )   {
-   
+
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const [loginData, setLoginData] = useState(
     {
       email: "",
@@ -18,13 +27,9 @@ export default function Login ( )   {
     }
   );
   
-  const [error, setError] = useState({});
-
-  const { email, password } = loginData;
-
   const { setUser } = useContext(UserContext);
-
-  const navigate = useNavigate();
+  const { email, password } = loginData;
+  const [error, setError] = useState({});
 
   const handleChange = (event) => {
     setLoginData({
@@ -48,12 +53,11 @@ export default function Login ( )   {
       if (error.response) {
         setError(error.response.data);
       } else if (error.request) {
-        console.error("No response received:", error.request);
+        setError({ non_field_errors: ["Connection error. Please try again."] });
       }
 
     }
   }
-
 
   return (
     <Row className={styles.Row}>
@@ -130,6 +134,4 @@ export default function Login ( )   {
       </Col>
     </Row>
   );
-
-
 }

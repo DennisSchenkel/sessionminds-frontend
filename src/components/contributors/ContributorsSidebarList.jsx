@@ -26,12 +26,10 @@ export default function ContributorsSidebarItemList() {
                 setContributors(response.data.results || []);
                 setLoading(false);
             } catch (error) {
-                console.error("Error fetching data:", error);
                 setError("Failed to load tools.");
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [order]);
 
