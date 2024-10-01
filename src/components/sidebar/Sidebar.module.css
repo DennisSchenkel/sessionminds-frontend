@@ -9,9 +9,12 @@ a {
 }
 
 .sidebar {
+  border-left: 1px solid #d9e1ec;
   padding-top: 1.4rem;
   padding-left: 3rem;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  min-height: 98%;
 }
 
 .headline-row {

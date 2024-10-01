@@ -178,7 +178,7 @@ export default function ContentToolEditor() {
             <Form.Group>
                 <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
                     <div className="row">
-                        <div  className="col-6 pb-3">
+                        <div  className="col pb-3">
                             <EmojiPicker
                                 onEmojiClick={onEmojiClick}
                                 skinTonesDisabled="false" 
@@ -188,7 +188,7 @@ export default function ContentToolEditor() {
                                 aria-required="true"
                             />
                         </div>
-                        <div className="col-6 d-flex flex-column align-items-center">                    
+                        <div className="col d-flex flex-column align-items-center mb-4">                    
                             <div className="py-5">
                                 {emoji !== null && (
                                     <h3>Selected Tool Icon:</h3>

@@ -10,10 +10,10 @@ export default function TooicsListItem({topic}) {
     return (
         <div className={`${styles["list-item"]} row g-0`}>
 
-            <div className={`${styles["list-item-icon"]} col-1 justify-content-center`}>
+            <div className={`${styles["list-item-icon"]} col-auto justify-content-center`}>
                 <Emoji unified={icon} size="40" />
             </div>  
-            <div className={`${styles["list-item-desc"]} col-11 ps-2`}>
+            <div className={`${styles["list-item-desc"]} col ps-2`}>
                 <div>
                     <a href={`/topics/${topic.slug}`}>
                     <h3>{topic.title}</h3>

@@ -150,25 +150,16 @@ export default function ContentToolDetails() {
                 }}
             >Go Back</Link>
         </div>
-        <div className="row pb-4">
+        <div className="row">
             <div className="col row">
                 <div className={`${styles["tool-details-icon"]} col-auto`}>
                     <Emoji unified={toolDetails.icon} size={40} />
                 </div>
-                <div className={`${styles["tool-details-title"]} col-auto mb-5`}>
+                <div className={`${styles["tool-details-title"]} col-auto mb-2`}>
                     <p className={`${styles["tool-details-topics"]}`}>{toolDetails.topic.title}</p>
                     <h1>{toolDetails.title}</h1>
                     <p>{toolDetails.short_description}</p>
                 </div>
-                <div className="pb-4">     
-                    <h2>Description</h2>
-                    <p>{toolDetails.full_description}</p>
-                </div>
-                <div className="pb-4">     
-                    <h2>Instructions</h2>
-                    <p>{toolDetails.instructions}</p>
-                </div>
-
             </div>
                 
                 
@@ -199,7 +190,7 @@ export default function ContentToolDetails() {
                         :
                         (          
                             <div className={`${styles["tool-details-vote"]} justify-content-center`}
-                            onClick={() => setShowVoteModal(true)}>
+                                onClick={() => setShowVoteModal(true)}>
                                 <div className={`${styles["tool-details-vote-icon"]}`}>
                                     <FontAwesomeIcon icon={faCaretUp} className="fa-2x" />
                                 </div>
@@ -259,10 +250,9 @@ export default function ContentToolDetails() {
                 </div>
                 <div className="mt-2">
                 <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                <span> Share</span>
+                <span>Share</span>
                 </div> 
             </div>
-
         </div>
 
         {showDeleteModal &&     
@@ -293,6 +283,16 @@ export default function ContentToolDetails() {
                 </Modal.Footer>
             </Modal>        
         }
+
+            <div className="pb-4">     
+                <h2>Description</h2>
+                <p>{toolDetails.full_description}</p>
+            </div>
+            <div className="pb-4">     
+                <h2>Instructions</h2>
+                <p>{toolDetails.instructions}</p>
+            </div>
+
 
         <div className={`${styles["tool-details-comments-headline-row"]}`}>
             <h3>Comments</h3>

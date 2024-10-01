@@ -81,11 +81,6 @@ export default function Profile() {
         <div className="row">
           <div className="col-auto text-center">
             <Image src={profileData.image} width={150} className="rounded-circle" />
-            <div className="d-grid gap-2">
-              {profileData.is_owner ? <Button href={`/profile/editor/${slug}/`} className="mt-4">Edit profile</Button> : <></>}
-              {profileData.is_owner ? <Button onClick={() => setShowDeleteModal(true)} className="mt-2 wd-300" variant="danger">Delete profile</Button> : <></>}
-            </div>
-
           </div>
           <div className="col-auto">
             <h1>{profileData.first_name + " " + profileData.last_name} </h1>
@@ -107,6 +102,10 @@ export default function Profile() {
             }
           </div>
         </div>
+          <div className="w-25 d-grid gap-2">
+            {profileData.is_owner ? <Button href={`/profile/editor/${slug}/`} className="mt-4">Edit profile</Button> : <></>}
+            {profileData.is_owner ? <Button onClick={() => setShowDeleteModal(true)} className="mt-2 wd-300" variant="danger">Delete profile</Button> : <></>}
+          </div>
 
         <div className="mt-5">
             {profileData.tool_count ? <><h2>Tools ({profileData.tool_count})</h2><hr /></> : <></>}

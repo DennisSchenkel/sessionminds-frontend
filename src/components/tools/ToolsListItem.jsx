@@ -103,12 +103,12 @@ export default function ToolsListItem({ tool }) {
     return (
         <>
             <div className={`${styles["list-item"]} row g-0`}>
-                <div className={`${styles["list-item-icon"]} col-1`}>
+                <div className={`${styles["list-item-icon"]} col-auto d-none d-sm-block pt-2`}>
                     <div id="tool-icon">
                         <Emoji unified={icon} size={40} />
                     </div>
                 </div>
-                <div className={`${styles["list-item-desc"]} col-9 ps-2`}>
+                <div className={`${styles["list-item-desc"]} col ps-2`}>
                     <a href={`/tools/${tool.slug}`}>
                         <div>
                             <h3>{tool.title}</h3>
@@ -121,7 +121,7 @@ export default function ToolsListItem({ tool }) {
                         </div>
                     </a>
                 </div>
-                <div className={`${styles["list-item-vote-container"]} col-2` }>
+                <div className={`${styles["list-item-vote-container"]} col-auto pt-2` }>
                     {user ? (
                         userHasVoted ? 
                             <div className={`${styles["list-item-vote"]} justify-content-center ${styles["list-item-vote-user-has-voted"]}`}

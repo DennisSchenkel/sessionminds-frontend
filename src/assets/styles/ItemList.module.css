@@ -16,7 +16,6 @@ a {
 }
 
 .list-item {
-  height: 70px;
   margin-bottom: 1rem;
 }
 
@@ -28,9 +27,11 @@ a {
 .list-item-icon {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 
 .list-item-desc {
+  padding-left: 5px;
   display: flex;
   align-items: center;
 }
@@ -47,7 +48,7 @@ a {
 
 .list-item-vote-container {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
 }
 

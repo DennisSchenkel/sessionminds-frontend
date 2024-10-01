@@ -47,10 +47,10 @@ export default function ContributorsSidebarItemList() {
     return (
         <>
             <div className={`row ${styles["headline-row"]}`}>
-                <div className="col-8">
+                <div className="col">
                     <h2>Top Contributors</h2>
                 </div>
-                <div className="col-4 text-end">            
+                <div className="col-4 d-sm-none d-lg-block text-end">            
                     <span
                         onClick={() => handleOrderChange("tools")}
                         style={{
