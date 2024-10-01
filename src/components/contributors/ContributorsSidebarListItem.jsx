@@ -12,7 +12,7 @@ export default function ContributorsSidebarListItem({contributor}) {
 
                 <div className={`${styles["sidebar-item-icon"]} col-2`}>
                     <div>
-                        <Image src={contributor.image} alt="..." width={50} height={50} className={`${styles["sidebar-profile-image"]}`}/>
+                        <Image src={contributor.image} alt={`Profile image of ${contributor.first_name} ${contributor.last_name}`} width={50} height={50} className={`${styles["sidebar-profile-image"]}`}/>
                     </div>
                 </div>  
                 <div className={`${styles["sidebar-item-desc"]} col-10 ps-2`}>

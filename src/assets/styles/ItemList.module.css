@@ -4,6 +4,13 @@ h3 {
   color: black;
 }
 
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0rem;
+  color: black;
+}
+
 a {
   text-decoration: none;
 }
@@ -61,7 +68,6 @@ a {
 .list-item-vote-user-has-voted {
   background-color: #2d92d5;
 }
-
 
 .list-item-vote:hover {
   background-color: #f5f8fa;

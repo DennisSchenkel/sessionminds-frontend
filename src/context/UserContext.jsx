@@ -7,9 +7,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
 
- 
-
-  // Get user and profile data from the API
+   // Get user and profile data from the API
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,6 +49,7 @@ export const UserProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  // Update the user profile
   const updateProfile = async (updatedProfile) => {
     try {
       setLoading(true);

@@ -1,14 +1,14 @@
 import styles from "../tools/Tools.module.css";
 import { useEffect, useState, useContext, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
 import { Modal, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import CommentForm from "../utilities/CommentForm";
+import CommentForm from "../comments/CommentForm";
+import CommentListElement from "../comments/CommentListElement";
 
 import axios from "../../api/axiosDefault";
 
@@ -20,6 +20,7 @@ export default function ContentToolDetails() {
     const navigate = useNavigate();
 
     const [toolDetails, setToolDetails] = useState({});
+    const [alert, setAlert] = useState({ message: "", variant: "" });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -29,7 +30,6 @@ export default function ContentToolDetails() {
     const [showVoteModal, setShowVoteModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     
-
     const fetchToolData = useCallback(async () => {
         try {
             const toolResponse = await axios.get(`/tools/tool/${slug}`);
@@ -87,7 +87,7 @@ export default function ContentToolDetails() {
         }
     }, [voteId, fetchToolData]);
     
-    const handleDelete = (event) => {
+    const handleDeleteTool = (event) => {
         event.preventDefault();
         if (toolDetails.id && toolDetails.is_owner) {
             axios.delete(`/tools/${toolDetails.id}/`)
@@ -104,6 +104,32 @@ export default function ContentToolDetails() {
                     setError(error.response.data);
                 });
         }
+    };
+
+    const handleNewComment = (newComment) => {
+        setToolDetails(prevDetails => ({
+            ...prevDetails,
+            comments: [...prevDetails.comments, newComment]
+        }));
+    };
+
+    const handleDeleteComment = (commentId, message="Comment was deleted successfully!", variant="info") => {
+        if (commentId) {
+            const newComments = toolDetails.comments.filter(comment => comment.id !== commentId);    
+            setToolDetails(prevDetails => ({
+                ...prevDetails,
+                comments: newComments
+        }));
+        setAlert({ message, variant });
+        } else {
+            setAlert({ message: "Error when deleting the comment. Please try again later.", variant: "danger" });
+        }
+        
+        const timer = setTimeout(() => {
+            setAlert({ message: "", variant: "" });
+        }, 5000);
+
+        return () => clearTimeout(timer);
     };
 
     if (loading) {
@@ -242,7 +268,7 @@ export default function ContentToolDetails() {
         {showDeleteModal &&     
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Log in first!</Modal.Title>
+                    <Modal.Title>Deleting tool...</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <p>
@@ -254,7 +280,7 @@ export default function ContentToolDetails() {
                         variant="danger" 
                         type="delete" 
                         aria-label="Delete Tool"
-                        onClick={handleDelete}
+                        onClick={handleDeleteTool}
                     >
                         Delete Tool!
                     </Button>
@@ -269,10 +295,24 @@ export default function ContentToolDetails() {
         }
 
         <div className={`${styles["tool-details-comments-headline-row"]}`}>
-            <h2>Comments</h2>
+            <h3>Comments</h3>
         </div>
 
-        <CommentForm />
+        {toolDetails.comments.map((comment) => (
+            <CommentListElement key={comment.id} comment={comment} onDeletingComment={handleDeleteComment} />
+        ))}
+
+        {alert.message && 
+        <Alert 
+          variant={alert.variant} 
+          onClose={() => setAlert({ message: "", variant: "" })} 
+          dismissible
+        >
+          {alert.message}
+        </Alert>
+      }   
+
+        <CommentForm toolId={toolDetails.id} onAddingComment={handleNewComment} />
         </>
     )
     }

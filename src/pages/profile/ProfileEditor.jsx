@@ -7,7 +7,7 @@ import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {
 
-  const { profile: userProfile, updateProfile } = useContext(UserContext);
+  const { user, profile: userProfile, updateProfile } = useContext(UserContext);
 
   const [profileData, setProfileData] = useState({
     first_name: "",
@@ -120,7 +120,7 @@ export default function ProfileEditor() {
 
     try {
       await updateProfile(formData);
-      const response = await axios.get(`/users/${userProfile.id}/profile/`);
+      const response = await axios.get(`/users/${user.id}/profile/`);
       const newSlug = response.data.slug;
       navigate(`/profile/${newSlug}`, {
         state: {
