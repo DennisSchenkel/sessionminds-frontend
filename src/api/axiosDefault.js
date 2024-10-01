@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 const axiosInstance = axios.create({
-    baseURL: "http://127.0.0.1:9000",                                                                       //Set the base URL of the API to Heroku
+    baseURL: baseURL,
     headers: {
         "Content-Type": "multipart/form-data",
     },

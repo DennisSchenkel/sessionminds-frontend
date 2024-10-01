@@ -3,6 +3,9 @@ import { Form, Button, Image, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { Offcanvas } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Logout from "../../pages/auth/Logout";
 import logo from "../../assets/images/logo.svg";
 
@@ -11,6 +14,15 @@ export default function Header() {
     const { loading, profile } = useContext(UserContext);
 
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+    const handleCloseMobileMenu = () => {
+      setShowMobileMenu(false);
+    };
+    
+    const handleShowMobileMenu = () => {
+      setShowMobileMenu(true);
+    };
 
     const handleMouseEnter = () => {
       setShowDropdown(true);
@@ -33,7 +45,7 @@ export default function Header() {
               <Image src={logo} alt="Logo" />
             </div>
 
-            <div className="col-6">
+            <div className="col-6 d-none d-sm-block">
               <ul className="nav justify-content-center">
                 <li>
                   <Link className={`${styles["nav-link"]}`} to="/">Home</Link>
@@ -48,6 +60,12 @@ export default function Header() {
                   <Link className={`${styles["nav-link"]}`} to="/contributors">Contributors</Link>
                 </li>
               </ul>
+            </div>
+
+            <div className="col-6 d-block d-sm-none text-center">
+              <Button variant="" onClick={handleShowMobileMenu}>
+                <FontAwesomeIcon icon={faBars} className="fa-2x" />
+              </Button>
             </div>
 
             <div className="col-3 text-end">
@@ -102,10 +120,29 @@ export default function Header() {
               </>
               }
             </div>
-
-
           </div>
         </div>
+        <Offcanvas show={showMobileMenu} onHide={handleCloseMobileMenu}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Session Minds Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+              <ul className="list-unstyled justify-content-center">
+                <li>
+                  <Link className={`${styles["nav-link"]}`} to="/" onClick={handleCloseMobileMenu}>Home</Link>
+                </li>
+                <li>
+                  <Link className={`${styles["nav-link"]}`} to="/tools" onClick={handleCloseMobileMenu}>Tools</Link>
+                </li>
+                <li>
+                  <Link className={`${styles["nav-link"]}`} to="/topics" onClick={handleCloseMobileMenu}>Topics</Link>
+                </li>
+                <li>
+                  <Link className={`${styles["nav-link"]}`} to="/contributors" onClick={handleCloseMobileMenu}>Contributors</Link>
+                </li>
+              </ul>
+          </Offcanvas.Body>
+      </Offcanvas>
       </>
     )
     }
