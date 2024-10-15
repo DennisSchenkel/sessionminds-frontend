@@ -5,7 +5,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 const axiosInstance = axios.create({
     baseURL: baseURL,
     headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
     },
 });
 
@@ -41,7 +41,7 @@ axiosInstance.interceptors.request.use(
             // Not adding the authorization header to the token refresh request
             if (!config.url.endsWith("/api/token/refresh/")) {
                 config.headers["Authorization"] = `Bearer ${token}`;
-            }
+            } 
         }
         return config;
     },
@@ -55,6 +55,12 @@ axiosInstance.interceptors.response.use(
     response => response,
     async error => {
         const originalRequest = error.config;
+
+        // Check if the error response is 401 and the request is the token refresh request
+        if (originalRequest.url.includes("/api/token/refresh/")) {
+            logoutUser();
+            return Promise.reject(error);
+        }
 
         // Check if the error response is 401 and the request has not been retried yet
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
@@ -111,6 +117,7 @@ axiosInstance.interceptors.response.use(
                     // If the token refresh fails, process the queue with the error
                     processQueue(err, null);
                     isRefreshing = false;
+                    logoutUser();
                     return Promise.reject(err);
                 }
             } else {
