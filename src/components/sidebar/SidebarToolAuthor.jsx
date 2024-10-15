@@ -42,7 +42,7 @@ export default function SidebarToolAuthor() {
                 <h2>Tool Author</h2>
             </div>
 
-            <Card className="shadow-sm p-4 bg-light" style={{ width: "100%", minHeight: "400px", borderRadius: "25px" }}>
+            <Card className="p-4">
                 <Row className="d-flex flex-column align-items-center">
                     <Col className="text-center">
                         <Image 

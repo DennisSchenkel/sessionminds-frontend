@@ -76,7 +76,7 @@ export default function Profile() {
     <>
       <div className="row">
         <div className="col-auto text-center">
-          <Image src={profileData.image} width={150} className="rounded-circle" />
+          <Image src={profileData.image} width={150} className="rounded-circle" alt={profileData.first_name ? profileData.first_name : "Profile image"} />
         </div>
         <div className="col-auto">
           <h1>{profileData.first_name + " " + profileData.last_name} </h1>
