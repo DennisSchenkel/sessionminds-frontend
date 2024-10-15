@@ -1,11 +1,11 @@
 import styles from "./Header.module.css";
-import { Form, Button, Image, Dropdown } from "react-bootstrap";
+import { Form, Button, Image, Dropdown, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Offcanvas } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Logout from "../../pages/auth/Logout";
 import logo from "../../assets/images/logo.svg";
 
@@ -88,15 +88,19 @@ export default function Header() {
                   className={`${styles["dropdownmenu"]}`} 
                   align={ "end" }
                 >
-                  <Form className="d-flex">
-                    <Form.Control
-                      type="search"
-                      id="search"
-                      placeholder="Search"
-                      className="me-2"
-                      aria-label="Search"
-                    />
-                    <Button variant="outline-secondary">Search</Button>
+                  <Form>
+                    <Form.Group>
+                      <InputGroup>
+                        <Form.Control
+                            type="text"
+                            placeholder="Search here.."
+                            aria-label="Search"
+                        />
+                        <InputGroup.Text>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </InputGroup.Text>
+                      </InputGroup>
+                    </Form.Group>
                   </Form>
                   <Dropdown.Item href="/editor" className={`${styles.dropdownmenuitem}`}>Add Tool</Dropdown.Item>
                   <Dropdown.Item href={`/profile/${profile.slug}`} className={`${styles.dropdownmenuitem} pb-1`}>Profile</Dropdown.Item>

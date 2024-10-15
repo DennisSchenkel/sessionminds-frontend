@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Col, Form, Row } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-
-
-import styles from "../../assets/styles/LoginReg.module.css";
-import btnStyles from "../../assets/styles/Button.module.css";
-import appStyles from "../../App.module.css";
 
 import axios from "../../api/axiosDefault";
 
@@ -62,87 +57,84 @@ const Regist = () => {
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4 `}>
-          <h1 className={styles.Header}>Register</h1>
+    <Container className="d-flex flex-column justify-content-center align-items-center pt-4">
+      <div style={{ width: '100%', maxWidth: '400px' }}>
+        <h1 className="text-center mb-4">Register</h1>
 
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label className="d-none">Email</Form.Label>
-                <Form.Control
-                  className={styles.Input}
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                  />
-              </Form.Group>                 
-              
-              {errors.email?.map((message, index) => (
-                <Alert variant="warning" key={index}>{message}</Alert>
-              ))
-              }
-              
-              <Form.Group className="mb-3" controlId="password">
-                <Form.Label className="d-none">Password</Form.Label>
-                <Form.Control
-                  className={styles.Input}
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                  />
-              </Form.Group>
-              {errors.password?.map((message, index) => (
-                <Alert variant="warning" key={index}>{message}</Alert>
-              ))
-              }
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label className="d-none">Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </Form.Group>                 
+          
+          {errors.email?.map((message, index) => (
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
+          ))}
 
-              <Form.Group className="mb-3" controlId="passwordConf">
-                <Form.Label className="d-none">Password Confirmation</Form.Label>
-                <Form.Control
-                  className={styles.Input}
-                  type="password"
-                  placeholder="Password Confirmation"
-                  name="passwordConf"
-                  value={passwordConf}
-                  onChange={handleChange}
-                  />
-              </Form.Group>
-              {errors.passwordConf?.map((message, index) => (
-                <Alert variant="warning" key={index}>{message}</Alert>
-              ))
-              }
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label className="d-none">Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-              {errors.non_field_errors?.map((message, index) => (
-                <Alert variant="warning" key={index}>{message}</Alert>
-              ))
-              }
-              <Button 
-                className={ `${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}` }
-                variant="primary"
-                type="submit"
-                >
-                Submit registration
-              </Button>
-            </Form>
+          {errors.password?.map((message, index) => (
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
+          ))}
 
-        </Container>
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/login">
-            Already registered? <span>Login</span>
+          <Form.Group className="mb-3" controlId="passwordConf">
+            <Form.Label className="d-none">Password Confirmation</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password Confirmation"
+              name="passwordConf"
+              value={passwordConf}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          {errors.passwordConf?.map((message, index) => (
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
+          ))}
+
+          {errors.non_field_errors?.map((message, index) => (
+            <Alert variant="danger" key={index}>
+              {message}
+            </Alert>
+          ))}
+
+          <Button 
+            className="w-100 mt-3"
+            variant="primary"
+            type="submit"
+          >
+            Submit Registration
+          </Button>
+        </Form>
+
+        <div className="text-center mt-3">
+          <Link to="/login" className="text-decoration-none">
+            Already registered? <span className="text-primary">Login</span>
           </Link>
-        </Container>
-      </Col>
-      <Col
-        md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
-      >
-      </Col>
-    </Row>
+        </div>
+      </div>
+    </Container>
   );
 };
 
