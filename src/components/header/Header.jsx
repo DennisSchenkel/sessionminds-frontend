@@ -17,6 +17,7 @@ import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Logout from "../../pages/auth/Logout";
 import Login from "../../pages/auth/Login";
 import logo from "../../assets/images/logo.svg";
+import favicon from "../../assets/images/favicon.svg";
 
 export default function Header() {
   const { loading, profile } = useContext(UserContext);
@@ -53,9 +54,24 @@ export default function Header() {
     <>
       <div className={`${styles.header} px-4`}>
         <div className="row d-flex align-items-center g-0">
-          <div className="col-3 g-0">
+          <div className="col-3 g-0 d-none d-md-block">
             <Link to="/">
-              <Image src={logo} alt="Session Minds Logo" />
+              <Image
+                src={logo}
+                alt="Session Minds Logo"
+                className="logo"
+                width={200}
+              />
+            </Link>
+          </div>
+          <div className="col-3 g-0 d-block d-md-none">
+            <Link to="/">
+              <Image
+                src={favicon}
+                alt="Session Minds Logo"
+                className="logo"
+                width={60}
+              />
             </Link>
           </div>
 

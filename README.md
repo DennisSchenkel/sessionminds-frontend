@@ -56,6 +56,8 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 
 #### Programs & Tools
 
+svglogomaker.org for logo creation
+
 **Vite & React**
 
 Vite as a build tool was used to set up a ReactJS app, since create-react-app (CRA) is no longer the recommended method.<br>
