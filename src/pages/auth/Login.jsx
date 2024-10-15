@@ -36,7 +36,10 @@ export default function Login({ onLoginSuccess }) {
       onLoginSuccess();
       navigate("/");
     } catch (err) {
-      setErr(err.response.data);
+      const errorData = err.response?.data || {
+        non_field_errors: ["An error occurred. Please try again."],
+      };
+      setErr(errorData);
     }
   };
 
