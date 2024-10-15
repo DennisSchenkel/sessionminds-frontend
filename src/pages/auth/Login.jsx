@@ -4,6 +4,8 @@ import { Button, Container, Form, Alert } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 
 export default function Login({ onLoginSuccess }) {
+  const [err, setErr] = useState(null);
+
   const { user, login, error } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -34,14 +36,25 @@ export default function Login({ onLoginSuccess }) {
       onLoginSuccess();
       navigate("/");
     } catch (err) {
-      console.error(err);
+      setErr(err.response.data);
     }
   };
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (err) {
+    return <p>{err}</p>;
+  }
 
   return (
     <Container className="d-flex flex-column align-items-center pt-4">
       <h1 className="mb-4">Login</h1>
-      <Form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "400px" }}>
+      <Form
+        onSubmit={handleSubmit}
+        style={{ width: "100%", maxWidth: "400px" }}
+      >
         <Form.Group className="mb-3" controlId="email">
           <Form.Label className="d-none">Email</Form.Label>
           <Form.Control

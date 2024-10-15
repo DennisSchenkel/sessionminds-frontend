@@ -54,7 +54,9 @@ export default function Header() {
       <div className={`${styles.header} px-4`}>
         <div className="row d-flex align-items-center g-0">
           <div className="col-3 g-0">
-            <Image src={logo} alt="Session Minds Logo" />
+            <Link to="/">
+              <Image src={logo} alt="Session Minds Logo" />
+            </Link>
           </div>
 
           <div className="col-6 d-none d-sm-block">
@@ -121,14 +123,16 @@ export default function Header() {
                           aria-label="Search"
                           name="search"
                           value={searchTerm}
-                          onChange={(event) => setSearchTerm(event.target.value)}
+                          onChange={(event) =>
+                            setSearchTerm(event.target.value)
+                          }
                         />
                         <InputGroup.Text as="button" type="submit">
                           <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </InputGroup.Text>
                       </InputGroup>
                     </Form.Group>
-                  </Form>   
+                  </Form>
                   <Dropdown.Item
                     href="/editor"
                     className={`${styles.dropdownmenuitem}`}
@@ -162,6 +166,38 @@ export default function Header() {
                   <Link className={`${styles["nav-link"]}`} to="/regist">
                     Regist
                   </Link>
+                </li>
+                <li>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="none"
+                      id="dropdown-basic"
+                      className={`${styles.dropdownToggleWithoutCaret}`}
+                    >
+                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className={`${styles["dropdownsearch"]}`}>
+                      <Form onSubmit={handleSubmit}>
+                        <Form.Group>
+                          <InputGroup>
+                            <Form.Control
+                              type="text"
+                              placeholder="Search here.."
+                              aria-label="Search"
+                              name="search"
+                              value={searchTerm}
+                              onChange={(event) =>
+                                setSearchTerm(event.target.value)
+                              }
+                            />
+                            <InputGroup.Text as="button" type="submit">
+                              <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </InputGroup.Text>
+                          </InputGroup>
+                        </Form.Group>
+                      </Form>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </li>
               </ul>
             )}

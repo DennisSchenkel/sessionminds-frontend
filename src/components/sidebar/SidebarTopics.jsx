@@ -1,9 +1,9 @@
 import ToolsSidebarList from "../tools/ToolsSidebarList";
 
 export default function SidebarTopics() {
-    return (
-        <div>
-            <ToolsSidebarList />
-        </div>
-    )
+  return (
+    <div>
+      <ToolsSidebarList />
+    </div>
+  );
 }

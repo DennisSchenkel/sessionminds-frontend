@@ -1,10 +1,9 @@
-import Content from "../components/content/Content"
+import Content from "../components/content/Content";
 
 export default function ToolEditor() {
-
-    return (
-        <div className=" g-0">    
-            <Content />
-        </div>
-    )
+  return (
+    <div className=" g-0">
+      <Content />
+    </div>
+  );
 }

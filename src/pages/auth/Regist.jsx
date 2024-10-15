@@ -8,7 +8,6 @@ import { UserContext } from "../../context/UserContext";
 import axios from "../../api/axiosDefault";
 
 const Regist = () => {
-
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -18,13 +17,11 @@ const Regist = () => {
     }
   }, [user, navigate]);
 
-  const [regData, setRegData] = useState(
-    {
-      email: "",
-      password: "",
-      passwordConf: ""
-    }
-  );
+  const [regData, setRegData] = useState({
+    email: "",
+    password: "",
+    passwordConf: "",
+  });
 
   const { email, password, passwordConf } = regData;
   const [errors, setErrors] = useState({});
@@ -32,33 +29,31 @@ const Regist = () => {
   const handleChange = (e) => {
     setRegData({
       ...regData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/register/", regData)
-        .then((response) => {
-          navigate("/login", { 
-              state: { 
-                  message: `Account created for ${response.data.email}. Please log in.`, 
-                  variant: "success"
-              }
-          });
-          }
-      );
+      await axios.post("/register/", regData).then((response) => {
+        navigate("/login", {
+          state: {
+            message: `Account created for ${response.data.email}. Please log in.`,
+            variant: "success",
+          },
+        });
+      });
     } catch (error) {
-        if (error.response) {
-          setErrors(error.response.data);
+      if (error.response) {
+        setErrors(error.response.data);
       }
     }
   };
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center pt-4">
-      <div style={{ width: '100%', maxWidth: '400px' }}>
+      <div style={{ width: "100%", maxWidth: "400px" }}>
         <h1 className="text-center mb-4">Register</h1>
 
         <Form onSubmit={handleSubmit}>
@@ -71,8 +66,8 @@ const Regist = () => {
               value={email}
               onChange={handleChange}
             />
-          </Form.Group>                 
-          
+          </Form.Group>
+
           {errors.email?.map((message, index) => (
             <Alert variant="warning" key={index}>
               {message}
@@ -119,11 +114,7 @@ const Regist = () => {
             </Alert>
           ))}
 
-          <Button 
-            className="w-100 mt-3"
-            variant="primary"
-            type="submit"
-          >
+          <Button className="w-100 mt-3" variant="primary" type="submit">
             Submit Registration
           </Button>
         </Form>

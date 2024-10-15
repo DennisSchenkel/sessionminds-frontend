@@ -21,10 +21,13 @@ import { UserContext } from "./context/UserContext";
 
 export default function App() {
   const location = useLocation();
-  const { loading, profile } = useContext(UserContext);  
+  const { loading, profile } = useContext(UserContext);
 
   const [alert, setAlert] = useState({ message: "", variant: "" });
-  const [profileAlert, setProfileAlert] = useState({ message: "", variant: "info" });
+  const [profileAlert, setProfileAlert] = useState({
+    message: "",
+    variant: "info",
+  });
 
   useEffect(() => {
     if (profile) {
@@ -32,7 +35,8 @@ export default function App() {
         setProfileAlert({
           message: (
             <>
-              For contribution in the community, you need to have your first name and last name in your profile. Please update your profile{' '}
+              For contribution in the community, you need to have your first
+              name and last name in your profile. Please update your profile{" "}
               <a href={`/profile/editor/${profile.slug}`}>here</a>.
             </>
           ),
@@ -68,21 +72,19 @@ export default function App() {
     <>
       <Header />
       <div className={styles.Container}>
-        {profileAlert.message && 
-          <Alert variant={profileAlert.variant}>
-            {profileAlert.message}
-          </Alert>
-        }
+        {profileAlert.message && (
+          <Alert variant={profileAlert.variant}>{profileAlert.message}</Alert>
+        )}
 
-        {alert.message && 
-          <Alert 
-            variant={alert.variant} 
-            onClose={() => setAlert({ message: "", variant: "" })} 
+        {alert.message && (
+          <Alert
+            variant={alert.variant}
+            onClose={() => setAlert({ message: "", variant: "" })}
             dismissible
           >
             {alert.message}
           </Alert>
-        }   
+        )}
 
         <Routes>
           <Route index element={<Home />} />
@@ -90,7 +92,8 @@ export default function App() {
           <Route path="/regist" element={<Regist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile/:slug" element={<Profile />} />
-          <Route path="/profile/editor/:slug" 
+          <Route
+            path="/profile/editor/:slug"
             element={
               <ProtectedRoute>
                 <ProfileEditor />
@@ -100,14 +103,16 @@ export default function App() {
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/:slug" element={<ToolDetails />} />
           <Route path="/search/:searchTerm" element={<Search />} />
-          <Route path="/editor"
+          <Route
+            path="/editor"
             element={
               <ProtectedRoute>
                 <ToolEditor />
               </ProtectedRoute>
             }
           />
-          <Route path="/editor/:id" 
+          <Route
+            path="/editor/:id"
             element={
               <ProtectedRoute>
                 <ToolEditor />

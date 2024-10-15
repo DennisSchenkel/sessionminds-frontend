@@ -5,7 +5,6 @@ import axios from "../api/axiosDefault";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-
   // User and profile data
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -105,7 +104,9 @@ export const UserProvider = ({ children }) => {
       );
       setProfile(response.data);
     } catch (error) {
-      setError(error.response?.data || { non_field_errors: ["Profile update failed"] });
+      setError(
+        error.response?.data || { non_field_errors: ["Profile update failed"] }
+      );
       throw error;
     } finally {
       setLoading(false);

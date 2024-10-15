@@ -6,7 +6,6 @@ import { UserContext } from "../../context/UserContext";
 import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {
-
   const { user, profile: userProfile, updateProfile } = useContext(UserContext);
 
   const [profileData, setProfileData] = useState({
@@ -62,14 +61,15 @@ export default function ProfileEditor() {
         }));
         return;
       }
-      if (file.size > 2 * 1024 * 1024) { // 2MB
+      if (file.size > 2 * 1024 * 1024) {
+        // 2MB
         setErrors((prevErrors) => ({
           ...prevErrors,
           image: ["Image file is too large! (max 2MB)"],
         }));
         return;
       }
-  
+
       setProfileData((prevData) => ({
         ...prevData,
         image: file,
@@ -80,14 +80,15 @@ export default function ProfileEditor() {
         image: null,
       }));
     }
-  };  
+  };
 
   const validateImage = (file) => {
     const validTypes = ["image/jpg", "image/jpeg", "image/png"];
     if (!validTypes.includes(file.type)) {
       return "Image file is not a valid format! (jpg, jpeg, png)";
     }
-    if (file.size > 2 * 1024 * 1024) { // 2MB
+    if (file.size > 2 * 1024 * 1024) {
+      // 2MB
       return "Image file is too large! (max 2MB)";
     }
     return null;
@@ -144,7 +145,9 @@ export default function ProfileEditor() {
       <Form onSubmit={handleSubmit}>
         {/* First Name */}
         <Form.Group className="mb-3" controlId="first_name">
-          <Form.Label>First Name (Required for participaring in the community)</Form.Label>
+          <Form.Label>
+            First Name (Required for participaring in the community)
+          </Form.Label>
           <Form.Control
             type="text"
             name="first_name"
@@ -154,13 +157,17 @@ export default function ProfileEditor() {
             required
           />
           {errors.first_name?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
         {/* Last Name */}
         <Form.Group className="mb-3" controlId="last_name">
-          <Form.Label>Last Name (Required for participaring in the community)</Form.Label>
+          <Form.Label>
+            Last Name (Required for participaring in the community)
+          </Form.Label>
           <Form.Control
             type="text"
             name="last_name"
@@ -170,7 +177,9 @@ export default function ProfileEditor() {
             required
           />
           {errors.last_name?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -185,7 +194,9 @@ export default function ProfileEditor() {
             placeholder="Enter your job title"
           />
           {errors.job_title?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -201,7 +212,9 @@ export default function ProfileEditor() {
             placeholder="Tell us about yourself"
           />
           {errors.profile_description?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -216,7 +229,9 @@ export default function ProfileEditor() {
             placeholder="https://linkedin.com/in/yourprofile"
           />
           {errors.linkedin?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -231,7 +246,9 @@ export default function ProfileEditor() {
             placeholder="https://twitter.com/yourprofile"
           />
           {errors.twitter?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -246,7 +263,9 @@ export default function ProfileEditor() {
             placeholder="https://facebook.com/yourprofile"
           />
           {errors.facebook?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -261,7 +280,9 @@ export default function ProfileEditor() {
             placeholder="https://instagram.com/yourprofile"
           />
           {errors.instagram?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
@@ -275,20 +296,30 @@ export default function ProfileEditor() {
             onChange={handleImageChange}
           />
           {errors.image?.map((message, index) => (
-            <Alert variant="warning" key={index}>{message}</Alert>
+            <Alert variant="warning" key={index}>
+              {message}
+            </Alert>
           ))}
         </Form.Group>
 
         {/* Image Preview */}
         {previewImage && (
           <div className="mb-3">
-            <Image src={previewImage} roundedCircle width={150} height={150} alt="Profile Preview" />
+            <Image
+              src={previewImage}
+              roundedCircle
+              width={150}
+              height={150}
+              alt="Profile Preview"
+            />
           </div>
         )}
 
         {/* General Errors */}
         {errors.non_field_errors?.map((message, index) => (
-          <Alert variant="warning" key={index}>{message}</Alert>
+          <Alert variant="warning" key={index}>
+            {message}
+          </Alert>
         ))}
 
         <Button variant="primary" type="submit">
