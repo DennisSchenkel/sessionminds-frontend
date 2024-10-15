@@ -1,7 +1,7 @@
-import { Route, Routes, Outlet, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import { Alert } from "react-bootstrap";
-import styles from "./App.module.css"
+import styles from "./App.module.css";
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Regist from "./pages/auth/Regist";
@@ -17,17 +17,13 @@ import Topics from "./pages/Topics";
 import TopicDetails from "./pages/TopicDetails";
 import Contributors from "./pages/Contributors";
 import { UserContext } from "./context/UserContext";
-import { useContext } from "react";
-
-import "./api/axiosDefault";
 
 export default function App() {
-
   const location = useLocation();
   const { loading, profile } = useContext(UserContext);  
 
   const [alert, setAlert] = useState({ message: "", variant: "" });
-  const [profileAlert, setProfileAlert] = useState({ message: "" });
+  const [profileAlert, setProfileAlert] = useState({ message: "", variant: "info" });
 
   useEffect(() => {
     if (profile) {
@@ -42,7 +38,7 @@ export default function App() {
           variant: "warning",
         });
       } else {
-        setProfileAlert({ message: "" });
+        setProfileAlert({ message: "", variant: "info" });
       }
     }
   }, [profile]);
@@ -71,34 +67,34 @@ export default function App() {
     <>
       <Header />
       <div className={styles.Container}>
-      {profileAlert.message && 
-        <Alert variant={profileAlert.variant || "info"}>
-          {profileAlert.message}
-        </Alert>
-      }
+        {profileAlert.message && 
+          <Alert variant={profileAlert.variant}>
+            {profileAlert.message}
+          </Alert>
+        }
 
-      {alert.message && 
-        <Alert 
-          variant={alert.variant} 
-          onClose={() => setAlert({ message: "", variant: "" })} 
-          dismissible
-        >
-          {alert.message}
-        </Alert>
-      }   
+        {alert.message && 
+          <Alert 
+            variant={alert.variant} 
+            onClose={() => setAlert({ message: "", variant: "" })} 
+            dismissible
+          >
+            {alert.message}
+          </Alert>
+        }   
+
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/regist" element={<Regist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile/:slug" element={<Profile />} />
           <Route path="/profile/editor/:slug" 
             element={
-            <ProtectedRoute>
-              <ProfileEditor />
-            </ProtectedRoute>
-              }
+              <ProtectedRoute>
+                <ProfileEditor />
+              </ProtectedRoute>
+            }
           />
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/:slug" element={<ToolDetails />} />
@@ -121,9 +117,7 @@ export default function App() {
           <Route path="/contributors" element={<Contributors />} />
           <Route path="*" element={<div>404 Page Not Found</div>} />
         </Routes>
-        <Outlet />
       </div>
     </>
-  )
+  );
 }
-
