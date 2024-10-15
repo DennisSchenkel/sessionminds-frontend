@@ -91,6 +91,11 @@ When testing the behavior of the access token and the authentication token, an e
 
 When deploying the backend and frontend, the baseURL for the API in React was still set to the localhost of the local developmant computer. This caused issues when ever somebody else, not using the development computer, was using the app.
 
+**Endless loading when refresh token is expired**
+
+When the refresh token was expired, the page tried to get a new access token but the backend returned a 401 error.
+A check for an expired refresh token was missing that deletes all data fram the local storage to enable normal loading again.
+
 ## Credits
 
 ### Code Sources

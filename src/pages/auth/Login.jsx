@@ -40,7 +40,7 @@ export default function Login({ onLoginSuccess }) {
 
   return (
     <Container className="d-flex flex-column align-items-center pt-4">
- 
+      <h1 className="mb-4">Login</h1>
       <Form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "400px" }}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label className="d-none">Email</Form.Label>
@@ -84,7 +84,7 @@ export default function Login({ onLoginSuccess }) {
           </Alert>
         ))}
 
-        <Button className="w-100 mt-3" type="submit">
+        <Button className="w-100 mt-3 mb-3" type="submit">
           Login
         </Button>
       </Form>
