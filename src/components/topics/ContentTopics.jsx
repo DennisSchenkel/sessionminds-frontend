@@ -1,5 +1,5 @@
-import styles from "./Content.module.css";
-import TopicsListItem from "../topics/TopicsListItem";
+import styles from "../content/Content.module.css";
+import TopicsListItem from "./TopicsListItem";
 import Paginator from "../utilities/Paginator";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";

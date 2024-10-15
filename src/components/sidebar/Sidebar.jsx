@@ -21,6 +21,7 @@ export default function Sidebar() {
             {path.startsWith("/topics/") && path.split('/').length === 3 && <SidebarTools />}
             {path === "/contributors" && <SidebarContributors />}
             {path.startsWith("/profile/") && path.split('/').length === 3 && <SidebarHome />}
+            {path.startsWith("/search/") && <SidebarTools />}
         </div>
     );
 }

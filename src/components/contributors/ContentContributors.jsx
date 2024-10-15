@@ -1,5 +1,5 @@
 import ContributorsListItem from "../contributors/ContributorsListItem";
-import styles from "./Content.module.css";
+import styles from "../content/Content.module.css";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
 

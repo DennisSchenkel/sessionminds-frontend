@@ -1,13 +1,19 @@
-import styles from "./Content.module.css";
+import styles from "../content/Content.module.css";
 import ToolsListItem from "../tools/ToolsListItem";
 import Paginator from "../utilities/Paginator";
 import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Emoji } from "emoji-picker-react";
 
-export default function ContentTools() {
+export default function ContentTopicToolList() {
+
+    const { slug } = useParams();
 
     const [order, setOrder] = useState("votes");
 
+    const [topic, setTopic] = useState("");
+    const [icon, setIcon] = useState("");
     const [tools, setTools] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -20,11 +26,23 @@ export default function ContentTools() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        const fetchData = async (page = 1) => {
+
+        const fetchTopicData = async () => {
+            try {
+                const response = await axios.get(`/topics/${slug}`);
+                setTopic(response.data);
+                setIcon(response.data.icon.icon_code.toLowerCase());
+            }
+            catch (error) {
+                setError("Failed to load topic.");
+            }
+        };
+
+        const fetchToolsData = async (page = 1) => {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get(`/tools/`, {
+                const response = await axios.get(`/topics/list/${slug}/`, {
                     params: {
                         ordering: order,
                         page: page,
@@ -41,8 +59,9 @@ export default function ContentTools() {
             }
         };
 
-        fetchData(currentPage);
-    }, [order, currentPage]);
+        fetchTopicData();
+        fetchToolsData(currentPage);
+    }, [order, currentPage, slug]);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -62,7 +81,7 @@ export default function ContentTools() {
     <>
         <div className={`row ${styles["headline-row"]}`}>
             <div className="col-8">
-                <h1>Tools</h1>
+                <h1>{topic.title} <Emoji unified={icon} size="30" /></h1>
             </div>
             <div className="col-4 text-end">
                 <span

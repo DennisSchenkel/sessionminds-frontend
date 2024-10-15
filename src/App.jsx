@@ -16,6 +16,7 @@ import ToolDetails from "./pages/ToolDetails";
 import Topics from "./pages/Topics";
 import TopicDetails from "./pages/TopicDetails";
 import Contributors from "./pages/Contributors";
+import Search from "./pages/Search";
 import { UserContext } from "./context/UserContext";
 
 export default function App() {
@@ -98,6 +99,7 @@ export default function App() {
           />
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/:slug" element={<ToolDetails />} />
+          <Route path="/search/:searchTerm" element={<Search />} />
           <Route path="/editor"
             element={
               <ProtectedRoute>

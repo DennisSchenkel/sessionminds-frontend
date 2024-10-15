@@ -9,7 +9,7 @@ import {
   Offcanvas,
   Modal,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +25,10 @@ export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
+
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
@@ -33,6 +37,13 @@ export default function Header() {
 
   const handleMouseEnter = () => setShowDropdown(true);
   const handleMouseLeave = () => setShowDropdown(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const currentSearchTerm = event.target.elements.search.value;
+    setSearchTerm(currentSearchTerm);
+    navigate(`/search/${currentSearchTerm}`);
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -101,20 +112,23 @@ export default function Header() {
                   className={`${styles["dropdownmenu"]}`}
                   align="end"
                 >
-                  <Form>
+                  <Form onSubmit={handleSubmit}>
                     <Form.Group>
                       <InputGroup>
                         <Form.Control
                           type="text"
                           placeholder="Search here.."
                           aria-label="Search"
+                          name="search"
+                          value={searchTerm}
+                          onChange={(event) => setSearchTerm(event.target.value)}
                         />
-                        <InputGroup.Text>
+                        <InputGroup.Text as="button" type="submit">
                           <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </InputGroup.Text>
                       </InputGroup>
                     </Form.Group>
-                  </Form>
+                  </Form>   
                   <Dropdown.Item
                     href="/editor"
                     className={`${styles.dropdownmenuitem}`}

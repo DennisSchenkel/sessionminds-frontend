@@ -1,12 +1,13 @@
 import { useLocation } from "react-router-dom";
 import ContentHome from "./ContentHome";
-import ContentTools from "./ContentTools";
-import ContentToolDetails from "./ContentToolDetails";
-import ContentToolEditor from "./ContentToolEditor";
-import ContentTopics from "./ContentTopics";
-import ContentTopicToolList from "./ContentTopicToolList";
-import ContentContributors from "./ContentContributors";
+import ContentTools from "../tools/ContentTools";
+import ContentToolDetails from "../tools/ContentToolDetails";
+import ContentToolEditor from "../tools/ContentToolEditor";
+import ContentTopics from "../topics/ContentTopics";
+import ContentTopicToolList from "../topics/ContentTopicToolList";
+import ContentContributors from "../contributors/ContentContributors";
 import Profile from "../../pages/profile/Profile";
+import ContentSearchResults from "../search/ContentSearchResults";
 import styles from "./Content.module.css";
 
 export default function Content() {
@@ -24,6 +25,7 @@ export default function Content() {
             {path.startsWith("/topics/") && path.split('/').length === 3 && <ContentTopicToolList />}
             {path === "/contributors" && <ContentContributors />}
             {path.startsWith("/profile/") && path.split('/').length === 3 && <Profile />}
+            {path.startsWith("/search/") && path.split('/').length === 3 && <ContentSearchResults />}
         </div>
     );
 }
