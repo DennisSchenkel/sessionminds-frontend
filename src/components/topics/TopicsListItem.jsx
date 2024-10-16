@@ -2,9 +2,13 @@ import styles from "../../assets/styles/ItemList.module.css";
 import { Emoji } from "emoji-picker-react";
 
 export default function TooicsListItem({ topic }) {
+  // Singular or plural for "Tool" and "Vote"
   const toolOrTools = topic.tool_count === 1 ? "Tool" : "Tools";
+
+  // Get the icon from the topic
   const icon = topic.icon.icon_code.toLowerCase();
 
+  // Render the topic list item
   return (
     <div className={`${styles["list-item"]} row g-0`}>
       <div

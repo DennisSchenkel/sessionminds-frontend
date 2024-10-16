@@ -6,8 +6,10 @@ import { UserContext } from "../../context/UserContext";
 import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {
+  // Get the user, profile, and updateProfile functions from the context
   const { user, profile: userProfile, updateProfile } = useContext(UserContext);
 
+  // Local state to store the profile data
   const [profileData, setProfileData] = useState({
     first_name: "",
     last_name: "",
@@ -19,10 +21,17 @@ export default function ProfileEditor() {
     instagram: "",
     image: null,
   });
+
+  // Local state to store the image preview
   const [previewImage, setPreviewImage] = useState(null);
-  const [errors, setErrors] = useState({});
+
+  // Get the navigate function from the router
   const navigate = useNavigate();
 
+  // Local state to store the errors
+  const [errors, setErrors] = useState({});
+
+  // Set the profile data when the userProfile changes
   useEffect(() => {
     if (userProfile) {
       setProfileData({
@@ -42,6 +51,7 @@ export default function ProfileEditor() {
     }
   }, [userProfile]);
 
+  // Handle the change in the profile input
   const handleChange = (event) => {
     const { name, value } = event.target;
     setProfileData((prevData) => ({
@@ -50,10 +60,13 @@ export default function ProfileEditor() {
     }));
   };
 
+  // Handle the change in the image input
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    // Check if a file was selected
     if (file) {
       const validTypes = ["image/jpg", "image/jpeg", "image/png"];
+      // Check if the image file is a valid format
       if (!validTypes.includes(file.type)) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -61,6 +74,7 @@ export default function ProfileEditor() {
         }));
         return;
       }
+      // Check if the image file is too large
       if (file.size > 2 * 1024 * 1024) {
         // 2MB
         setErrors((prevErrors) => ({
@@ -70,6 +84,7 @@ export default function ProfileEditor() {
         return;
       }
 
+      // Set the image file and preview
       setProfileData((prevData) => ({
         ...prevData,
         image: file,
@@ -82,11 +97,14 @@ export default function ProfileEditor() {
     }
   };
 
+  // Validate the image file
   const validateImage = (file) => {
     const validTypes = ["image/jpg", "image/jpeg", "image/png"];
+    // Check if the image file is a valid format
     if (!validTypes.includes(file.type)) {
       return "Image file is not a valid format! (jpg, jpeg, png)";
     }
+    // Check if the image file is too large
     if (file.size > 2 * 1024 * 1024) {
       // 2MB
       return "Image file is too large! (max 2MB)";
@@ -94,9 +112,11 @@ export default function ProfileEditor() {
     return null;
   };
 
+  // Handle the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Create a FormData object
     const formData = new FormData();
     formData.append("first_name", profileData.first_name);
     formData.append("last_name", profileData.last_name);
@@ -107,8 +127,10 @@ export default function ProfileEditor() {
     formData.append("facebook", profileData.facebook);
     formData.append("instagram", profileData.instagram);
 
+    // Check if an image was uploaded
     if (profileData.image) {
       const imageError = validateImage(profileData.image);
+      // Check if there is an error with the image
       if (imageError) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -119,6 +141,7 @@ export default function ProfileEditor() {
       formData.append("image", profileData.image);
     }
 
+    // Attempt to update the profile
     try {
       await updateProfile(formData);
       const response = await axios.get(`/users/${user.id}/profile/`);
@@ -129,6 +152,7 @@ export default function ProfileEditor() {
           variant: "success",
         },
       });
+      // Handle errors
     } catch (error) {
       if (error.response && error.response.data) {
         setErrors(error.response.data);
@@ -139,6 +163,7 @@ export default function ProfileEditor() {
     }
   };
 
+  // Render the profile editor form
   return (
     <Container className="my-5">
       <h2>Edit Your Profile</h2>

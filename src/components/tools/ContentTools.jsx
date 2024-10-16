@@ -5,10 +5,14 @@ import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
 
 export default function ContentTools() {
+  // Order state
   const [order, setOrder] = useState("votes");
-
+  // Tools data
   const [tools, setTools] = useState([]);
+
+  // Loading state
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
   // Pagination
@@ -18,10 +22,12 @@ export default function ContentTools() {
   // Number of items per page
   const itemsPerPage = 10;
 
+  // Fetch tools
   useEffect(() => {
     const fetchData = async (page = 1) => {
       setLoading(true);
       setError(null);
+      // Fetch tools
       try {
         const response = await axios.get(`/tools/`, {
           params: {
@@ -34,6 +40,7 @@ export default function ContentTools() {
         setCurrentPage(page);
         setTotalPages(Math.ceil(response.data.count / itemsPerPage));
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tools.");
         setLoading(false);
@@ -43,10 +50,12 @@ export default function ContentTools() {
     fetchData(currentPage);
   }, [order, currentPage]);
 
+  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle order change
   const handleOrderChange = (newOrder) => {
     if (newOrder !== order) {
       setOrder(newOrder);
@@ -54,9 +63,12 @@ export default function ContentTools() {
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Render the tools content
   return (
     <>
       <div className={`row ${styles["headline-row"]}`}>

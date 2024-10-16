@@ -8,23 +8,29 @@ import axiosInstance from "../../api/axiosDefault";
 export default function CommentListElement({ comment, onDeletingComment }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Handle the deletion of a comment
   const handleDelete = async () => {
+    // Send the delete request to the API
     try {
       const response = await axiosInstance.delete(`/comments/${comment.id}/`);
+      // Call the onDeletingComment function if it was passed
       if (response.status === 204 || response.status === 200) {
         onDeletingComment(comment.id, "Comment deleted successfully.", "info");
       }
+      // Handle any errors
     } catch (error) {
       onDeletingComment(
         comment.id,
         "Error when deleting the comment. Please try again later.",
         "danger"
       );
+      // Close the modal
     } finally {
       setShowDeleteModal(false);
     }
   };
 
+  // Render the comment element
   return (
     <>
       <div className="row pb-5">

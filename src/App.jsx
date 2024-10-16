@@ -20,17 +20,25 @@ import Search from "./pages/Search";
 import { UserContext } from "./context/UserContext";
 
 export default function App() {
+  // Get the current location
   const location = useLocation();
+
+  // Get the user and loading state from the context
   const { loading, profile } = useContext(UserContext);
 
+  // Local state to store the alert message
   const [alert, setAlert] = useState({ message: "", variant: "" });
+
+  // Local state to store the profile alert message
   const [profileAlert, setProfileAlert] = useState({
     message: "",
     variant: "info",
   });
 
+  // Check if the user has a first name and last name in their profile
   useEffect(() => {
     if (profile) {
+      // If the user doesn't have a first name or last name, show an alert
       if (!profile.first_name || !profile.last_name) {
         setProfileAlert({
           message: (
@@ -42,12 +50,14 @@ export default function App() {
           ),
           variant: "warning",
         });
+        // If the user has a first name and last name, clear the alert
       } else {
         setProfileAlert({ message: "", variant: "info" });
       }
     }
   }, [profile]);
 
+  // Show the alert message from the location state
   useEffect(() => {
     if (location.state && location.state.message) {
       setAlert({
@@ -64,10 +74,10 @@ export default function App() {
     }
   }, [location.state]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // Show a loading message while the user is being loaded
+  if (loading) return <p>Loading...</p>;
 
+  // Render the app
   return (
     <>
       <Header />

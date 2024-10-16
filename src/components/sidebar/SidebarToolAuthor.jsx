@@ -13,20 +13,28 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function SidebarToolAuthor() {
+  // Get the tool slug from the URL
   const { slug } = useParams();
 
+  // Tool author state
   const [toolAuthor, setToolAuthor] = useState({});
+  // Loading state
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
+  // Fetch tool author details
   useEffect(() => {
     const getAuthorDetails = async () => {
+      // Fetch tool author details
       try {
         const response = await axios.get(`/tools/tool/${slug}`);
         const profile = response.data.profile;
         setToolAuthor(profile);
+        // Handle errors
       } catch (error) {
         setError("Failed to load author.");
+        // Handle loading
       } finally {
         setLoading(false);
       }
@@ -35,11 +43,13 @@ export default function SidebarToolAuthor() {
     getAuthorDetails();
   }, [slug]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Display loading message
+  if (loading) return <div>Loading...</div>;
+
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Display tool author
   return (
     <>
       <div className={`${styles["headline-row"]}`}>

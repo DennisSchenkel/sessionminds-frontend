@@ -2,9 +2,11 @@ import styles from "../../assets/styles/ItemList.module.css";
 import Image from "react-bootstrap/Image";
 
 export default function ContributorsListItem({ contributor }) {
+  // Singular or plural for "Tool" and "Vote"
   const toolOrTools = contributor.tool_count === 1 ? "Tool" : "Tools";
   const voteOrVote = contributor.total_votes === 1 ? "Vote" : "Votes";
 
+  // Render the contributor list item
   return (
     <a href={`/profile/${contributor.slug}`}>
       <div className={`${styles["list-item"]} row g-0`}>

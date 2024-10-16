@@ -2,8 +2,10 @@ import styles from "../sidebar/Sidebar.module.css";
 import { Emoji } from "emoji-picker-react";
 
 export default function ToolsSidebarListItem({ tool }) {
+  // Singular or plural for "Vote"
   const voteOrVotes = tool.vote_count === 1 ? "Vote" : "Votes";
 
+  // Render the tool list item
   return (
     <a href={`/tools/${tool.slug}`}>
       <div className={`${styles["sidebar-item"]} row g-0`}>

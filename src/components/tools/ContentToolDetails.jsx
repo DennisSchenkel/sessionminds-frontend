@@ -16,28 +16,42 @@ import CommentListElement from "../comments/CommentListElement";
 import axios from "../../api/axiosDefault";
 
 export default function ContentToolDetails() {
+  // Get the tool slug from the URL
   const { slug } = useParams();
+  // Get the user from the context
   const { user } = useContext(UserContext);
 
+  // Navigation hook for redirecting
   const navigate = useNavigate();
 
+  // Tool details state
   const [toolDetails, setToolDetails] = useState({});
+  // Alert state
   const [alert, setAlert] = useState({ message: "", variant: "" });
+  // Error state
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
+  // Vote count state
   const [voteCount, setVoteCount] = useState(toolDetails.vote_count);
+  // User has voted state
   const [userHasVoted, setUserHasVoted] = useState(false);
+  // Vote ID state
   const [voteId, setVoteId] = useState(null);
+  // Show vote modal state
   const [showVoteModal, setShowVoteModal] = useState(false);
+  // Show delete modal state
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Fetch tool data
   const fetchToolData = useCallback(async () => {
+    // Fetch tool details
     try {
       const toolResponse = await axios.get(`/tools/tool/${slug}`);
       setToolDetails(toolResponse.data);
       setVoteCount(toolResponse.data.vote_count);
-
+      // Fetch vote details if the tool has an ID
       if (toolResponse.data.id) {
         const voteResponse = await axios.get(
           `/votes/tool/${toolResponse.data.id}/`
@@ -45,53 +59,64 @@ export default function ContentToolDetails() {
         setUserHasVoted(voteResponse.data.user_has_voted);
         setVoteId(voteResponse.data.vote_id);
       }
+      // Handle errors
     } catch (error) {
       setError("Failed to load tool.");
+      // Handle loading
     } finally {
       setLoading(false);
     }
   }, [slug]);
 
+  // Fetch tool data on initialization
   useEffect(() => {
     fetchToolData();
   }, [fetchToolData]);
 
+  // Upvote handler
   const upVoteHandler = useCallback(async () => {
     const toolVoteData = { tool: toolDetails.id };
-
+    // Submit vote
     try {
       const response = await axios.post("/votes/", toolVoteData);
-
+      // Handle successful vote submission
       if (response.status === 201) {
         const voteId = response.data.id;
         await fetchToolData();
         setUserHasVoted(true);
         setVoteId(voteId);
       }
+      // Handle errors
     } catch (error) {
       setError("Error submitting vote.");
     }
   }, [toolDetails.id, fetchToolData]);
 
+  // Downvote handler
   const downVoteHandler = useCallback(async () => {
+    // Delete vote
     if (!voteId) {
       return;
     }
+    // Submit vote
     try {
       const response = await axios.delete(`/votes/${voteId}/`);
-
+      // Handle successful vote deletion
       if (response.status === 204) {
         await fetchToolData();
         setUserHasVoted(false);
         setVoteId(null);
       }
+      // Handle errors
     } catch (error) {
       setError("Error submitting vote.");
     }
   }, [voteId, fetchToolData]);
 
+  // Delete tool handler
   const handleDeleteTool = (event) => {
     event.preventDefault();
+    // Delete tool
     if (toolDetails.id && toolDetails.is_owner) {
       axios
         .delete(`/tools/${toolDetails.id}/`)
@@ -103,12 +128,14 @@ export default function ContentToolDetails() {
             },
           });
         })
+        // Handle errors
         .catch((error) => {
           setError(error.response.data);
         });
     }
   };
 
+  // Add new comment handler
   const handleNewComment = (newComment) => {
     setToolDetails((prevDetails) => ({
       ...prevDetails,
@@ -116,11 +143,13 @@ export default function ContentToolDetails() {
     }));
   };
 
+  // Delete comment handler
   const handleDeleteComment = (
     commentId,
     message = "Comment was deleted successfully!",
     variant = "info"
   ) => {
+    // Delete comment
     if (commentId) {
       const newComments = toolDetails.comments.filter(
         (comment) => comment.id !== commentId
@@ -130,6 +159,7 @@ export default function ContentToolDetails() {
         comments: newComments,
       }));
       setAlert({ message, variant });
+      // Handle errors
     } else {
       setAlert({
         message: "Error when deleting the comment. Please try again later.",
@@ -137,6 +167,7 @@ export default function ContentToolDetails() {
       });
     }
 
+    // Hide the alert after 5 seconds
     const timer = setTimeout(() => {
       setAlert({ message: "", variant: "" });
     }, 5000);
@@ -144,10 +175,10 @@ export default function ContentToolDetails() {
     return () => clearTimeout(timer);
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Display loading message
+  if (loading) return <div>Loading...</div>;
 
+  // Display error message
   return (
     <>
       <Alert
@@ -284,7 +315,7 @@ export default function ContentToolDetails() {
           </div>
           <div className="mt-2">
             <FontAwesomeIcon icon={faArrowUpFromBracket} />
-            <span>Share</span>
+            <span> Share</span>
           </div>
         </div>
       </div>

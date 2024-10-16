@@ -20,25 +20,34 @@ import logo from "../../assets/images/logo.svg";
 import favicon from "../../assets/images/favicon.svg";
 
 export default function Header() {
+  // Get the user profile and loading state from the context
   const { loading, profile } = useContext(UserContext);
 
+  // Define the state variables for the login modal, dropdown, and mobile menu
   const [showLogin, setShowLogin] = useState(false);
+  // Define the state variables for the login modal, dropdown, and mobile menu
   const [showDropdown, setShowDropdown] = useState(false);
+  // Define the state variables for the login modal, dropdown, and mobile menu
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
+  // Define the state variable for the search term
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Get the navigate function from the router
   const navigate = useNavigate();
 
+  // Define the functions to show and hide the login modal, dropdown, and mobile menu
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
+  // Define the functions to show and hide the login modal, dropdown, and mobile menu
   const handleCloseMobileMenu = () => setShowMobileMenu(false);
   const handleShowMobileMenu = () => setShowMobileMenu(true);
 
+  // Define the functions to show and hide the login modal, dropdown, and mobile menu
   const handleMouseEnter = () => setShowDropdown(true);
   const handleMouseLeave = () => setShowDropdown(false);
 
+  // Define the function to handle the form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     const currentSearchTerm = event.target.elements.search.value;
@@ -46,10 +55,12 @@ export default function Header() {
     navigate(`/search/${currentSearchTerm}`);
   };
 
+  // Show a loading message while the profile is being loaded
   if (loading) {
     return <p>Loading...</p>;
   }
 
+  // Render the header with the profile data
   return (
     <>
       <div className={`${styles.header} px-4`}>

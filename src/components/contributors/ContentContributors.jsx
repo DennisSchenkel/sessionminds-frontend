@@ -13,8 +13,10 @@ export default function ContentContributors() {
   // Number of items per page
   const itemsPerPage = 4;
 
+  // Fetch top contributors
   useEffect(() => {
     const fetchData = async () => {
+      // Fetch top contributors
       try {
         const response = await axios.get(`/profiles/`, {
           params: {
@@ -24,6 +26,7 @@ export default function ContentContributors() {
         });
         setContributors(response.data.results || []);
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tools.");
         setLoading(false);
@@ -33,15 +36,21 @@ export default function ContentContributors() {
     fetchData();
   }, [order]);
 
+  // Handle order change
   const handleOrderChange = (newOrder) => {
+    // Update order if it has changed
     if (newOrder !== order) {
       setOrder(newOrder);
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Display top contributors
   return (
     <>
       <div className={`row ${styles["headline-row"]}`}>

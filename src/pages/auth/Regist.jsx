@@ -7,34 +7,43 @@ import { UserContext } from "../../context/UserContext";
 
 import axios from "../../api/axiosDefault";
 
+// The registration page
 const Regist = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // Redirect to the home page if the user is already logged in
   useEffect(() => {
     if (user) {
       navigate("/");
     }
   }, [user, navigate]);
 
+  // Local state to store the registration data
   const [regData, setRegData] = useState({
     email: "",
     password: "",
     passwordConf: "",
   });
 
+  // Destructure the registration data
   const { email, password, passwordConf } = regData;
+
+  // Local state to store the errors
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
+  // Handle the change in the registration input
+  const handleChange = (event) => {
     setRegData({
       ...regData,
-      [e.target.name]: e.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
+  // Handle the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Attempt to register
     try {
       await axios.post("/register/", regData).then((response) => {
         navigate("/login", {
@@ -44,6 +53,7 @@ const Regist = () => {
           },
         });
       });
+      // Handle errors
     } catch (error) {
       if (error.response) {
         setErrors(error.response.data);
@@ -51,6 +61,7 @@ const Regist = () => {
     }
   };
 
+  // Render the registration form
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center pt-4">
       <div style={{ width: "100%", maxWidth: "400px" }}>

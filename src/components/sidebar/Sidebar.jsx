@@ -7,9 +7,11 @@ import SidebarContributors from "./SidebarContributors";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
+  // Get the current path
   const location = useLocation();
   const path = location.pathname;
 
+  // Render the sidebar based on the current path
   return (
     <div className={styles.sidebar}>
       {path === "/" && <SidebarHome />}

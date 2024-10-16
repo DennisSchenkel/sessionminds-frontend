@@ -11,17 +11,25 @@ import { Modal, Button } from "react-bootstrap";
 import axios from "../../api/axiosDefault";
 
 export default function ToolsListItem({ tool }) {
+  // Get the user context
   const { user } = useContext(UserContext);
 
+  // Get the icon from the tool
   const icon = tool.icon.toLowerCase();
 
+  // Vote count state
   const [voteCount, setVoteCount] = useState(tool.vote_count);
+  // User has voted state
   const [userHasVoted, setUserHasVoted] = useState(false);
+  // Vote ID state
   const [voteId, setVoteId] = useState(null);
+  // Show modal state
   const [showModal, setShowModal] = useState(false);
 
+  // Error state
   const [error, setError] = useState(null);
 
+  // Fetch tool data
   const fetchToolData = useCallback(async () => {
     try {
       const response = await axios.get(`/tools/${tool.id}/`);
@@ -32,13 +40,16 @@ export default function ToolsListItem({ tool }) {
     }
   }, [tool.id]);
 
+  // Fetch vote data
   useEffect(() => {
     const fetchData = async () => {
+      // Fetch vote data
       try {
         const response = await axios.get(`/votes/tool/${tool.id}/`);
         const { user_has_voted, vote_id } = response.data;
         setUserHasVoted(user_has_voted);
         setVoteId(vote_id);
+        // Handle errors
       } catch (error) {
         setError("Failed to load vote data.");
       }
@@ -46,16 +57,20 @@ export default function ToolsListItem({ tool }) {
     fetchData();
   }, [tool.id]);
 
+  // Up vote handler
   useEffect(() => {
     fetchToolData();
   }, [tool.id, fetchToolData]);
 
+  // Up vote handler
   useEffect(() => {
     const fetchData = async () => {
+      // Fetch vote data
       try {
         const response = await axios.get(`/tools/${tool.id}/`);
         const voteCount = response.data.vote_count;
         setVoteCount(voteCount);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tool data.");
       }
@@ -63,43 +78,51 @@ export default function ToolsListItem({ tool }) {
     fetchData();
   }, [tool.id]);
 
+  // Up vote handler
   const upVoteHandler = useCallback(async () => {
     const toolVoteData = { tool: tool.id };
-
+    // Attempt to submit vote
     try {
       const response = await axios.post("/votes/", toolVoteData);
-
+      // If vote is successful
       if (response.status === 201) {
         const voteId = response.data.id;
         await fetchToolData();
         setUserHasVoted(true);
         setVoteId(voteId);
       }
+      // Handle errors
     } catch (error) {
       setError("Failed to submit vote.");
     }
   }, [tool.id, fetchToolData]);
 
+  // Down vote handler
   const downVoteHandler = useCallback(async () => {
+    // Check if vote ID is available
     if (!voteId) {
       setError("Vote ID is missing.");
       return;
     }
+    // Attempt to remove vote
     try {
       const response = await axios.delete(`/votes/${voteId}/`);
-
+      // If vote is removed
       if (response.status === 204) {
         await fetchToolData();
         setUserHasVoted(false);
         setVoteId(null);
       }
+      // Handle errors
     } catch (error) {
       setError("Failed to remove vote.");
     }
   }, [voteId, fetchToolData]);
 
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Render the tool list item
   return (
     <>
       <div className={`${styles["list-item"]} row g-0`}>

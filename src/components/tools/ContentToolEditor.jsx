@@ -9,14 +9,22 @@ import EmojiPicker from "emoji-picker-react";
 import { Emoji } from "emoji-picker-react";
 
 export default function ContentToolEditor() {
+  // Get the tool ID from the URL
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { user } = useContext(UserContext);
-  const [is_owner, setIsOwner] = useState(false);
 
+  // Get the tool ID from the URL
+  const { id } = useParams();
+  // Get the user context
+  const { user } = useContext(UserContext);
+
+  // Tool state
+  const [is_owner, setIsOwner] = useState(false);
+  // Topic state
   const [topics, setTopics] = useState([]);
+  // Emoji state
   const [emoji, setEmoji] = useState(null);
 
+  // Tool state with default values
   const [tool, setTool] = useState({
     title: "",
     topic_id: "",
@@ -26,13 +34,18 @@ export default function ContentToolEditor() {
     icon: "26aa",
   });
 
+  // Loading states
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
+  // Number of items per page
   const itemsPerPage = 100;
 
+  // Fetch topics and existing tool
   useEffect(() => {
     const getTopics = async () => {
+      // Fetch topics
       try {
         const unsortedResponse = await axios.get("/topics/", {
           params: {
@@ -44,6 +57,7 @@ export default function ContentToolEditor() {
         );
         setTopics(response);
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load topics.");
         setLoading(false);
@@ -51,11 +65,15 @@ export default function ContentToolEditor() {
     };
     getTopics();
 
+    // Fetch existing tool or create a new one
     const getExistingToolOrCreateNew = async () => {
+      // Fetch existing tool
       if (id) {
+        // Fetch existing tool
         try {
           const existingTool = await axios.get(`/tools/${id}`);
           setIsOwner(existingTool.data.is_owner);
+          // Check if the user is the owner of the tool
           if (existingTool.data.is_owner) {
             setTool({
               title: existingTool.data.title,
@@ -67,9 +85,11 @@ export default function ContentToolEditor() {
             });
             setEmoji(existingTool.data.icon);
           }
+          // Handle errors
         } catch (error) {
           setError("Failed to load tool.");
         }
+        // Create a new tool
       } else {
         setTool({
           title: "",
@@ -84,6 +104,7 @@ export default function ContentToolEditor() {
     getExistingToolOrCreateNew();
   }, [id, user]);
 
+  // Handle emoji click
   const onEmojiClick = (emojiData) => {
     setEmoji(emojiData.unified);
     setTool((prevTool) => ({
@@ -92,8 +113,10 @@ export default function ContentToolEditor() {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Check if the user is the owner of the tool
     if (id && is_owner) {
       axios
         .put(`/tools/${id}/`, tool)
@@ -108,6 +131,7 @@ export default function ContentToolEditor() {
         .catch((error) => {
           setError(error.response.data);
         });
+      // Create a new tool
     } else {
       axios
         .post("/tools/", tool)
@@ -125,9 +149,12 @@ export default function ContentToolEditor() {
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Display the tool editor
   return (
     <>
       <div className={`${styles["headline-row"]} mb-4`}>

@@ -15,8 +15,10 @@ export default function ContentHome() {
   // Number of items per page
   const itemsPerPage = 4;
 
+  // Fetch top tools, latest tools, and top topics
   useEffect(() => {
     const fetchData = async () => {
+      // Fetch top tools
       try {
         const responseTop = await axios.get(`/tools/`, {
           params: {
@@ -40,6 +42,7 @@ export default function ContentHome() {
         });
         setTopTopics(responseTopics.data.results || []);
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tools.");
         setLoading(false);
@@ -49,11 +52,13 @@ export default function ContentHome() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Display loading message
+  if (loading) return <div>Loading...</div>;
+
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Render the home content
   return (
     <>
       <div className="pb-3">

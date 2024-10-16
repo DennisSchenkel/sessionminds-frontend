@@ -5,19 +5,29 @@ import ToolsListItem from "../../components/tools/ToolsListItem";
 import axios from "../../api/axiosDefault";
 
 export default function Profile() {
+  // Get the slug from the URL
   const { slug } = useParams();
-  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  // Profile data
   const [profileData, setProfileData] = useState({});
+  // Tools data
   const [tools, setTools] = useState([]);
 
+  // State to show the delete modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Get the navigate function from the router
+  const navigate = useNavigate();
+
+  // Loading states
+  const [loading, setLoading] = useState(true);
+  // Error state
+  const [error, setError] = useState(null);
+
+  // Fetch profile data
   useEffect(() => {
     const fetchProfile = async () => {
+      // Fetch profile data
       try {
         const response = await axios.get(`/profiles/${slug}/`);
         const profile = response.data;
@@ -29,24 +39,30 @@ export default function Profile() {
     fetchProfile();
   }, [slug]);
 
+  // Fetch profile tools
   useEffect(() => {
     const fetchProfileTools = async () => {
+      // Fetch profile tools
       try {
         const response = await axios.get(`/tools/user/${profileData.user_id}/`);
         const tools = response.data.results;
         setTools(tools);
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError(error);
       }
     };
+    // Fetch profile tools if profile data is available
     if (profileData.id) {
       fetchProfileTools();
     }
   }, [profileData]);
 
+  // Handle delete profile
   const handleDelete = (event) => {
     event.preventDefault();
+    // Check if profile data is available and user is the owner
     if (profileData.id && profileData.is_owner) {
       axios
         .delete(`/users/${profileData.user_id}/delete/`)
@@ -67,9 +83,12 @@ export default function Profile() {
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+  // Display error message
   if (error) return <p>{error.message}</p>;
 
+  // Return profile data
   return (
     <>
       <div className="row">

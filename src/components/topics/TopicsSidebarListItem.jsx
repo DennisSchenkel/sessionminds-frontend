@@ -2,9 +2,13 @@ import styles from "../sidebar/Sidebar.module.css";
 import { Emoji } from "emoji-picker-react";
 
 export default function TopicsSidebarListItem({ topic }) {
+  // Singular or plural for "Tool"
   const toolOrTools = topic.tool_count === 1 ? "Tool" : "Tools";
+
+  // Get the icon from the topic
   const icon = topic.icon.icon_code.toLowerCase();
 
+  // Render the topic list item
   return (
     <div className={`${styles["sidebar-item"]} row g-0`}>
       <div

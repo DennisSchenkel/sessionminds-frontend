@@ -6,11 +6,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function ContentToolResults() {
+  // Get search term from URL
   const { searchTerm } = useParams();
+  // Order state
   const [order, setOrder] = useState("votes");
-
+  // Tools data
   const [tools, setTools] = useState([]);
+  // Loading and error states
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
   // Pagination
@@ -20,10 +24,12 @@ export default function ContentToolResults() {
   // Number of items per page
   const itemsPerPage = 10;
 
+  // Fetch tools based on search term
   useEffect(() => {
     const fetchData = async (page = 1) => {
       setLoading(true);
       setError(null);
+      // Fetch tools based on search term
       try {
         const response = await axios.get(`/tools/?search=${searchTerm}`, {
           params: {
@@ -36,6 +42,7 @@ export default function ContentToolResults() {
         setCurrentPage(page);
         setTotalPages(Math.ceil(response.data.count / itemsPerPage));
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tools.");
         setLoading(false);
@@ -45,10 +52,12 @@ export default function ContentToolResults() {
     fetchData(currentPage);
   }, [order, currentPage, searchTerm]);
 
+  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle order change
   const handleOrderChange = (newOrder) => {
     if (newOrder !== order) {
       setOrder(newOrder);
@@ -56,7 +65,10 @@ export default function ContentToolResults() {
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+
+  // Display error message
   if (error) return <p>{error}</p>;
 
   return (

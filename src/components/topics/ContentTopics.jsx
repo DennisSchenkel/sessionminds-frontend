@@ -5,10 +5,14 @@ import axios from "../../api/axiosDefault";
 import { useEffect, useState } from "react";
 
 export default function ContentTopics() {
+  // Order state
   const [order, setOrder] = useState("top");
-
+  // Topics data
   const [topics, setTopics] = useState([]);
+
+  // Loading state
   const [loading, setLoading] = useState(true);
+  // Error state
   const [error, setError] = useState(null);
 
   // Pagination
@@ -18,10 +22,12 @@ export default function ContentTopics() {
   // Number of items per page
   const itemsPerPage = 10;
 
+  // Fetch topics
   useEffect(() => {
     const fetchData = async (page = 1) => {
       setLoading(true);
       setError(null);
+      // Fetch topics
       try {
         const response = await axios.get(`/topics/`, {
           params: {
@@ -34,6 +40,7 @@ export default function ContentTopics() {
         setCurrentPage(page);
         setTotalPages(Math.ceil(response.data.count / itemsPerPage));
         setLoading(false);
+        // Handle errors
       } catch (error) {
         setError("Failed to load tools.");
         setLoading(false);
@@ -43,10 +50,12 @@ export default function ContentTopics() {
     fetchData(currentPage);
   }, [order, currentPage]);
 
+  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle order change
   const handleOrderChange = (newOrder) => {
     if (newOrder !== order) {
       setOrder(newOrder);
@@ -54,9 +63,12 @@ export default function ContentTopics() {
     }
   };
 
+  // Display loading message
   if (loading) return <p>Loading...</p>;
+  // Display error message
   if (error) return <p>{error}</p>;
 
+  // Render topics list
   return (
     <>
       <div className={`row ${styles["headline-row"]}`}>
