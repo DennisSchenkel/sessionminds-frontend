@@ -4,8 +4,6 @@ import { Button, Container, Form, Alert } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 
 export default function Login({ onLoginSuccess }) {
-  // Get the login function from the context
-  const { email, password } = loginData;
   // Get the user, login function, and error from the context
   const { user, login, error } = useContext(UserContext);
 
@@ -17,6 +15,9 @@ export default function Login({ onLoginSuccess }) {
     email: "",
     password: "",
   });
+
+  // Get the login function from the context
+  const { email, password } = loginData;
 
   // Local state to store the error
   const [err, setErr] = useState(null);

@@ -2,10 +2,7 @@ import styles from "../tools/Tools.module.css";
 import { useEffect, useState, useContext, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretUp,
-  faArrowUpFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
 import { Modal, Button, Alert } from "react-bootstrap";
@@ -312,10 +309,6 @@ export default function ContentToolDetails() {
                 Delete Tool
               </Button>
             ) : null}
-          </div>
-          <div className="mt-2">
-            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-            <span> Share</span>
           </div>
         </div>
       </div>
