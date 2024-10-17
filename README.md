@@ -14,35 +14,52 @@ To give categories unique icons, emojis have been used. A great resource for fin
 
 #### Mockups
 
+<details>
 <summary>Home</summary>
 
+**Home Screen**
 ![Home](/documentation/images/wireframes/Home.png)
 
+</details>
+
+<details>
 <summary>Tools</summary>
 
+**List Of Tools || Single Tool View**
 ![Tools](/documentation/images/wireframes/Tools.png)
 
+**Tool Editor**
 ![Tools-Editor](/documentation/images/wireframes/Tools-Editor.png)
 
+</details>
+
+<details>
 <summary>Topics</summary>
 
+**List Of All Topics || List Of Tools Related To Topic**
 ![Topics](/documentation/images/wireframes/Topics.png)
 
+</details>
+
+<details>
 <summary>Contributors & Profiles</summary>
 
+**List Of Contributors || Single Contributor Profile**
 ![Contributors](/documentation/images/wireframes/Contributors.png)
 
+**Profile Editor**
 ![Profile-Editor](/documentation/images/wireframes/Profile-Editor.png)
 
-<summary>Topics</summary>
+</details>
 
-![Topics](/documentation/images/wireframes/Topics.png)
-
+<details>
 <summary>Misc</summary>
 
 ![Login & Regist](/documentation/images/wireframes/Login-Regist.png)
 
 ![User Menus](/documentation/images/wireframes/User-Menus.png)
+
+</details>
 
 ## Agile Project Management
 
@@ -71,7 +88,7 @@ This milestone contains all user stories and tasks related to the initial setup 
 This milestone contains all user stories and tasks related to user profiles.
 
 [**(MS-2) Topics**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)
-This milestone contains all user stories and tasks related to the categories or topics, like it is called in this project.
+This milestone contains all user stories and tasks related to the categories/topics.
 
 [**(MS-3) Tools**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)
 This milestone contains all user stories and tasks related to tools.
