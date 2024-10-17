@@ -1,4 +1,4 @@
-# Session Minds Documentation
+# Session Minds Frontend Documentation
 
 ## User Experience
 
@@ -14,21 +14,76 @@ To give categories unique icons, emojis have been used. A great resource for fin
 
 #### Mockups
 
+<summary>Home</summary>
+
+![Home](/documentation/images/wireframes/Home.png)
+
+<summary>Tools</summary>
+
+![Tools](/documentation/images/wireframes/Tools.png)
+
+![Tools-Editor](/documentation/images/wireframes/Tools-Editor.png)
+
+<summary>Topics</summary>
+
+![Topics](/documentation/images/wireframes/Topics.png)
+
+<summary>Contributors & Profiles</summary>
+
+![Contributors](/documentation/images/wireframes/Contributors.png)
+
+![Profile-Editor](/documentation/images/wireframes/Profile-Editor.png)
+
+<summary>Topics</summary>
+
+![Topics](/documentation/images/wireframes/Topics.png)
+
+<summary>Misc</summary>
+
+![Login & Regist](/documentation/images/wireframes/Login-Regist.png)
+
+![User Menus](/documentation/images/wireframes/User-Menus.png)
+
 ## Agile Project Management
 
 This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.
 
-For naming convention, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend.
+For naming convention, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.
 
 The final structure looks like this:
 
-- (MS-1) Profiles
+- (MS-1) Profiles (Milestone)
 - (MS-1) - USER STORY: User profiles
+- (MS-1) - BE - TASK: Profile app setup
 - (MS-1) - FE - TASK: Profile information page
 
 Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
 ### Milestones
+
+**(MS-D) Documentation**
+This milestone contains everything related to the final documentation.
+
+**(MS-0) Setup**
+This milestone contains all user stories and tasks related to the initial setup and settings.
+
+**(MS-1) Profile**
+This milestone contains all user stories and tasks related to user profiles.
+
+**(MS-2) Topics**
+This milestone contains all user stories and tasks related to the categories or topics, like it is called in this project.
+
+**(MS-3) Tools**
+This milestone contains all user stories and tasks related to tools.
+
+**(MS-4) Votes**
+This milestone contains all user stories and tasks related to the voting system.
+
+**(MS-5) Comments**
+This milestone contains all user stories and tasks related to the commenting system.
+
+**(MS-6) Search**
+This milestone contains all user stories and tasks related to the search functionality.
 
 ### User Stories
 
