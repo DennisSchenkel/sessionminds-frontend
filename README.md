@@ -61,31 +61,45 @@ Each user story and task was also labeled using the MoSCoW methodology with the 
 
 ### Milestones
 
-**(MS-D) Documentation**
+[**(MS-D) Documentation**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)
 This milestone contains everything related to the final documentation.
 
-**(MS-0) Setup**
+[**(MS-0) Setup**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)
 This milestone contains all user stories and tasks related to the initial setup and settings.
 
-**(MS-1) Profile**
+[**(MS-1) Profile**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)
 This milestone contains all user stories and tasks related to user profiles.
 
-**(MS-2) Topics**
+[**(MS-2) Topics**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)
 This milestone contains all user stories and tasks related to the categories or topics, like it is called in this project.
 
-**(MS-3) Tools**
+[**(MS-3) Tools**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)
 This milestone contains all user stories and tasks related to tools.
 
-**(MS-4) Votes**
+[**(MS-4) Votes**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)
 This milestone contains all user stories and tasks related to the voting system.
 
-**(MS-5) Comments**
+[**(MS-5) Comments**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)
 This milestone contains all user stories and tasks related to the commenting system.
 
-**(MS-6) Search**
+[**(MS-6) Search**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)
 This milestone contains all user stories and tasks related to the search functionality.
 
 ### User Stories
+
+[[MS-1] - USER STORY: User profiles](https://github.com/DennisSchenkel/sessionminds-frontend/issues/2)
+
+[[MS-2] - USER STORY: Topics setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/7)
+
+[[MS-3] - USER STORY: Tool creation](https://github.com/DennisSchenkel/sessionminds-frontend/issues/16)
+
+[[MS-3] - USER STORY: Tool update & delete](https://github.com/DennisSchenkel/sessionminds-frontend/issues/11)
+
+[[MS-4] - USER STORY: Votes setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/22)
+
+[[MS-5] - USER STORY: Commenting tools](https://github.com/DennisSchenkel/sessionminds-frontend/issues/28)
+
+[[MS-6] - USER STORY: Search feature](https://github.com/DennisSchenkel/sessionminds-frontend/issues/33)
 
 ### Tasks
 
