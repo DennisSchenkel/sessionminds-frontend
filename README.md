@@ -26,6 +26,10 @@ To give categories unique icons, emojis have been used. A great resource for fin
 <summary>Tools</summary>
 
 **List Of Tools || Single Tool View**
+
+Left: List of tools with voting feature and comment count.
+Right: The page of a single tool with comments and votes features as well as author profile.
+
 ![Tools](/documentation/images/wireframes/Tools.png)
 
 **Tool Editor**
@@ -36,6 +40,9 @@ To give categories unique icons, emojis have been used. A great resource for fin
 <details>
 <summary>Topics</summary>
 
+Left: A list of all topics available with the amount of allocated tools
+Right: A list of tools belonging to the selected topic.
+
 **List Of All Topics || List Of Tools Related To Topic**
 ![Topics](/documentation/images/wireframes/Topics.png)
 
@@ -45,6 +52,10 @@ To give categories unique icons, emojis have been used. A great resource for fin
 <summary>Contributors & Profiles</summary>
 
 **List Of Contributors || Single Contributor Profile**
+
+Left: A list of all contributors that have contributed at least one tool.
+Right: The profile of a single contributor with the contributed tools.
+
 ![Contributors](/documentation/images/wireframes/Contributors.png)
 
 **Profile Editor**
@@ -55,8 +66,14 @@ To give categories unique icons, emojis have been used. A great resource for fin
 <details>
 <summary>Misc</summary>
 
+**Login Page || Registration Page**
+
+Left: Login page
+Right: Registration page
+
 ![Login & Regist](/documentation/images/wireframes/Login-Regist.png)
 
+**User Menus**
 ![User Menus](/documentation/images/wireframes/User-Menus.png)
 
 </details>
@@ -65,7 +82,11 @@ To give categories unique icons, emojis have been used. A great resource for fin
 
 This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.
 
-For naming convention, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.
+Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
+
+**Naming Conventions**
+
+For naming conventions, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.
 
 The final structure looks like this:
 
@@ -74,51 +95,123 @@ The final structure looks like this:
 - (MS-1) - BE - TASK: Profile app setup
 - (MS-1) - FE - TASK: Profile information page
 
-Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
-
 ### Milestones
 
-[**(MS-D) Documentation**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)
-This milestone contains everything related to the final documentation.
+<br>
 
-[**(MS-0) Setup**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)
-This milestone contains all user stories and tasks related to the initial setup and settings.
+### User Stories & Tasks
 
-[**(MS-1) Profile**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)
-This milestone contains all user stories and tasks related to user profiles.
+**MS-D Documentation**
+This milestone contains everything related to the final documentation.<br>
+[(MS-D) Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)
 
-[**(MS-2) Topics**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)
-This milestone contains all user stories and tasks related to the categories/topics.
+[[MS-D] - TASK: Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/issues/32)
 
-[**(MS-3) Tools**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)
-This milestone contains all user stories and tasks related to tools.
+**MS-0 Setup**
+This milestone contains all user stories and tasks related to the initial setup and settings.<br>
+[(MS-0) Setup](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)
 
-[**(MS-4) Votes**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)
-This milestone contains all user stories and tasks related to the voting system.
+[[MS-0] - BE - TASK: Cloudinary setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/1)
 
-[**(MS-5) Comments**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)
-This milestone contains all user stories and tasks related to the commenting system.
+[[MS-0] - FE - TASK: Setup React app](https://github.com/DennisSchenkel/sessionminds-frontend/issues/19)
 
-[**(MS-6) Search**](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)
-This milestone contains all user stories and tasks related to the search functionality.
+[[MS-0] - FE - TASK: Create all mayor components](https://github.com/DennisSchenkel/sessionminds-frontend/issues/20)
 
-### User Stories
+[[MS-0] - FE - TASK: Create Header](https://github.com/DennisSchenkel/sessionminds-frontend/issues/21)
+
+[[MS-0] - FE - TASK: Mobile friendly design](https://github.com/DennisSchenkel/sessionminds-frontend/issues/31)
+
+**MS-1 Profiles**
+
+This milestone contains all user stories and tasks related to user profiles.<br>
+
+[(MS-1) Profile](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)
 
 [[MS-1] - USER STORY: User profiles](https://github.com/DennisSchenkel/sessionminds-frontend/issues/2)
 
+[[MS-1] - BE - TASK: Profile app setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/3)
+
+[[MS-1] - BE - TASK: Profile API](https://github.com/DennisSchenkel/sessionminds-frontend/issues/6)
+
+[[MS-1] - BE - TASK: Automated login & authentication testing](https://github.com/DennisSchenkel/sessionminds-frontend/issues/26)
+
+[[MS-1] - FE - TASK: Profile information page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/4)
+
+[[MS-1] - FE - TASK: Create/Update profile form](https://github.com/DennisSchenkel/sessionminds-frontend/issues/5)
+
+**MS-2 Topics**
+
+This milestone contains all user stories and tasks related to the categories/topics.<br>
+
+[(MS-2) Topics](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)
+
 [[MS-2] - USER STORY: Topics setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/7)
+
+[[MS-2] - BE - TASK: Topics app setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/8)
+
+[[MS-2] - FE - TASK: Categories list page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/9)
+
+[[MS-2] - FE - TASK: Category page with slug](https://github.com/DennisSchenkel/sessionminds-frontend/issues/10)
+
+**MS-3 Tools**
+
+This milestone contains all user stories and tasks related to tools.<br>
+
+[(MS-3) Tools](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)
 
 [[MS-3] - USER STORY: Tool creation](https://github.com/DennisSchenkel/sessionminds-frontend/issues/16)
 
 [[MS-3] - USER STORY: Tool update & delete](https://github.com/DennisSchenkel/sessionminds-frontend/issues/11)
 
+[[MS-3] - BE - TASK: Tools app setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/12)
+
+[[MS-3] - BE - TASK: Automated testing for tools](https://github.com/DennisSchenkel/sessionminds-frontend/issues/27)
+
+[[MS-3] - FE - TASK: Create tools list](https://github.com/DennisSchenkel/sessionminds-frontend/issues/14)
+
+[[MS-3] - FE - TASK: Create tool details page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/15)
+
+[[MS-3] - FE - TASK: Create form to add tool entries](https://github.com/DennisSchenkel/sessionminds-frontend/issues/13)
+
+**MS-4 Votes**
+
+This milestone contains all user stories and tasks related to the voting system.<br>
+
+[(MS-4) Votes](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)
+
 [[MS-4] - USER STORY: Votes setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/22)
+
+[[MS-4] - BE - TASK: Votes app setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/23)
+
+[[MS-4] - FE - TASK: Show votes for each tool](https://github.com/DennisSchenkel/sessionminds-frontend/issues/24)
+
+[[MS-4] - FE - TASK: Implement voting functionality](https://github.com/DennisSchenkel/sessionminds-frontend/issues/25)
+
+**MS-5 Comments**
+
+This milestone contains all user stories and tasks related to the commenting system.<br>
+
+[(MS-5) Comments](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)
 
 [[MS-5] - USER STORY: Commenting tools](https://github.com/DennisSchenkel/sessionminds-frontend/issues/28)
 
+[[MS-5] - BE - TASK: Setup comments app](https://github.com/DennisSchenkel/sessionminds-frontend/issues/29)
+
+[[MS-5] - FE - TASK: Implement comments on tool page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/30)
+
+**MS-6 Search**
+
+This milestone contains all user stories and tasks related to the search functionality.<br>
+
+[(MS-6) Search](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)
+
 [[MS-6] - USER STORY: Search feature](https://github.com/DennisSchenkel/sessionminds-frontend/issues/33)
 
-### Tasks
+[[MS-6] - BE - TASK: Create search feature in backend](https://github.com/DennisSchenkel/sessionminds-frontend/issues/34)
+
+[[MS-6] - FE - TASK: Create search result page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/35)
+
+[[MS-6] - FE - TASK: Implement search feature](https://github.com/DennisSchenkel/sessionminds-frontend/issues/36)
 
 ## Development
 
@@ -136,13 +229,51 @@ This milestone contains all user stories and tasks related to the search functio
 
 #### Frameworks
 
-#### Modules & Libraries
+The following frameworks have been used.
 
-- [Emoji Picker React (v4)](https://www.npmjs.com/package/emoji-picker-react?activeTab=readme)
+- [Django](https://www.djangoproject.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [FontAwesome](https://fontawesome.com/)
+
+#### Modules & Libraries & Plugins
+
+- AllAuth (For user uthentication)
+- Black (Code formatter for Python)
+- Cloudinary (Cloud storage for images)
+- [Emoji Picker React (v4)](https://www.npmjs.com/package/emoji-picker-react?activeTab=readme) (For Emoji selection in forms)
+- Gunicorn (Python WSGI HTTP server for UNIX)
+- OS (For operating system interaction)
+- Pep8 (Check Python code for PEP8 conventions)
+- Pillow (For image processing)
+- Prettier (Code formatter for JavaScript)
+- Psycopg 2 (PostgreSQL adapter for the database)
+- Python Slugify (For generating url-slugs)
+- Summernote (As a WYSIWYG editor)
+- Whitenoise (Middleware for serving static files)
 
 #### Programs & Tools
 
-svglogomaker.org for logo creation
+During the development of this application, the following programs and tools have been used.
+
+- [Visual Studio Code](https://code.visualstudio.com/) (IDE - Integrated Development Environment)
+- [Figma](https://www.figma.com/) (Creating Mockups)
+- [dbdiagram.io](https://dbdiagram.io/) (Creating database visualization)
+- [Heroku](https://www.heroku.com/home) (Deployment of final application)
+- [Git](https://git-scm.com/) (Version control)
+- [GitHub](https://github.com/) (Used as cloud repository)
+- [CI Postgres Database](https://dbs.ci-dbs.net/) (Used for database hosting)
+- [CI Python Linter](https://pep8ci.herokuapp.com/) (Python testing)
+- [JSHint](https://jshint.com/) (JavaScript testing)
+- [W3C HTML Validator](https://validator.w3.org/) (HTML testing)
+- [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) (CSS testing)
+- [Lighthouse](https://lighthouse-metrics.com/) (Testing of Performance, Accessibility, Best Practices and SEO)
+- [Google Chrome Dev Tools](https://developer.chrome.com/) (Working with console and HTML output)
+- [Flake8](https://flake8.pycqa.org/en/latest/) (Formatting support for Python)
+- [Affinity Design 2](https://affinity.serif.com/de/designer/) (Image editing)
+- [DALL-E 3](https://openai.com/index/dall-e-3/) (For generating profile images)
+- [SVGLogoMaker.org](https://svglogomaker.org/) (Creating a simple logo)
+- [Cloudinary](https://cloudinary.com/) (As external hosting services for images)
+- [Website Mockup Generator](https://websitemockupgenerator.com/) (For creating a mockup of deployed application)
 
 **Vite & React**
 
