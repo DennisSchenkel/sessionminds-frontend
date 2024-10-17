@@ -8,8 +8,6 @@
 
 #### Imagery
 
-To give categories unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
-
 #### Typography
 
 #### Mockups
@@ -27,8 +25,9 @@ To give categories unique icons, emojis have been used. A great resource for fin
 
 **List Of Tools || Single Tool View**
 
-Left: List of tools with voting feature and comment count.
-Right: The page of a single tool with comments and votes features as well as author profile.
+Left: List of tools with voting feature and comment count.<br>
+Right: The page of a single tool with comments and votes features as well as author profile.<br>
+<br>
 
 ![Tools](/documentation/images/wireframes/Tools.png)
 
@@ -40,8 +39,9 @@ Right: The page of a single tool with comments and votes features as well as aut
 <details>
 <summary>Topics</summary>
 
-Left: A list of all topics available with the amount of allocated tools
-Right: A list of tools belonging to the selected topic.
+Left: A list of all topics available with the amount of allocated tools<br>
+Right: A list of tools belonging to the selected topic.<br>
+<br>
 
 **List Of All Topics || List Of Tools Related To Topic**
 ![Topics](/documentation/images/wireframes/Topics.png)
@@ -53,8 +53,9 @@ Right: A list of tools belonging to the selected topic.
 
 **List Of Contributors || Single Contributor Profile**
 
-Left: A list of all contributors that have contributed at least one tool.
-Right: The profile of a single contributor with the contributed tools.
+Left: A list of all contributors that have contributed at least one tool.<br>
+Right: The profile of a single contributor with the contributed tools.<br>
+<br>
 
 ![Contributors](/documentation/images/wireframes/Contributors.png)
 
@@ -68,8 +69,9 @@ Right: The profile of a single contributor with the contributed tools.
 
 **Login Page || Registration Page**
 
-Left: Login page
-Right: Registration page
+Left: Login page<br>
+Right: Registration page<br>
+<br>
 
 ![Login & Regist](/documentation/images/wireframes/Login-Regist.png)
 
@@ -80,36 +82,43 @@ Right: Registration page
 
 ## Agile Project Management
 
-This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.
-
+This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.<br>
+<br>
 Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
-**Naming Conventions**
+### Naming Conventions\*\*
 
-For naming conventions, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.
-
-The final structure looks like this:
+For naming conventions, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.<br>
+<br>
+The final structure looks like this:<br>
+<br>
 
 - (MS-1) Profiles (Milestone)
 - (MS-1) - USER STORY: User profiles
 - (MS-1) - BE - TASK: Profile app setup
 - (MS-1) - FE - TASK: Profile information page
 
-### Milestones
+### Milestones, User Stories & Tasks
 
+<details>
+<summary>MS-D Documentation</summary>
+
+This milestone contains everything related to the final documentation.<br>
 <br>
 
-### User Stories & Tasks
-
-**MS-D Documentation**
-This milestone contains everything related to the final documentation.<br>
-[(MS-D) Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)
+[(MS-D) Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)(Milestone)
 
 [[MS-D] - TASK: Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/issues/32)
 
-**MS-0 Setup**
+</details>
+
+<details>
+<summary>MS-0 Setup</summary>
+
 This milestone contains all user stories and tasks related to the initial setup and settings.<br>
-[(MS-0) Setup](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)
+<br>
+
+[(MS-0) Setup](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)(Milestone)
 
 [[MS-0] - BE - TASK: Cloudinary setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/1)
 
@@ -121,11 +130,15 @@ This milestone contains all user stories and tasks related to the initial setup 
 
 [[MS-0] - FE - TASK: Mobile friendly design](https://github.com/DennisSchenkel/sessionminds-frontend/issues/31)
 
-**MS-1 Profiles**
+</details>
+
+<details>
+<summary>MS-1 Profiles</summary>
 
 This milestone contains all user stories and tasks related to user profiles.<br>
+<br>
 
-[(MS-1) Profile](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)
+[(MS-1) Profile](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)(Milestone)
 
 [[MS-1] - USER STORY: User profiles](https://github.com/DennisSchenkel/sessionminds-frontend/issues/2)
 
@@ -139,11 +152,15 @@ This milestone contains all user stories and tasks related to user profiles.<br>
 
 [[MS-1] - FE - TASK: Create/Update profile form](https://github.com/DennisSchenkel/sessionminds-frontend/issues/5)
 
-**MS-2 Topics**
+</details>
+
+<details>
+<summary>MS-2 Topics</summary>
 
 This milestone contains all user stories and tasks related to the categories/topics.<br>
+<br>
 
-[(MS-2) Topics](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)
+[(MS-2) Topics](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)(Milestone)
 
 [[MS-2] - USER STORY: Topics setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/7)
 
@@ -153,11 +170,15 @@ This milestone contains all user stories and tasks related to the categories/top
 
 [[MS-2] - FE - TASK: Category page with slug](https://github.com/DennisSchenkel/sessionminds-frontend/issues/10)
 
-**MS-3 Tools**
+</details>
+
+<details>
+<summary>MS-3 Tools</summary>
 
 This milestone contains all user stories and tasks related to tools.<br>
+<br>
 
-[(MS-3) Tools](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)
+[(MS-3) Tools](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)(Milestone)
 
 [[MS-3] - USER STORY: Tool creation](https://github.com/DennisSchenkel/sessionminds-frontend/issues/16)
 
@@ -173,11 +194,15 @@ This milestone contains all user stories and tasks related to tools.<br>
 
 [[MS-3] - FE - TASK: Create form to add tool entries](https://github.com/DennisSchenkel/sessionminds-frontend/issues/13)
 
-**MS-4 Votes**
+</details>
+
+<details>
+<summary>MS-4 Votes</summary>
 
 This milestone contains all user stories and tasks related to the voting system.<br>
+<br>
 
-[(MS-4) Votes](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)
+[(MS-4) Votes](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)(Milestone)
 
 [[MS-4] - USER STORY: Votes setup](https://github.com/DennisSchenkel/sessionminds-frontend/issues/22)
 
@@ -187,11 +212,15 @@ This milestone contains all user stories and tasks related to the voting system.
 
 [[MS-4] - FE - TASK: Implement voting functionality](https://github.com/DennisSchenkel/sessionminds-frontend/issues/25)
 
-**MS-5 Comments**
+</details>
+
+<details>
+<summary>MS-5 Comments</summary>
 
 This milestone contains all user stories and tasks related to the commenting system.<br>
+<br>
 
-[(MS-5) Comments](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)
+[(MS-5) Comments](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)(Milestone)
 
 [[MS-5] - USER STORY: Commenting tools](https://github.com/DennisSchenkel/sessionminds-frontend/issues/28)
 
@@ -199,11 +228,15 @@ This milestone contains all user stories and tasks related to the commenting sys
 
 [[MS-5] - FE - TASK: Implement comments on tool page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/30)
 
-**MS-6 Search**
+</details>
+
+<details>
+<summary>MS-6 Search</summary>
 
 This milestone contains all user stories and tasks related to the search functionality.<br>
+<br>
 
-[(MS-6) Search](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)
+[(MS-6) Search](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)(Milestone)
 
 [[MS-6] - USER STORY: Search feature](https://github.com/DennisSchenkel/sessionminds-frontend/issues/33)
 
@@ -212,6 +245,8 @@ This milestone contains all user stories and tasks related to the search functio
 [[MS-6] - FE - TASK: Create search result page](https://github.com/DennisSchenkel/sessionminds-frontend/issues/35)
 
 [[MS-6] - FE - TASK: Implement search feature](https://github.com/DennisSchenkel/sessionminds-frontend/issues/36)
+
+</details>
 
 ## Development
 
@@ -229,7 +264,8 @@ This milestone contains all user stories and tasks related to the search functio
 
 #### Frameworks
 
-The following frameworks have been used.
+The following frameworks have been used.<br>
+<br>
 
 - [Django](https://www.djangoproject.com/)
 - [Bootstrap](https://getbootstrap.com/)
@@ -253,7 +289,8 @@ The following frameworks have been used.
 
 #### Programs & Tools
 
-During the development of this application, the following programs and tools have been used.
+During the development of this application, the following programs and tools have been used.<br>
+<br>
 
 - [Visual Studio Code](https://code.visualstudio.com/) (IDE - Integrated Development Environment)
 - [Figma](https://www.figma.com/) (Creating Mockups)
@@ -284,6 +321,85 @@ I chose to use Vite because I ran into several issues of deprecated code and vul
 Vite came with some additional ESlint rules I used.<br>
 
 ### Deployment
+
+#### Version Control
+
+This application was developed using Visual Studio Code as the IDE and GitHub for hosting the repository.<br>
+<br>
+Git was used for version control by using the following comments:<br>
+<br>
+
+- git add filename - Select the files that should be uploaded and updated to the GitHub repository.
+- git commit -m "commit message" - Commenting the commit to better understand the changes in this specific commit.
+- git push - Upload the commit to GitHub.
+
+#### Cloudinary
+
+For using Cloudinary as a hosting provider for images, the following steps have to be conducted:<br>
+<br>
+
+- Create a Cloudinary account.
+- Login and visit the Cloudinary user account.
+- On the bottom left side, click on the gear symbol.
+- On the top left, click on "API Keys".
+- Click "Generate New API Key" on the top right.
+- Update the Django settings.py with API key.
+- Use the API in the Heroku deployment settings like described in the next step.
+
+#### Heroku Deployment
+
+**Step 0: Initial Settings**
+
+- Check if all dependencies are listet in the package.json.
+  - Add "heroku-postbuild": "npm run build" to scripts
+- Modify axiosDefault.js
+  - Add the baseURL for Axios
+- Create Procfile in root directory with the following content:web: npm run start
+
+**Step 1: Use Account**
+
+- Create a Heroku account
+- Log into the Heroku account
+
+**Step 2: Create New App**
+
+- On the dashboard, click "New" in the upper right corner.
+- Select "Create new app"
+- Select a name for the application - the name should only contain lowercase letters, numbers, and dashes.
+- Choose a region. (Europe as we are in Europe)
+
+**Step 3: Define Deployment Method**
+
+- Select GitHub as deployment method
+- Connect GitHub account to Heroku
+- Select account and search for repository
+- Connect to found repository
+
+**Step 4: Settings**
+
+- Switch to the settings page (Menu in the top)
+- Click on "Reveal Config Vars"
+- The following Key/Value pairs have been added:
+  - VITE_BASE_URL
+- In the next section, click on "Add buildpack"
+- If not already selected, add Node.js
+
+**Step 5: Deploy Application**
+
+- Switch to the deploy page (Menu in the top)
+- Look under manual deployment
+- Select a branch to deploy (Main in my case)
+- Click "Deploy Branch"
+
+**Step 6: Use App**
+
+- Heroku will then set up the virtual environment with all packages, modules and libraries needed. (This can take some time)
+- When Heroku is done with the deployment, click "View" and start to use the
+- Use app
+  <br>
+
+[The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
+<br>
 
 ### Testing
 
@@ -316,6 +432,10 @@ When the refresh token was expired, the page tried to get a new access token but
 A check for an expired refresh token was missing that deletes all data fram the local storage to enable normal loading again.
 
 ## Credits
+
+### Resources
+
+To give topics unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
 
 ### Code Sources
 
