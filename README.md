@@ -418,12 +418,38 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 <summary>Home Page</summary>
 <br>
 
-| **Test**          | **Description**                           | **Expected Outcome**                                  | **Result** |
-| ----------------- | ----------------------------------------- | ----------------------------------------------------- | ---------- |
-| **Home Page**     |                                           |                                                       |            |
-| ---               | ---                                       | ---                                                   | ---        |
-| Open login        | Clicking in the login link in the header  | When clicking on "Login" the login page loads         | Pass       |
-| Open registration | Clicking in the regist link in the header | When clicking on "Regist" the registration page loads | Pass       |
+| **Test**                      | **Description**                                   | **Expected Outcome**                                                     | **Result** |
+| ----------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
+| **Home Page Logged Out**      |                                                   |                                                                          |            |
+| ---                           | ---                                               | ---                                                                      | ---        |
+| Navigate to login page        | Clicking on the "Login" link in the header        | When clicking on "Login" the login page loads                            | Pass       |
+| Navigate to registration page | Clicking on the "Regist" link in the header       | When clicking on "Regist" the registration page loads                    | Pass       |
+| Navigate to home page         | Clicking on the "Home" link in the header         | When clicking on "Home" the home page loads                              | Pass       |
+| Navigate to home page by logo | Clicking on the logo in the header                | When clicking on the logo the home page loads                            | Pass       |
+| Navigate to tools page        | Clicking on the "Tools" link in the header        | When clicking on "Tools" the tools page loads                            | Pass       |
+| Navigate to topic page        | Clicking on the "Topic" link in the header        | When clicking on "Topic" the topic page loads                            | Pass       |
+| Navigate to contributors page | Clicking on the "Contributors" link in the header | When clicking on "Contributors" the contributors page loads              | Pass       |
+| Open search                   | Clicking the search icon in the header            | When clicking on the search icon, the search dropdown opens              | Pass       |
+| Close search                  | Clicking the search icon in the header again      | When clicking on the search icon again, the search dropdown closes       | Pass       |
+| Conduct search                | Conducting a search                               | When conducting a search, the search results page with the results loads | Pass       |
+
+<br>
+
+| **Test**                      | **Description**                                        | **Expected Outcome**                                                               | **Result** |
+| ----------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------- |
+| **Home Page Logged Out**      |                                                        |                                                                                    |            |
+| ---                           | ---                                                    | ---                                                                                | ---        |
+| Navigate to home page         | Clicking in the "Home" link in the header              | When clicking on "Home" the home page loads                                        | Pass       |
+| Navigate to home page by logo | Clicking in the logo in the header                     | When clicking on the logo the home page loads                                      | Pass       |
+| Navigate to tools page        | Clicking in the "Tools" link in the header             | When clicking on "Tools" the tools page loads                                      | Pass       |
+| Navigate to topic page        | Clicking in the "Topic" link in the header             | When clicking on "Topic" the topic page loads                                      | Pass       |
+| Navigate to contributors page | Clicking in the "Contributors" link in the header      | When clicking on "Contributors" the contributors page loads                        | Pass       |
+| Open profile dropdown         | Hovering over the profile image in header              | When hovering over the profile image, a dropdown menu opens                        | Pass       |
+| Close profile dropdown        | Moving the mouse away from the profile image in header | When removing the mouse from the profile image, the dropdown menu closes           | Pass       |
+| Conduct search                | Conducting a search                                    | When conducting a search, the search results page with the results loads           | Pass       |
+| Navigate to add tool page     | Clicking on "Add Tool" link in dropdown menu           | When clicking on "Add Tool" the add tool page loads                                | Pass       |
+| Navigate to profile page      | Clicking on "Profile" link in dropdown menu            | When clicking on "Profile" the profile page of the logged in user loads            | Pass       |
+| Logging out                   | Clicking on "Logout" link in dropdown menu             | When clicking on "Logout" the user gets logged out and redirected to the home page | Pass       |
 
 <br>
 </details>
