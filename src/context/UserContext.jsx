@@ -1,3 +1,4 @@
+// UserContext.jsx
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "../api/axiosDefault";
@@ -17,35 +18,30 @@ export const UserProvider = ({ children }) => {
   // Effect to load user data on initialization
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch user data
       try {
         const access = localStorage.getItem("access");
         const userId = localStorage.getItem("user_id");
 
-        // Check if access token and user ID are available
         if (access && userId) {
           const userResponse = await axios.get(`/users/${userId}/`, {
             headers: { Authorization: `Bearer ${access}` },
           });
           setUser(userResponse.data);
 
-          // Fetch profile data
           const profileResponse = await axios.get(`/users/${userId}/profile/`, {
             headers: { Authorization: `Bearer ${access}` },
           });
           setProfile(profileResponse.data);
-          // If access token or user ID are not available in local storage
-          // then reset user and profile data
         } else {
           setUser(null);
           setProfile(null);
         }
-        // Handle errors
       } catch (error) {
-        setError(error);
+        setError(
+          error.response?.data || { non_field_errors: ["An error occurred."] }
+        );
         setUser(null);
         setProfile(null);
-        // If an error occurs, reset user and profile data
       } finally {
         setLoading(false);
       }
@@ -57,7 +53,6 @@ export const UserProvider = ({ children }) => {
   // Login function
   const login = async (credentials) => {
     setLoading(true);
-    // Attempt to login
     try {
       const response = await axios.post("/login/", credentials);
       const { access, refresh, user_id } = response.data;
@@ -72,16 +67,17 @@ export const UserProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${access}` },
       });
       setUser(userResponse.data);
+
       const profileResponse = await axios.get(`/users/${user_id}/profile/`, {
         headers: { Authorization: `Bearer ${access}` },
       });
       setProfile(profileResponse.data);
       setError(null);
-      // Handle errors
     } catch (error) {
       setError(error.response?.data || { non_field_errors: ["Login failed"] });
+      setUser(null);
+      setProfile(null);
       throw error;
-      // Reset loading state
     } finally {
       setLoading(false);
     }
@@ -97,11 +93,11 @@ export const UserProvider = ({ children }) => {
     // Reset user and profile data
     setUser(null);
     setProfile(null);
+    setError(null);
   };
 
   // Update profile
   const updateProfile = async (updatedProfile) => {
-    // Attempt to update profile
     try {
       setLoading(true);
       const access = localStorage.getItem("access");
@@ -113,13 +109,12 @@ export const UserProvider = ({ children }) => {
         { headers: { Authorization: `Bearer ${access}` } }
       );
       setProfile(response.data);
-      // Handle errors
+      setError(null);
     } catch (error) {
       setError(
         error.response?.data || { non_field_errors: ["Profile update failed"] }
       );
       throw error;
-      // Reset loading state
     } finally {
       setLoading(false);
     }

@@ -1,11 +1,12 @@
+// Login.jsx
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 
-export default function Login({ onLoginSuccess }) {
+export default function Login() {
   // Get the user, login function, and error from the context
-  const { user, login, error } = useContext(UserContext);
+  const { user, login, error: contextError } = useContext(UserContext);
 
   // Get the navigate function from the router
   const navigate = useNavigate();
@@ -16,11 +17,11 @@ export default function Login({ onLoginSuccess }) {
     password: "",
   });
 
-  // Get the login function from the context
+  // Destructure email and password from loginData
   const { email, password } = loginData;
 
   // Local state to store the error
-  const [err, setErr] = useState(null);
+  const [localError, setLocalError] = useState(null);
 
   // Redirect to the home page if the user is already logged in
   useEffect(() => {
@@ -40,24 +41,48 @@ export default function Login({ onLoginSuccess }) {
   // Handle the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Attempt to log in
     try {
       await login(loginData);
-      onLoginSuccess();
-      navigate("/");
-      // Handle errors
     } catch (err) {
       const errorData = err.response?.data || {
         non_field_errors: ["An error occurred. Please try again."],
       };
-      setErr(errorData);
+      setLocalError(errorData);
     }
   };
 
-  // Render error messages
-  if (error) return <p>{error}</p>;
-  // Render error messages
-  if (err) return <p>{err}</p>;
+  // Combine contextError and localError for display
+  const combinedErrors = { ...contextError, ...localError };
+
+  // Function to render error messages
+  const renderErrors = () => {
+    if (!combinedErrors) return null;
+
+    const errorElements = [];
+
+    // Iterate over each key in the error object
+    Object.keys(combinedErrors).forEach((key) => {
+      const messages = combinedErrors[key];
+      if (Array.isArray(messages)) {
+        messages.forEach((message, index) => {
+          const variant = key === "non_field_errors" ? "danger" : "warning";
+          errorElements.push(
+            <Alert variant={variant} key={`${key}-${index}`}>
+              {message}
+            </Alert>
+          );
+        });
+      } else if (typeof messages === "string") {
+        errorElements.push(
+          <Alert variant="warning" key={key}>
+            {messages}
+          </Alert>
+        );
+      }
+    });
+
+    return errorElements;
+  };
 
   // Render the login form
   return (
@@ -67,6 +92,9 @@ export default function Login({ onLoginSuccess }) {
         onSubmit={handleSubmit}
         style={{ width: "100%", maxWidth: "400px" }}
       >
+        {/* Render combined error messages at the top */}
+        {renderErrors()}
+
         <Form.Group className="mb-3" controlId="email">
           <Form.Label className="d-none">Email</Form.Label>
           <Form.Control
@@ -79,12 +107,6 @@ export default function Login({ onLoginSuccess }) {
           />
         </Form.Group>
 
-        {error?.email?.map((message, index) => (
-          <Alert variant="warning" key={index}>
-            {message}
-          </Alert>
-        ))}
-
         <Form.Group className="mb-3" controlId="password">
           <Form.Label className="d-none">Password</Form.Label>
           <Form.Control
@@ -96,18 +118,6 @@ export default function Login({ onLoginSuccess }) {
             required
           />
         </Form.Group>
-
-        {error?.password?.map((message, index) => (
-          <Alert variant="warning" key={index}>
-            {message}
-          </Alert>
-        ))}
-
-        {error?.non_field_errors?.map((message, index) => (
-          <Alert variant="danger" key={index}>
-            {message}
-          </Alert>
-        ))}
 
         <Button className="w-100 mt-3 mb-3" type="submit">
           Login

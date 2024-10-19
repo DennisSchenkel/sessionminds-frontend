@@ -5,9 +5,7 @@ import {
   Image,
   Dropdown,
   InputGroup,
-  NavItem,
   Offcanvas,
-  Modal,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -15,7 +13,6 @@ import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Logout from "../../pages/auth/Logout";
-import Login from "../../pages/auth/Login";
 import logo from "../../assets/images/logo.svg";
 import favicon from "../../assets/images/favicon.svg";
 
@@ -23,31 +20,23 @@ export default function Header() {
   // Get the user profile and loading state from the context
   const { loading, profile } = useContext(UserContext);
 
-  // Define the state variables for the login modal, dropdown, and mobile menu
-  const [showLogin, setShowLogin] = useState(false);
-  // Define the state variables for the login modal, dropdown, and mobile menu
+  // Define the state variables for the dropdown, and mobile menu
   const [showDropdown, setShowDropdown] = useState(false);
-  // Define the state variables for the login modal, dropdown, and mobile menu
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  // Define the state variable for the search term
   const [searchTerm, setSearchTerm] = useState("");
 
   // Get the navigate function from the router
   const navigate = useNavigate();
 
   // Define the functions to show and hide the login modal, dropdown, and mobile menu
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => setShowLogin(true);
 
-  // Define the functions to show and hide the login modal, dropdown, and mobile menu
   const handleCloseMobileMenu = () => setShowMobileMenu(false);
   const handleShowMobileMenu = () => setShowMobileMenu(true);
 
-  // Define the functions to show and hide the login modal, dropdown, and mobile menu
   const handleMouseEnter = () => setShowDropdown(true);
   const handleMouseLeave = () => setShowDropdown(false);
 
-  // Define the function to handle the form submission
+  // Define the function to handle the form submission for Suche
   const handleSubmit = (event) => {
     event.preventDefault();
     const currentSearchTerm = event.target.elements.search.value;
@@ -154,7 +143,11 @@ export default function Header() {
                             setSearchTerm(event.target.value)
                           }
                         />
-                        <InputGroup.Text as="button" type="submit">
+                        <InputGroup.Text
+                          as="button"
+                          type="submit"
+                          aria-label="Search"
+                        >
                           <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </InputGroup.Text>
                       </InputGroup>
@@ -181,13 +174,9 @@ export default function Header() {
             ) : (
               <ul className="nav justify-content-end">
                 <li>
-                  <NavItem
-                    className={`${styles["nav-link"]}`}
-                    style={{ cursor: "pointer" }}
-                    onClick={handleShowLogin}
-                  >
+                  <Link className={`${styles["nav-link"]}`} to="/login">
                     Login
-                  </NavItem>
+                  </Link>
                 </li>
                 <li>
                   <Link className={`${styles["nav-link"]}`} to="/regist">
@@ -277,20 +266,6 @@ export default function Header() {
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
-
-      <Modal show={showLogin} onHide={handleCloseLogin}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Login onLoginSuccess={handleCloseLogin} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Link to="/regist">
-            Not registered? <span>Signup now!</span>
-          </Link>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }

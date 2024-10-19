@@ -80,6 +80,14 @@ Right: Registration page<br>
 
 </details>
 
+### Features
+
+#### UX/UI
+
+#### CRUD
+
+#### Future Features
+
 ## Agile Project Management
 
 This project was developed using an agile approach for structuring backend and frontend functionalities, as well as planning and tracking the development process. The project was separated into several milestones, each containing one or multiple user stories, each being structured into several different tasks. Additionally, tasks were divided into frontend (FE) and backend (BE) tasks.<br>
@@ -269,6 +277,7 @@ The following frameworks have been used.<br>
 
 - [Django](https://www.djangoproject.com/)
 - [Bootstrap](https://getbootstrap.com/)
+- [React Bootstrap](https://react-bootstrap.netlify.app/)
 - [FontAwesome](https://fontawesome.com/)
 
 #### Modules & Libraries & Plugins
@@ -403,6 +412,46 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 
 ### Testing
 
+#### Manuel Testing
+
+<details>
+<summary>Home Page</summary>
+<br>
+
+| **Test**      | **Description**                                        | **Expected Outcome**                                        | **Result** |
+| ------------- | ------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
+| **Home Page** |                                                        |                                                             |            |
+| ---           | ---                                                    | ---                                                         | ---        |
+| Open login    | Opening the login by clicking in "Login" in the header | When clicking on "Login" a modal with the login form opens. | Pass       |
+
+<br>
+</details>
+
+<details>
+<summary>Misc.</summary>
+<br>
+
+| **Test**   | **Description**                                                 | **Expected Outcome**                                                    | **Result** |
+| ---------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------- |
+| **Login**  |                                                                 |                                                                         |            |
+| ---        | ---                                                             | ---                                                                     | ---        |
+| Login test | Entering correct credentials into login form and pressing login | User gets logged in and user information in header update automatically | Pass       |
+| Login test | Entering wrong username into login form and pressing login      | User gets logged in and user information in header update automatically | Pass       |
+| Login test | Entering wrong password into login form and pressing login      | User gets logged in and user information in header update automatically | Pass       |
+| Login test | Entering wrong no username into login form and pressing login   | User gets logged in and user information in header update automatically | Pass       |
+| Login test | Entering wrong no password into login form and pressing login   | User gets logged in and user information in header update automatically | Pass       |
+
+<br>
+
+| **Test**          | **Description**                                        | **Expected Outcome**                                        | **Result** |
+| ----------------- | ------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
+| **Registration**  |                                                        |                                                             |            |
+| ---               | ---                                                    | ---                                                         | ---        |
+| Registration test | Opening the login by clicking in "Login" in the header | When clicking on "Login" a modal with the login form opens. | Pass       |
+
+<br>
+</details>
+
 ### Issues During Development
 
 **(BE) 405 Get method now allowed**
@@ -417,6 +466,8 @@ Message shown: "CSRF Failed: CSRF token missing"
 
 When using the Django Rest Framework API Frontend, Updating and Deleting of content is not possible. This might be due to the wrong authentication methode used.
 When using the API with JWT, everything works just finde.
+
+**Login with wrong credentials not showing error & not loading next page**
 
 **Athentication token not deleting**
 
@@ -433,12 +484,17 @@ A check for an expired refresh token was missing that deletes all data fram the 
 
 ## Credits
 
+- All content was written and created by Dennis Schenkel.
+- Images were created with the help of DALL-E.
+  <br>
+  When trying to understand concepts and build this full-stack-application, an unlimited amount of Google searches were conducted and various sources like Stack Overflow, Reddit and the different documentations for Django, Bootstrap and React were used.
+
 ### Resources
 
 To give topics unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
 
-### Code Sources
+### Acknowledgements
 
-**Profile App (BE)**
-
-In this project, the Django profile app with its structure is greatly inspired and by part copied from the Code Institute examples, although customized in many places.
+- Thanks to Gareth McGirr for providing great mentorship as part of the Code Academy course.
+- Thanks to Kay for they effort as a facilitator of the Code Institute team.
+- Great thanks go to [Dajana Isbaner](https://github.com/queenisabaer) for being the best fellow student I could wish for.
