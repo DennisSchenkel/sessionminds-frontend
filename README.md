@@ -86,6 +86,38 @@ Right: Registration page<br>
 
 #### CRUD
 
+CRUD functionality is implemented with the following features:
+
+**Profile**
+
+- Create Profile
+- Read Profile
+- Update Profile
+- Delete Profile
+  <br>
+
+**Tool**
+
+- Create Tool
+- Read Tool
+- Update Tool
+- Delete Tool
+  <br>
+
+**Votes**
+
+- Create - Vote for tool
+- Read - Get tool vote count
+- Delete - Undo vote for tool
+  <br>
+
+**Comments**
+
+- Create - Comment on a tool
+- Read - Get tool comments
+- Delete - Delete a existing comment
+  <br>
+
 #### Future Features
 
 ## Agile Project Management
@@ -491,13 +523,15 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 
 <br>
 
-| **Test**                       | **Description**                                                                          | **Expected Outcome**                                                                             | **Result** |
-| ------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------- |
-| **Tools Details Page**         |                                                                                          |                                                                                                  |            |
-| ---                            | ---                                                                                      | ---                                                                                              | ---        |
-| "Edit tool" button for owner   | Showing "Edit tool" on tool details page, when user is logged in and owner of the tool   | When user is owner of the tool, a button with "Edit tool" is shown on tool details page          | Pass       |
-| "Delete tool" button for owner | Showing "Delete tool" on tool details page, when user is logged in and owner of the tool | When user is owner of the tool, a button with "Delete tool" is shown on tool details page        | Pass       |
-| "Go Back" link                 | Clicking the "Go Back" link on tool details page                                         | When clicking the "Go Back" link on tool details page, user gets redirected to the previous page | Pass       |
+| **Test**                       | **Description**                                                                               | **Expected Outcome**                                                                                                      | **Result** |
+| ------------------------------ | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Tools Details Page**         |                                                                                               |                                                                                                                           |            |
+| ---                            | ---                                                                                           | ---                                                                                                                       | ---        |
+| Visit tool author profile      | On the tools details page the author is shown. Users can visit the authors profile from there | When clicking on "Go to profile" the profile of the tools author loads                                                    | Pass       |
+| "Edit tool" button for owner   | Showing "Edit tool" on tool details page, when user is logged in and owner of the tool        | When user is owner of the tool, a button with "Edit tool" is shown on tool details page                                   | Pass       |
+| "Delete tool" button for owner | Showing "Delete tool" on tool details page, when user is logged in and owner of the tool      | When user is owner of the tool, a button with "Delete tool" is shown on tool details page                                 | Pass       |
+| Delete tool as owner           | Confirming to delete the tool as its owner                                                    | The tool gets deletes, user gets redirected to home page, confirmation message is shown, tool and vote counts get updated | Pass       |
+| "Go Back" link                 | Clicking the "Go Back" link on tool details page                                              | When clicking the "Go Back" link on tool details page, user gets redirected to the previous page                          | Pass       |
 
 <br>
 
@@ -524,6 +558,73 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 | Initiate comment deletion       | Clicking on "Delete comment" on a comment, written by the user                           | When clicking "Delete comment", a modal opens asking for confirmation to delete the comment                                   | Pass       |
 | Confirming comment deletion     | Clicking on "Delete Comment" in confirmation modal                                       | When clicking "Delete Comment" in the confirmation modal, the comment gets deleted and a success message is shown             | Pass       |
 | Comment count in list view      | Comment count changing in list view when new comment is posted or old comment is deleted | When the amount of comments for a tool changes, the comment count in list view changes on next load                           | Pass       |
+
+<br>
+
+| **Test**                             | **Description** | **Expected Outcome** | **Result** |
+| ------------------------------------ | --------------- | -------------------- | ---------- |
+| **Tools Editor**                     |                 |                      |            |
+| ---                                  | ---             | ---                  | ---        |
+| Clicking "Edit tool" button as owner |                 |                      | Pass       |
+
+<br>
+</details>
+
+<details>
+<summary>Topic</summary>
+<br>
+
+| **Test**                  | **Description**                                                              | **Expected Outcome**                                                                         | **Result** |
+| ------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------- |
+| **Topics List Page**      |                                                                              |                                                                                              |            |
+| ---                       | ---                                                                          | ---                                                                                          | ---        |
+| Sorting list by "Abc"     |                                                                              |                                                                                              | Pass       |
+| Sorting list by "Top"     |                                                                              |                                                                                              | Pass       |
+| Navigate using pagination | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads | Pass       |
+
+<br>
+
+**Topic Tools List Page**
+Tests for this page is covered by the tests for the "Tools List Page" since it uses the same component.
+
+<br>
+</details>
+
+<details>
+<summary>Contributors</summary>
+<br>
+
+| **Test**                        | **Description**                                                              | **Expected Outcome**                                                                         | **Result** |
+| ------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------- |
+| **Contributors List Page**      |                                                                              |                                                                                              |            |
+| ---                             | ---                                                                          | ---                                                                                          | ---        |
+| Visiting profile of contributor |                                                                              |                                                                                              | Pass       |
+| Sorting list by "Votes"         |                                                                              |                                                                                              | Pass       |
+| Sorting list by "Tools"         |                                                                              |                                                                                              | Pass       |
+| Navigate using pagination       | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads | Pass       |
+
+<br>
+</details>
+
+<details>
+<summary>Profile</summary>
+<br>
+
+| **Test**                                  | **Description** | **Expected Outcome** | **Result** |
+| ----------------------------------------- | --------------- | -------------------- | ---------- |
+| **Profile Page**                          |                 |                      |            |
+| ---                                       | ---             | ---                  | ---        |
+| Clicking "Delete profile" button as owner |                 |                      | Pass       |
+
+Test for the list of tools related to the profile are covered by the tests for the "Tools List Page" since it uses the same component.
+
+<br>
+
+| **Test**                                | **Description** | **Expected Outcome** | **Result** |
+| --------------------------------------- | --------------- | -------------------- | ---------- |
+| **Profile Editor**                      |                 |                      |            |
+| ---                                     | ---             | ---                  | ---        |
+| Clicking "Edit profile" button as owner |                 |                      | Pass       |
 
 <br>
 </details>
