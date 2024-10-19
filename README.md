@@ -415,12 +415,12 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 #### Manuel Testing
 
 <details>
-<summary>Home Page</summary>
+<summary>Header</summary>
 <br>
 
 | **Test**                      | **Description**                                   | **Expected Outcome**                                                     | **Result** |
 | ----------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| **Home Page Logged Out**      |                                                   |                                                                          |            |
+| **Header Logged Out**         |                                                   |                                                                          |            |
 | ---                           | ---                                               | ---                                                                      | ---        |
 | Navigate to login page        | Clicking on the "Login" link in the header        | When clicking on "Login" the login page loads                            | Pass       |
 | Navigate to registration page | Clicking on the "Regist" link in the header       | When clicking on "Regist" the registration page loads                    | Pass       |
@@ -437,7 +437,7 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 
 | **Test**                      | **Description**                                        | **Expected Outcome**                                                               | **Result** |
 | ----------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------- |
-| **Home Page Logged Out**      |                                                        |                                                                                    |            |
+| **Header Logged In**          |                                                        |                                                                                    |            |
 | ---                           | ---                                                    | ---                                                                                | ---        |
 | Navigate to home page         | Clicking in the "Home" link in the header              | When clicking on "Home" the home page loads                                        | Pass       |
 | Navigate to home page by logo | Clicking in the logo in the header                     | When clicking on the logo the home page loads                                      | Pass       |
@@ -455,7 +455,81 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 </details>
 
 <details>
-<summary>Misc.</summary>
+<summary>Home Page</summary>
+<br>
+
+| **Test**                      | **Description**                                   | **Expected Outcome**                                                     | **Result** |
+| ----------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
+| **Home Page**                 |                                                   |                                                                          |            |
+| ---                           | ---                                               | ---                                                                      | ---        |
+| Navigate to login page        | Clicking on the "Login" link in the header        | When clicking on "Login" the login page loads                            | Pass       |
+| Navigate to registration page | Clicking on the "Regist" link in the header       | When clicking on "Regist" the registration page loads                    | Pass       |
+| Navigate to home page         | Clicking on the "Home" link in the header         | When clicking on "Home" the home page loads                              | Pass       |
+| Navigate to home page by logo | Clicking on the logo in the header                | When clicking on the logo the home page loads                            | Pass       |
+| Navigate to tools page        | Clicking on the "Tools" link in the header        | When clicking on "Tools" the tools page loads                            | Pass       |
+| Navigate to topic page        | Clicking on the "Topic" link in the header        | When clicking on "Topic" the topic page loads                            | Pass       |
+| Navigate to contributors page | Clicking on the "Contributors" link in the header | When clicking on "Contributors" the contributors page loads              | Pass       |
+| Open search                   | Clicking the search icon in the header            | When clicking on the search icon, the search dropdown opens              | Pass       |
+| Close search                  | Clicking the search icon in the header again      | When clicking on the search icon again, the search dropdown closes       | Pass       |
+| Conduct search                | Conducting a search                               | When conducting a search, the search results page with the results loads | Pass       |
+
+<br>
+</details>
+
+<details>
+<summary>Tools</summary>
+<br>
+
+| **Test**                  | **Description**                                                              | **Expected Outcome**                                                                                    | **Result** |
+| ------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- |
+| **Tools List Page**       |                                                                              |                                                                                                         |            |
+| ---                       | ---                                                                          | ---                                                                                                     | ---        |
+| Clicking on tool in list  | Clicking on a tool in the list of tool                                       | When clicking in a tool, the details page for the selected tool loads                                   | Pass       |
+| Filter for "Latest"       | Filtering the list of tools for the latest created tools                     | When clicking on "Latest" in the top of the tool list, the list sorts with latest tool at the top       | Pass       |
+| Filter for "Top"          | Filtering the list of tools for the top voted tools                          | When clicking on "Top" in the top of the tool list, the list sorts with the most voted tools at the top | Pass       |
+| Navigate using pagination | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads            | Pass       |
+
+<br>
+
+| **Test**                       | **Description**                                                                          | **Expected Outcome**                                                                             | **Result** |
+| ------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------- |
+| **Tools Details Page**         |                                                                                          |                                                                                                  |            |
+| ---                            | ---                                                                                      | ---                                                                                              | ---        |
+| "Edit tool" button for owner   | Showing "Edit tool" on tool details page, when user is logged in and owner of the tool   | When user is owner of the tool, a button with "Edit tool" is shown on tool details page          | Pass       |
+| "Delete tool" button for owner | Showing "Delete tool" on tool details page, when user is logged in and owner of the tool | When user is owner of the tool, a button with "Delete tool" is shown on tool details page        | Pass       |
+| "Go Back" link                 | Clicking the "Go Back" link on tool details page                                         | When clicking the "Go Back" link on tool details page, user gets redirected to the previous page | Pass       |
+
+<br>
+
+| **Test**                        | **Description**                                  | **Expected Outcome**                                                       | **Result** |
+| ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------- | ---------- |
+| **Tools Features Logged Out**   |                                                  |                                                                            |            |
+| ---                             | ---                                              | ---                                                                        | ---        |
+| Voting in list view             | Clicking the vote icon in list view              | When clicking on the vote icon, a modal opens with request to log in first | Pass       |
+| Voting in tool details view     | Clicking the vote icon on tool details page      | When clicking on the vote icon, a modal opens with request to log in first | Pass       |
+| Commenting in tool details view | Trying to comment on a tool on tool details page | When trying to comment on a tool, a message to frist log in is shown       | Pass       |
+
+<br>
+
+| **Test**                        | **Description**                                                                          | **Expected Outcome**                                                                                                          | **Result** |
+| ------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Tools Features Logged In**    |                                                                                          |                                                                                                                               |            |
+| ---                             | ---                                                                                      | ---                                                                                                                           | ---        |
+| Voting in list view             | Clicking the vote icon in list view                                                      | When clicking on the vote icon, the icon changes color, the count increases, the voting worked                                | Pass       |
+| Down-doing vote in list view    | Clicking the vote icon in list view again                                                | When clicking on the vote icon again, the icon changes color, the count decreases, the down-voting worked                     | Pass       |
+| Voting in tool details view     | Clicking the vote icon on tool details page                                              | When clicking on the vote icon, the icon changes color, the count increases, the voting worked                                | Pass       |
+| Down-vote in tool details view  | Clicking the vote icon on tool details list view again                                   | When clicking on the vote icon again, the icon changes color, the count decreases, the down-voting worked                     | Pass       |
+| Commenting in tool details view | Writing a comment on a tool on tool details page                                         | When writing a comment, the comment is saved and shown in the list of comments                                                | Pass       |
+| Writing short comment           | Writing a comment on a tool on tool details page, that is less than 10 charakters long   | When writing a comment that is less than 10 charakters, a warning is shown "The comment must be at least 10 characters long." | Pass       |
+| Initiate comment deletion       | Clicking on "Delete comment" on a comment, written by the user                           | When clicking "Delete comment", a modal opens asking for confirmation to delete the comment                                   | Pass       |
+| Confirming comment deletion     | Clicking on "Delete Comment" in confirmation modal                                       | When clicking "Delete Comment" in the confirmation modal, the comment gets deleted and a success message is shown             | Pass       |
+| Comment count in list view      | Comment count changing in list view when new comment is posted or old comment is deleted | When the amount of comments for a tool changes, the comment count in list view changes on next load                           | Pass       |
+
+<br>
+</details>
+
+<details>
+<summary>Features</summary>
 <br>
 
 | **Test**   | **Description**                                                 | **Expected Outcome**                                    | **Result** |
@@ -485,6 +559,7 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 | Registration test | Entering not matching passwords             | Showing error message "Passwords do not match."                                                    | Pass       |
 
 <br>
+
 </details>
 
 ### Issues During Development
