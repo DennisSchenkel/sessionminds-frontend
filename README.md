@@ -418,11 +418,12 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 <summary>Home Page</summary>
 <br>
 
-| **Test**      | **Description**                                        | **Expected Outcome**                                        | **Result** |
-| ------------- | ------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
-| **Home Page** |                                                        |                                                             |            |
-| ---           | ---                                                    | ---                                                         | ---        |
-| Open login    | Opening the login by clicking in "Login" in the header | When clicking on "Login" a modal with the login form opens. | Pass       |
+| **Test**          | **Description**                           | **Expected Outcome**                                  | **Result** |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------- | ---------- |
+| **Home Page**     |                                           |                                                       |            |
+| ---               | ---                                       | ---                                                   | ---        |
+| Open login        | Clicking in the login link in the header  | When clicking on "Login" the login page loads         | Pass       |
+| Open registration | Clicking in the regist link in the header | When clicking on "Regist" the registration page loads | Pass       |
 
 <br>
 </details>
@@ -431,23 +432,31 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 <summary>Misc.</summary>
 <br>
 
-| **Test**   | **Description**                                                 | **Expected Outcome**                                                    | **Result** |
-| ---------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------- |
-| **Login**  |                                                                 |                                                                         |            |
-| ---        | ---                                                             | ---                                                                     | ---        |
-| Login test | Entering correct credentials into login form and pressing login | User gets logged in and user information in header update automatically | Pass       |
-| Login test | Entering wrong username into login form and pressing login      | User gets logged in and user information in header update automatically | Pass       |
-| Login test | Entering wrong password into login form and pressing login      | User gets logged in and user information in header update automatically | Pass       |
-| Login test | Entering wrong no username into login form and pressing login   | User gets logged in and user information in header update automatically | Pass       |
-| Login test | Entering wrong no password into login form and pressing login   | User gets logged in and user information in header update automatically | Pass       |
+| **Test**   | **Description**                                                 | **Expected Outcome**                                    | **Result** |
+| ---------- | --------------------------------------------------------------- | ------------------------------------------------------- | ---------- |
+| **Login**  |                                                                 |                                                         |            |
+| ---        | ---                                                             | ---                                                     | ---        |
+| Login test | Entering correct credentials into login form and pressing login | User gets logged in and redicrected to the home page    | Pass       |
+| Login test | Entering wrong username into login form and pressing login      | Error is shown "Invalid credentials, please try again." | Pass       |
+| Login test | Entering wrong password into login form and pressing login      | Error is shown "Invalid credentials, please try again." | Pass       |
+| Login test | Entering no username into login form and pressing login         | Validator hint to fill form field is shown              | Pass       |
+| Login test | Entering no password into login form and pressing login         | Validator hint to fill form field is shown              | Pass       |
 
 <br>
 
-| **Test**          | **Description**                                        | **Expected Outcome**                                        | **Result** |
-| ----------------- | ------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
-| **Registration**  |                                                        |                                                             |            |
-| ---               | ---                                                    | ---                                                         | ---        |
-| Registration test | Opening the login by clicking in "Login" in the header | When clicking on "Login" a modal with the login form opens. | Pass       |
+| **Test**          | **Description**                             | **Expected Outcome**                                                                               | **Result** |
+| ----------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------- |
+| **Registration**  |                                             |                                                                                                    |            |
+| ---               | ---                                         | ---                                                                                                | ---        |
+| Registration test | Entering correct credentials                | Registration works correctly, user gets redirected to login page and success alarm shown           | Pass       |
+| Registration test | Entering no mail address but password       | Showing field validation error "This field may not be blank."                                      | Pass       |
+| Registration test | Entering mail addres but no password        | Showing field validation error "This field may not be blank."                                      | Pass       |
+| Registration test | Entering password shorter than 8 characters | Showing field validation error "This password is too short. It must contain at least 8 charactes." | Pass       |
+| Registration test | Entering invalid mail address               | Showing field validation error "Enter a valid email address."                                      | Pass       |
+| Registration test | Entering already used credentials           | Showing error message "A user with this email already exists."                                     | Pass       |
+| Registration test | Entering only numeric password              | Showing field validation error "This password is entirely numeric."                                | Pass       |
+| Registration test | Entering "password" as password             | Showing field validation error "This password is too common."                                      | Pass       |
+| Registration test | Entering not matching passwords             | Showing error message "Passwords do not match."                                                    | Pass       |
 
 <br>
 </details>
