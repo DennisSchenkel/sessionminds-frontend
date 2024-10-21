@@ -486,37 +486,30 @@ This milestone contains all user stories and tasks related to the search functio
 
 #### Languages
 
+The following languages have been used.<br>
+<br>
+
 - HTML
 - CSS
-- Python
 - JavaScrips
-- ReactJS
 
 #### Frameworks
 
 The following frameworks have been used.<br>
 <br>
 
-- [Django](https://www.djangoproject.com/)
 - [Bootstrap](https://getbootstrap.com/)
 - [React Bootstrap](https://react-bootstrap.netlify.app/)
 - [FontAwesome](https://fontawesome.com/)
 
 #### Modules, Libraries & Plugins
 
-- AllAuth (For user uthentication)
-- Black (Code formatter for Python)
-- Cloudinary (Cloud storage for images)
+The following modules, libraries and plugins have been used.<br>
+<br>
+
+- [Axios](https://axios-http.com/) (For API request handling)
 - [Emoji Picker React (v4)](https://www.npmjs.com/package/emoji-picker-react?activeTab=readme) (For Emoji selection in forms)
-- Gunicorn (Python WSGI HTTP server for UNIX)
-- OS (For operating system interaction)
-- Pep8 (Check Python code for PEP8 conventions)
-- Pillow (For image processing)
-- Prettier (Code formatter for JavaScript)
-- Psycopg 2 (PostgreSQL adapter for the database)
-- Python Slugify (For generating url-slugs)
-- Summernote (As a WYSIWYG editor)
-- Whitenoise (Middleware for serving static files)
+- [React](https://react.dev/) (For building the frontend)
 
 #### Programs & Tools
 
@@ -636,7 +629,13 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 
 ### Component Reusability
 
-- Tool List Element in list for tools, specific topic, search results, author profile
+One of the main featured of React is the reusability of components. In this project, multiple components were used at multiple places within the application.
+
+- The ToolListItem.jsx component is used in lists for tools on the home page, the tools page, the search results, the page of each specific topic and the contributors page.
+
+- The various Sidebar components are used at various places of the app. This includes the home page and the pages of tools, topic and contributors.
+
+- The Paginator.jsx component was used in all list to enable pagination.
 
 ### Testing
 

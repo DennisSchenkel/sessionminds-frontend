@@ -17,6 +17,7 @@ import Topics from "./pages/Topics";
 import TopicDetails from "./pages/TopicDetails";
 import Contributors from "./pages/Contributors";
 import Search from "./pages/Search";
+import NotFound from "./pages/NotFound";
 import { UserContext } from "./context/UserContext";
 
 export default function App() {
@@ -132,7 +133,7 @@ export default function App() {
           <Route path="/topics" element={<Topics />} />
           <Route path="/topics/:slug" element={<TopicDetails />} />
           <Route path="/contributors" element={<Contributors />} />
-          <Route path="*" element={<div>404 Page Not Found</div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>
