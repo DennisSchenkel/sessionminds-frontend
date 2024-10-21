@@ -8,6 +8,10 @@ The developed application of this project is called Session Minds and acts as a 
 
 The idea for this project comes from real world experience and the struggle to find the best method or tool for conducting workshops with clients to solve their problems as best as possible.<br>
 
+[The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
+
+[Documentation for the Backend with API can be found here!](https://github.com/DennisSchenkel/sessionminds-backend)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -43,8 +47,7 @@ The idea for this project comes from real world experience and the struggle to f
     - [Manual Testing](#manual-testing)
     - [Possible Improvements](#possible-improvments)
     - [Issues During Development](#issues-during-development)
-    - [Fixed Bugs](#fixed-bugs)
-    - [Known Unfixes Bugs](#known-unfixed-bugs)
+    - [Known Unfixed Bugs](#known-unfixed-bugs)
 - [Credits](#credits)
   - [Resources](#resources)
   - [Acknowledgements](#acknowledgements)
@@ -58,6 +61,8 @@ For each tool, the users find all needed instructions and are able to comment on
 As an experienced facilitator, users can add new tools to the platform and build up a reputation as one of the best rated authors on the platform. All upvotes for an author's tools are summed up and show the overall amount of votes the author collected.<br>
 
 Tools could easily be shared on platforms like LinkedIn and the authors can build up a reputation for themselves.<br>
+
+[The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
 
 ## User Experience
 
@@ -172,9 +177,9 @@ In this section, I point out some of the more advanced or useful features of thi
 <summary>Search</summary>
 <br>
 
-![Search](/documentation/images/features/search.gif)
-
 The search feature enables users to find a specific tool fast. After conducting a search, the results are shown on a separate page.<br>
+
+![Search](/documentation/images/features/search.gif)
 
 </details>
 <br>
@@ -183,9 +188,9 @@ The search feature enables users to find a specific tool fast. After conducting 
 <summary>Emojis</summary>
 <br>
 
-![Emojis](/documentation/images/features/emojis.gif)
-
 When creating a new tool or creating an existing one, users have to select an Emoji as tool icon. For this feature the module "Emoji Picker React" was implemented.<br>
+
+![Emojis](/documentation/images/features/emojis.gif)
 
 </details>
 <br>
@@ -194,13 +199,13 @@ When creating a new tool or creating an existing one, users have to select an Em
 <summary>Voting</summary>
 <br>
 
-![Vote List View](/documentation/images/features/vote-list-view.gif)
-
 Users can vote and undo their vote in the tool list view where ever it is shown, but only if they are registered and logged in.<br>
 
-![Vote Details View](/documentation/images/features/vote-details-view.gif)
+![Vote List View](/documentation/images/features/vote-list-view.gif)
 
 Users can vote and undo their vote in the tools details view, but only if they are registered and logged in.<br>
+
+![Vote Details View](/documentation/images/features/vote-details-view.gif)
 
 </details>
 <br>
@@ -209,13 +214,13 @@ Users can vote and undo their vote in the tools details view, but only if they a
 <summary>Commenting</summary>
 <br>
 
-![Write Comment](/documentation/images/features/comment-create.gif)
-
 Users can comment on tools, but only if they have added first name and last name to their profile.<br>
 
-![Delete Comment](/documentation/images/features/comment-delete.gif)
+![Write Comment](/documentation/images/features/comment-create.gif)
 
 Users can delete their own comments. They have to confirm the deletion in a modal.<br>
+
+![Delete Comment](/documentation/images/features/comment-delete.gif)
 
 </details>
 <br>
@@ -224,13 +229,13 @@ Users can delete their own comments. They have to confirm the deletion in a moda
 <summary>Sorting</summary>
 <br>
 
-![Sorting](/documentation/images/features/sorting.gif)
-
 Users are able to sort list for different options.
 
 - Tools: Top (Most votes) & Latest
 - Topics: Top (Most tools) & Abc (Alphabetically)
 - Contributors: Tools (Most Tools) & Votes (Most cumulated votes)
+
+![Sorting](/documentation/images/features/sorting.gif)
 
 </details>
 <br>
@@ -239,9 +244,9 @@ Users are able to sort list for different options.
 <summary>Username</summary>
 <br>
 
-![Registration](/documentation/images/features/registration.gif)
-
 The registration and the profile database modal have been changed in a way that only a valid email address is accepted as username instead of a string.<br>
+
+![Registration](/documentation/images/features/registration.png)
 
 </details>
 <br>
@@ -281,6 +286,29 @@ CRUD functionality is implemented with the following features:
   <br>
 
 #### Future Features
+
+For future development, the following featured can be of interest.
+
+**HTTP Only Cookie Based Tokens**
+At the moment, access tokens and refresh tokens are saved in the local storage. To increase the safety of the platform, tokens should be saves using HTTP only cookies.<br>
+
+**Social Auth**
+Users should be able to register and login by using a social authentication feature. Platforms for registration could be Google, LinkedIn and GitHub.<br>
+
+**Needed Materials**
+Every tool should have a list of all the materials needed to facilitate a workshop with the given tool.<br>
+
+**Multiple Step Instructions**
+The instructions of the tools should be separated in multiple steps. Users should be able to add, delete and rearrange steps.<br>
+
+**Uploading Images**
+For better visualization users should be able to upload images to their tool descriptions. For each step, multiple images should be possible.<br>
+
+**Commenting Comments**
+Users should be able to comment on comments of other users.<br>
+
+**Voting Comments**
+Users should be able to vote on other users comments. The votes should then have an effect on the sorting, with the best voted at the top.<br>
 
 ## Agile Project Management
 
@@ -498,6 +526,7 @@ During the development of this application, the following programs and tools hav
 - [Visual Studio Code](https://code.visualstudio.com/) (IDE - Integrated Development Environment)
 - [Figma](https://www.figma.com/) (Creating Mockups)
 - [dbdiagram.io](https://dbdiagram.io/) (Creating database visualization)
+- [Postman](https://www.postman.com/) (For API testing)
 - [Heroku](https://www.heroku.com/home) (Deployment of final application)
 - [Git](https://git-scm.com/) (Version control)
 - [GitHub](https://github.com/) (Used as cloud repository)
@@ -834,57 +863,59 @@ Test for the list of tools related to the profile are covered by the tests for t
 
 #### Possible Improvements
 
+**HTTP Only Cookie Tokens**
+At the moment, access tokens and refresh tokens are saved in the local storage. To increase the safety of the platform, tokens should be saves using HTTP only cookies.<br>
+
 **More Reusable Components**
 One possible improvement would be refactoring more components to be usable in multiple places within the application.<bt>
 
-Examples would be: - Tool elements in the lists for results and on the sidebar - Topics in main topics list and on the sidebar - Contributors in the main contributors list and on the sidebar
+Examples would be: - Tool elements in the lists for results and on the sidebar - Topics in the main topics list and on the sidebar - Contributors in the main contributors list and on the sidebar.<br>
 
-When trying to refactor components to be usable in multiple places, it should always be kept in mind to find the best solution so achieve desired outcome. A lot can be done with a lot of work and complexity that could be done more easily and maintainable when not trying to create the most advanced code.<br>
+When trying to refactor components to be usable in multiple places, it should always be kept in mind to find the best solution so achieve the desired outcome. A lot can be done with a lot of work and complexity that could be done more easily and maintainable when not trying to create the most advanced code.<br>
 
-**Improves Search**
-
-The search feature can be improved by not only searching for the title of a tool, but also search for author name or the topic of a tool.
+**Improved Search**
+The search feature can be improved by not only searching for the title of a tool, but also search for author name or the topic of a tool.<br>
 
 #### Issues During Development
 
-**(BE) 405 Get method now allowed**
+The following frontend related issues came up during development but where solved.
 
-When setting up the backend django rest framework and loading the API URLs using a browser, the PUT and POST views were showing the 405 method and stating, that I was doing a GET request<br>
-Nevertheless, I was able to create and update new entries.<br>
-This issue continues to happen, but I tried if calling the API using the frontend would lead to a flawless behavior.<br>
+**Localhost as baseURL on Heroku frontend**
 
-**(BE) 403 HTTP 403 Forbidden**
+Issue:<br>
+When initially deploying the backend and frontend on Heroku, the baseURL for the API in Vite was still set to the localhost of the local development computer. This caused issues when ever somebody else, not using the development computer, was using the app.<br>
 
-Message shown: "CSRF Failed: CSRF token missing"
+Solution:<br>
+Setting the baseURL variable in Heroku.<br>
 
-When using the Django Rest Framework API Frontend, Updating and Deleting of content is not possible. This might be due to the wrong authentication methode used.
-When using the API with JWT, everything works just finde.
+**Endless loading with expired refresh token**
 
-**Login with wrong credentials not showing error & not loading next page**
+Issue:<br>
+When the refresh token was expired and the page was reloaded, the frontend tried to get a new access token, but the backend returned a 401 error.<br>
+This lead to endless loading of various frontend components that didn't get the expected data from the API.<br>
 
-**Athentication token not deleting**
+Solution:<br>
+A function that checks for an expired refresh token and deletes all data from the local storage was implemented. This lead to a normal loading behavior again.<br>
 
-When testing the behavior of the access token and the authentication token, an error occurred. The tokens still worked after their lifetime, and blacklisting on refresh didn't work.
+**Login with wrong credentials not showing error & not loading next page (BE & FE)**
 
-**Localhost as baseURL on Heroku Frontend**
+Issue:<br>
+During the development, a modal was used to show the login form. When entering wrong credentials and pressing enter, the modal closed, and the home page was loaded.<br>
+Although the wrong login credentials were used, no error was retuned by the API and no error was shown in the login form, that itself disappeared with the closing of the modal.<br>
 
-When deploying the backend and frontend, the baseURL for the API in React was still set to the localhost of the local developmant computer. This caused issues when ever somebody else, not using the development computer, was using the app.
+Solution:<br>
+In the backend, the login view was updated and an error response for wrong login credentials was added.<br>
+In the frontend, the login modal was exchanged with a complete login page that can not close like a modal, when the form is submitted. Due to not closing the modal with the form, the newly created backend response was used for showing the expected error message.<br>
 
-**Endless loading when refresh token is expired**
+#### Known Unfixed Bugs
 
-When the refresh token was expired, the page tried to get a new access token but the backend returned a 401 error.
-A check for an expired refresh token was missing that deletes all data fram the local storage to enable normal loading again.
-
-#### Fixed Bugs
-
-#### Known Unfixes Bugs
+No bugs are know at the time of the project submission.
 
 ## Credits
 
-- All content was written and created by Dennis Schenkel.
-- Images were created with the help of DALL-E.
-  <br>
-  When trying to understand concepts and build this full-stack-application, an unlimited amount of Google searches were conducted and various sources like Stack Overflow, Reddit and the different documentations for Django, Bootstrap and React were used.
+- All content was written and created by Dennis Schenkel.<br>
+- Images were created with the help of DALL-E.<br>
+- When trying to understand concepts and build this full-stack-application, an unlimited amount of Google searches were conducted and various sources like Stack Overflow, Reddit and the different documentations for Django, Bootstrap and React were used.<br>
 
 ### Resources
 
