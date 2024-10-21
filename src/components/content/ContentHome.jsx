@@ -63,11 +63,14 @@ export default function ContentHome() {
     <>
       <div className="pb-3">
         <div className={`row ${styles["headline-row"]}`}>
-          <h1>Explore</h1>
+          <h1>Welcome to Session Minds!</h1>
         </div>
         <p>
-          Explore the latest and greatest tools and methods for your workshop
-          session.
+          <b>Explore the best tools</b> and methods for your workshop session.
+          <br /> <b>Share your knowledge</b> and experience with the community
+          by creating new tools.
+          <br /> <b>Join the conversation</b> by discussing tools with other
+          users.
         </p>
       </div>
       <div className="pb-4">

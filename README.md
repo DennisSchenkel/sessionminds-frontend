@@ -51,13 +51,13 @@ The idea for this project comes from real world experience and the struggle to f
 
 ## Use Case
 
-The Session Minds gives consultants, workshop facilitators and moderator an easy way to find the right method (called tools) for their upcoming workshop, team meeting or ideation session. To make exploring and finding the right solution easier, all tools are categorized and can be searched. Users can vote for tools, so that the list of tools can be sorted for the best rated ones.
+The Session Minds gives consultants, workshop facilitators and moderator an easy way to find the right method (called tools) for their upcoming workshop, team meeting or ideation session. To make exploring and finding the right solution easier, all tools are categorized and can be searched. Users can vote for tools, so that the list of tools can be sorted for the best rated ones.<br>
 
-For each tool, the users find all needed instructions and are able to comment on tools and start a discussion.
+For each tool, the users find all needed instructions and are able to comment on tools and start a discussion.<br>
 
-As an experienced facilitator, users can add new tools to the platform and build up a reputation as one of the best rated authors on the platform. All upvotes for an author's tools are summed up and show the overall amount of votes the author collected.
+As an experienced facilitator, users can add new tools to the platform and build up a reputation as one of the best rated authors on the platform. All upvotes for an author's tools are summed up and show the overall amount of votes the author collected.<br>
 
-Tools could easily be shared on platforms like LinkedIn and the authors can build up a reputation for themselves.
+Tools could easily be shared on platforms like LinkedIn and the authors can build up a reputation for themselves.<br>
 
 ## User Experience
 
@@ -65,9 +65,31 @@ Tools could easily be shared on platforms like LinkedIn and the authors can buil
 
 #### Color Scheme
 
+The color scheme for this project is very simple and based on only a handful of colors. The aim is to not distract the users from the content and produce an easy and good overview of all the functionalities.<br>
+
+- The main color is a variant of teal for the logo and links on the website. For a hover effect a slightly darker tone is used.
+
+- The second main color is the background in the header, with a light gray.
+
+- Further colors like blue and red are standard colors within the bootstrap framework and only appear very rarely.
+
+![Session Mind Colore Scheme](/documentation/images/sessionminds-colors.png)
+
 #### Imagery
 
+The logo was created using the SVGLogoMaker and is kept simple to not distract from the content. The mobile logo and favicon were created by manipulating the logo using Affinity Designer 2.<br>
+
+For the categories (topics) and tool icons, emojis were used as a simple and versatile way of creating open and fun imagery.<br>
+
+Images used as profile images for test purposes were created with ChatGPT and DALL-E 3.<br>
+
 #### Typography
+
+For this project, no special typography was used.<br>
+
+The font is the standard font of the used browser.<br>
+
+Only different font-size and boldness were used.<br>
 
 #### Wireframes
 
@@ -142,6 +164,87 @@ Right: Registration page<br>
 ### Features
 
 #### UX/UI
+
+In this section, I point out some of the more advanced or useful features of this application.<br>
+<br>
+
+<details>
+<summary>Search</summary>
+<br>
+
+![Search](/documentation/images/features/search.gif)
+
+The search feature enables users to find a specific tool fast. After conducting a search, the results are shown on a separate page.<br>
+
+</details>
+<br>
+
+<details>
+<summary>Emojis</summary>
+<br>
+
+![Emojis](/documentation/images/features/emojis.gif)
+
+When creating a new tool or creating an existing one, users have to select an Emoji as tool icon. For this feature the module "Emoji Picker React" was implemented.<br>
+
+</details>
+<br>
+
+<details>
+<summary>Voting</summary>
+<br>
+
+![Vote List View](/documentation/images/features/vote-list-view.gif)
+
+Users can vote and undo their vote in the tool list view where ever it is shown, but only if they are registered and logged in.<br>
+
+![Vote Details View](/documentation/images/features/vote-details-view.gif)
+
+Users can vote and undo their vote in the tools details view, but only if they are registered and logged in.<br>
+
+</details>
+<br>
+
+<details>
+<summary>Commenting</summary>
+<br>
+
+![Write Comment](/documentation/images/features/comment-create.gif)
+
+Users can comment on tools, but only if they have added first name and last name to their profile.<br>
+
+![Delete Comment](/documentation/images/features/comment-delete.gif)
+
+Users can delete their own comments. They have to confirm the deletion in a modal.<br>
+
+</details>
+<br>
+
+<details>
+<summary>Sorting</summary>
+<br>
+
+![Sorting](/documentation/images/features/sorting.gif)
+
+Users are able to sort list for different options.
+
+- Tools: Top (Most votes) & Latest
+- Topics: Top (Most tools) & Abc (Alphabetically)
+- Contributors: Tools (Most Tools) & Votes (Most cumulated votes)
+
+</details>
+<br>
+
+<details>
+<summary>Username</summary>
+<br>
+
+![Registration](/documentation/images/features/registration.gif)
+
+The registration and the profile database modal have been changed in a way that only a valid email address is accepted as username instead of a string.<br>
+
+</details>
+<br>
 
 #### CRUD
 
@@ -411,6 +514,7 @@ During the development of this application, the following programs and tools hav
 - [SVGLogoMaker.org](https://svglogomaker.org/) (Creating a simple logo)
 - [Cloudinary](https://cloudinary.com/) (As external hosting services for images)
 - [Website Mockup Generator](https://websitemockupgenerator.com/) (For creating a mockup of deployed application)
+- [Coolors](https://coolors.co/) (For creating a color palette)
 
 **Vite & React**
 
@@ -502,6 +606,8 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 <br>
 
 ### Component Reusability
+
+- Tool List Element in list for tools, specific topic, search results, author profile
 
 ### Testing
 
@@ -727,6 +833,17 @@ Test for the list of tools related to the profile are covered by the tests for t
 </details>
 
 #### Possible Improvements
+
+**More Reusable Components**
+One possible improvement would be refactoring more components to be usable in multiple places within the application.<bt>
+
+Examples would be: - Tool elements in the lists for results and on the sidebar - Topics in main topics list and on the sidebar - Contributors in the main contributors list and on the sidebar
+
+When trying to refactor components to be usable in multiple places, it should always be kept in mind to find the best solution so achieve desired outcome. A lot can be done with a lot of work and complexity that could be done more easily and maintainable when not trying to create the most advanced code.<br>
+
+**Improves Search**
+
+The search feature can be improved by not only searching for the title of a tool, but also search for author name or the topic of a tool.
 
 #### Issues During Development
 

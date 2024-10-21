@@ -35,19 +35,23 @@ export default function CommentListElement({ comment, onDeletingComment }) {
     <>
       <div className="row pb-5">
         <div className="col-auto">
-          <Image
-            src={comment.profile.image}
-            width={50}
-            height={50}
-            alt={`Profile image of ${comment.profile.first_name} ${comment.profile.last_name}`}
-            className="rounded-circle"
-          />
+          <Link to={`/profile/${comment.profile.slug}`}>
+            <Image
+              src={comment.profile.image}
+              width={50}
+              height={50}
+              alt={`Profile image of ${comment.profile.first_name} ${comment.profile.last_name}`}
+              className="rounded-circle"
+            />
+          </Link>
         </div>
         <div className="col-auto">
           <div className="pt-1 pb-2">
-            <h4>
-              {comment.profile.first_name} {comment.profile.last_name}
-            </h4>
+            <Link to={`/profile/${comment.profile.slug}`}>
+              <h4>
+                {comment.profile.first_name} {comment.profile.last_name}
+              </h4>
+            </Link>
             <span className={`${styles["list-item-desc-misc"]}`}>
               {comment.created_at}
             </span>
