@@ -1,5 +1,64 @@
 # Session Minds Frontend Documentation
 
+## Introduction
+
+Code Institute - Portfolio Project 5 - Advanced Frontend with React<br>
+
+The developed application of this project is called Session Minds and acts as a platform, where users can find and share the best tools and methods for running work related workshops, meetings or other actions to be more motivated, productive and efficient. The target group for this platform is people working in the consulting industry, workshop facilitators and moderators.<br>
+
+The idea for this project comes from real world experience and the struggle to find the best method or tool for conducting workshops with clients to solve their problems as best as possible.<br>
+
+## Table of Contents
+
+- [Introduction](#introduction)
+
+- [Use Case](#use-case)
+- [User Experience](#user-experience)
+  - [Design](#design)
+    - [Color Scheme](#color-scheme)
+    - [Imagery](#imagery)
+    - [Typography](#typography)
+    - [Wireframes](#wireframes)
+  - [Features](#features)
+    - [UX/UI](#ux/ui)
+    - [CRUD](#crud)
+    - [Future Features](#future-features)
+- [Agile Project Management](#agile-project-management)
+  - [Naming Conventions](#naming-conventions)
+  - [Milestones, User Stories & Tasks](#milestones-user-storie--tasks)
+- [Development](#development)
+  - [Database](#database)
+  - [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Frameworks](#frameworks)
+    - [Modules, Libraries & Plugins](#mudules-libraries--plugins)
+    - [Programs & Tools](#programs--tools)
+  - [Deployment](#deployment)
+    - [Version Control](#version-control)
+    - [Cloudinary](#cloudinary)
+    - [Heroku Deployment](#heroku-deployment)
+  - [Component Reusability](#component-reusability)
+  - [Testing](#testing)
+    - [Validator Testing](#validator-testing)
+    - [Manual Testing](#manual-testing)
+    - [Possible Improvements](#possible-improvments)
+    - [Issues During Development](#issues-during-development)
+    - [Fixed Bugs](#fixed-bugs)
+    - [Known Unfixes Bugs](#known-unfixed-bugs)
+- [Credits](#credits)
+  - [Resources](#resources)
+  - [Acknowledgements](#acknowledgements)
+
+## Use Case
+
+The Session Minds gives consultants, workshop facilitators and moderator an easy way to find the right method (called tools) for their upcoming workshop, team meeting or ideation session. To make exploring and finding the right solution easier, all tools are categorized and can be searched. Users can vote for tools, so that the list of tools can be sorted for the best rated ones.
+
+For each tool, the users find all needed instructions and are able to comment on tools and start a discussion.
+
+As an experienced facilitator, users can add new tools to the platform and build up a reputation as one of the best rated authors on the platform. All upvotes for an author's tools are summed up and show the overall amount of votes the author collected.
+
+Tools could easily be shared on platforms like LinkedIn and the authors can build up a reputation for themselves.
+
 ## User Experience
 
 ### Design
@@ -10,7 +69,7 @@
 
 #### Typography
 
-#### Mockups
+#### Wireframes
 
 <details>
 <summary>Home</summary>
@@ -126,7 +185,7 @@ This project was developed using an agile approach for structuring backend and f
 <br>
 Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
-### Naming Conventions\*\*
+### Naming Conventions
 
 For naming conventions, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.<br>
 <br>
@@ -312,7 +371,7 @@ The following frameworks have been used.<br>
 - [React Bootstrap](https://react-bootstrap.netlify.app/)
 - [FontAwesome](https://fontawesome.com/)
 
-#### Modules & Libraries & Plugins
+#### Modules, Libraries & Plugins
 
 - AllAuth (For user uthentication)
 - Black (Code formatter for Python)
@@ -442,7 +501,11 @@ For using Cloudinary as a hosting provider for images, the following steps have 
 [The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
 <br>
 
+### Component Reusability
+
 ### Testing
+
+#### Validator Testing
 
 #### Manuel Testing
 
@@ -663,7 +726,9 @@ Test for the list of tools related to the profile are covered by the tests for t
 
 </details>
 
-### Issues During Development
+#### Possible Improvements
+
+#### Issues During Development
 
 **(BE) 405 Get method now allowed**
 
@@ -692,6 +757,10 @@ When deploying the backend and frontend, the baseURL for the API in React was st
 
 When the refresh token was expired, the page tried to get a new access token but the backend returned a 401 error.
 A check for an expired refresh token was missing that deletes all data fram the local storage to enable normal loading again.
+
+#### Fixed Bugs
+
+#### Known Unfixes Bugs
 
 ## Credits
 
