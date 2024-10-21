@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../api/axiosDefault";
 
-import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,

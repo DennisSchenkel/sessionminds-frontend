@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Form } from "react-bootstrap";
-import { Alert } from "react-bootstrap";
-import { useContext, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import { UserContext } from "../../context/UserContext";
 
 import axios from "../../api/axiosDefault";

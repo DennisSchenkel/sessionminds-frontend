@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Button, Image, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
 import ToolsListItem from "../../components/tools/ToolsListItem";
+
 import axios from "../../api/axiosDefault";
 
 export default function Profile() {

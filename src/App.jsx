@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import styles from "./App.module.css";
 import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";

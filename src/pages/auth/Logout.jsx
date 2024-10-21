@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import Alert from "react-bootstrap/Alert";
 import axios from "../../api/axiosDefault";
 
 export default function Logout() {

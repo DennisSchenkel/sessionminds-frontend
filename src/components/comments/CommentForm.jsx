@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+
 import axiosInstance from "../../api/axiosDefault";
 
 export default function CommentForm({ toolId, onAddingComment }) {

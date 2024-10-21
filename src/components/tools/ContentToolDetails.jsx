@@ -1,12 +1,13 @@
 import styles from "../tools/Tools.module.css";
-import { useEffect, useState, useContext, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState, useContext, useCallback } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
-import { Modal, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import CommentForm from "../comments/CommentForm";
 import CommentListElement from "../comments/CommentListElement";
 

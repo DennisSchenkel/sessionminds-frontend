@@ -1,12 +1,12 @@
 import styles from "../content/Content.module.css";
-import axios from "../../api/axiosDefault";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import EmojiPicker, { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
-import { Form, Button } from "react-bootstrap";
-import EmojiPicker from "emoji-picker-react";
-import { Emoji } from "emoji-picker-react";
+
+import axios from "../../api/axiosDefault";
 
 export default function ContentToolEditor() {
   // Get the tool ID from the URL

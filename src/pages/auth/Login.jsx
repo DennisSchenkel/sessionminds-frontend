@@ -1,7 +1,9 @@
-// Login.jsx
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form, Alert } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import { UserContext } from "../../context/UserContext";
 
 export default function Login() {

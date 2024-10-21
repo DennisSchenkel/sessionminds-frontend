@@ -1,8 +1,10 @@
 import styles from "../../assets/styles/ItemList.module.css";
-import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+
 import axiosInstance from "../../api/axiosDefault";
 
 export default function CommentListElement({ comment, onDeletingComment }) {

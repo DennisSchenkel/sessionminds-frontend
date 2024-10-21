@@ -1,12 +1,13 @@
 import styles from "../../assets/styles/ItemList.module.css";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { useEffect, useState, useContext, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { Emoji } from "emoji-picker-react";
-import { useEffect, useState, useContext, useCallback } from "react";
 import { UserContext } from "../../context/UserContext";
-import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
 
 import axios from "../../api/axiosDefault";
 

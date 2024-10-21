@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Alert, Container, Image } from "react-bootstrap";
-import { useContext } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import { UserContext } from "../../context/UserContext";
+
 import axios from "../../api/axiosDefault";
 
 export default function ProfileEditor() {

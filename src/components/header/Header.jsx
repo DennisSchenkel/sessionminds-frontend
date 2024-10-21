@@ -1,17 +1,15 @@
 import styles from "./Header.module.css";
-import {
-  Form,
-  Button,
-  Image,
-  Dropdown,
-  InputGroup,
-  Offcanvas,
-} from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { UserContext } from "../../context/UserContext";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Dropdown from "react-bootstrap/Dropdown";
+import InputGroup from "react-bootstrap/InputGroup";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 import Logout from "../../pages/auth/Logout";
 import logo from "../../assets/images/logo.svg";
 import favicon from "../../assets/images/favicon.svg";
