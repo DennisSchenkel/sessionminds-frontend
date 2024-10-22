@@ -910,7 +910,7 @@ Test for the list of tools related to the profile are covered by the tests for t
 </details>
 
 <details>
-<summary>Login & Registration</summary>
+<summary>Login, Logout & Registration</summary>
 <br>
 
 | **Test**   | **Description**                                                 | **Expected Outcome**                                    | **Result** |
@@ -922,6 +922,14 @@ Test for the list of tools related to the profile are covered by the tests for t
 | Login test | Entering wrong password into login form and pressing login      | Error is shown "Invalid credentials, please try again." | Pass       |
 | Login test | Entering no username into login form and pressing login         | Validator hint to fill form field is shown              | Pass       |
 | Login test | Entering no password into login form and pressing login         | Validator hint to fill form field is shown              | Pass       |
+
+<br>
+
+| **Test**    | **Description**                                     | **Expected Outcome**                                                                         | **Result** |
+| ----------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------- |
+| **Logout**  |                                                     |                                                                                              |            |
+| ---         | ---                                                 | ---                                                                                          | ---        |
+| Logout test | Loggin out by clicking "Logout" in the profile menu | User gets logged out, tokens are deleted from local storage and redicrected to the home page | Pass       |
 
 <br>
 
