@@ -332,9 +332,8 @@ The final structure looks like this:<br>
 
 <details>
 <summary>MS-D Documentation</summary>
-
-This milestone contains everything related to the final documentation.<br>
 <br>
+This milestone contains everything related to the final documentation.<br>
 
 [(MS-D) Documentation](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/8)(Milestone)
 
@@ -344,9 +343,8 @@ This milestone contains everything related to the final documentation.<br>
 
 <details>
 <summary>MS-0 Setup</summary>
-
-This milestone contains all user stories and tasks related to the initial setup and settings.<br>
 <br>
+This milestone contains all user stories and tasks related to the initial setup and settings.<br>
 
 [(MS-0) Setup](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/1)(Milestone)
 
@@ -364,9 +362,8 @@ This milestone contains all user stories and tasks related to the initial setup 
 
 <details>
 <summary>MS-1 Profiles</summary>
-
-This milestone contains all user stories and tasks related to user profiles.<br>
 <br>
+This milestone contains all user stories and tasks related to user profiles.<br>
 
 [(MS-1) Profile](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/2)(Milestone)
 
@@ -386,9 +383,8 @@ This milestone contains all user stories and tasks related to user profiles.<br>
 
 <details>
 <summary>MS-2 Topics</summary>
-
-This milestone contains all user stories and tasks related to the categories/topics.<br>
 <br>
+This milestone contains all user stories and tasks related to the categories/topics.<br>
 
 [(MS-2) Topics](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/4)(Milestone)
 
@@ -404,9 +400,8 @@ This milestone contains all user stories and tasks related to the categories/top
 
 <details>
 <summary>MS-3 Tools</summary>
-
-This milestone contains all user stories and tasks related to tools.<br>
 <br>
+This milestone contains all user stories and tasks related to tools.<br>
 
 [(MS-3) Tools](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/3)(Milestone)
 
@@ -428,9 +423,8 @@ This milestone contains all user stories and tasks related to tools.<br>
 
 <details>
 <summary>MS-4 Votes</summary>
-
-This milestone contains all user stories and tasks related to the voting system.<br>
 <br>
+This milestone contains all user stories and tasks related to the voting system.<br>
 
 [(MS-4) Votes](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/5)(Milestone)
 
@@ -446,9 +440,8 @@ This milestone contains all user stories and tasks related to the voting system.
 
 <details>
 <summary>MS-5 Comments</summary>
-
-This milestone contains all user stories and tasks related to the commenting system.<br>
 <br>
+This milestone contains all user stories and tasks related to the commenting system.<br>
 
 [(MS-5) Comments](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/6)(Milestone)
 
@@ -462,9 +455,8 @@ This milestone contains all user stories and tasks related to the commenting sys
 
 <details>
 <summary>MS-6 Search</summary>
-
-This milestone contains all user stories and tasks related to the search functionality.<br>
 <br>
+This milestone contains all user stories and tasks related to the search functionality.<br>
 
 [(MS-6) Search](https://github.com/DennisSchenkel/sessionminds-frontend/milestone/7)(Milestone)
 
@@ -480,14 +472,11 @@ This milestone contains all user stories and tasks related to the search functio
 
 ## Development
 
-### Database
-
 ### Technologies Used
 
 #### Languages
 
 The following languages have been used.<br>
-<br>
 
 - HTML
 - CSS
@@ -496,7 +485,6 @@ The following languages have been used.<br>
 #### Frameworks
 
 The following frameworks have been used.<br>
-<br>
 
 - [Bootstrap](https://getbootstrap.com/)
 - [React Bootstrap](https://react-bootstrap.netlify.app/)
@@ -505,7 +493,6 @@ The following frameworks have been used.<br>
 #### Modules, Libraries & Plugins
 
 The following modules, libraries and plugins have been used.<br>
-<br>
 
 - [Axios](https://axios-http.com/) (For API request handling)
 - [Emoji Picker React (v4)](https://www.npmjs.com/package/emoji-picker-react?activeTab=readme) (For Emoji selection in forms)
@@ -679,6 +666,14 @@ The application passed the WC3 CSS Validator without errors.<br>
 </details>
 
 <details>
+<summary>JS Validator</summary>
+<br>
+ESLint was used during the entire development and all issues were fixed as they came up. No further issues or errors are known.<br>
+
+<br>
+</details>
+
+<details>
 <summary>Lighthouse Desktop</summary>
 <br>
 
@@ -791,6 +786,19 @@ The issue with bad performance of the tool editor stems from the used module for
 
 <br>
 
+| **Test**                | **Description**                                                    | **Expected Outcome**                                                                                                      | **Result** |
+| ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Tools Editor**        |                                                                    |                                                                                                                           |            |
+| ---                     | ---                                                                | ---                                                                                                                       | ---        |
+| Start editing tool      | Clicking "Edit tool" button as owner at tool view                  | When logged in and visiting a tool as its owner, the "Edit tool" button is shown and when clicked, the tool editor loads  | Pass       |
+| Save changes            | Making changes to an existing tool and saving them                 | When saving changes to a tool, the tool detail page of the changed tool loads again and the changes are visible           | Pass       |
+| Field validation        | When creating or editing a tool, one or more form fields are empty | When letting a form field empty and saving the tool, an error is shown at the form field.                                 | Pass       |
+| Selecting Emoji icon    | Selecting an Emoji as tool icon in the editor form                 | When clicking on a Emoji, the selected Emoji is shown on the right side of the Emoji Picker with e delete button under it | Pass       |
+| Deleting Emoji icon     | Deleting the selected Emoji                                        | When clicking on the delete button under the selected Emojo, the Emoji disappears and is no longer selected               | Pass       |
+| Selecting no Emoji icon | Selecting no Emoji as tool icon                                    | When no Emoji is selected and the form is saved, a default icon is set                                                    | Pass       |
+
+<br>
+
 | **Test**                        | **Description**                                  | **Expected Outcome**                                                       | **Result** |
 | ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------- | ---------- |
 | **Tools Features Logged Out**   |                                                  |                                                                            |            |
@@ -816,27 +824,19 @@ The issue with bad performance of the tool editor stems from the used module for
 | Comment count in list view      | Comment count changing in list view when new comment is posted or old comment is deleted | When the amount of comments for a tool changes, the comment count in list view changes on next load                           | Pass       |
 
 <br>
-
-| **Test**                             | **Description** | **Expected Outcome** | **Result** |
-| ------------------------------------ | --------------- | -------------------- | ---------- |
-| **Tools Editor**                     |                 |                      |            |
-| ---                                  | ---             | ---                  | ---        |
-| Clicking "Edit tool" button as owner |                 |                      | Pass       |
-
-<br>
 </details>
 
 <details>
 <summary>Topic</summary>
 <br>
 
-| **Test**                  | **Description**                                                              | **Expected Outcome**                                                                         | **Result** |
-| ------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------- |
-| **Topics List Page**      |                                                                              |                                                                                              |            |
-| ---                       | ---                                                                          | ---                                                                                          | ---        |
-| Sorting list by "Abc"     |                                                                              |                                                                                              | Pass       |
-| Sorting list by "Top"     |                                                                              |                                                                                              | Pass       |
-| Navigate using pagination | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads | Pass       |
+| **Test**                  | **Description**                                                              | **Expected Outcome**                                                                                              | **Result** |
+| ------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Topics List Page**      |                                                                              |                                                                                                                   |            |
+| ---                       | ---                                                                          | ---                                                                                                               | ---        |
+| Sorting list by "Abc"     | Sorting the list of topics by alphabetical order                             | When clicking in "Abc" filter, the list reloads and results are sorted alphabetically                             | Pass       |
+| Sorting list by "Top"     | Sorting the list of topics by the amount of tools                            | When clicking in "Top" filter, the list reloads and results are sorted with topics with the most tools at the top | Pass       |
+| Navigate using pagination | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads                      | Pass       |
 
 <br>
 
@@ -850,14 +850,14 @@ Tests for this page is covered by the tests for the "Tools List Page" since it u
 <summary>Contributors</summary>
 <br>
 
-| **Test**                        | **Description**                                                              | **Expected Outcome**                                                                         | **Result** |
-| ------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------- |
-| **Contributors List Page**      |                                                                              |                                                                                              |            |
-| ---                             | ---                                                                          | ---                                                                                          | ---        |
-| Visiting profile of contributor |                                                                              |                                                                                              | Pass       |
-| Sorting list by "Votes"         |                                                                              |                                                                                              | Pass       |
-| Sorting list by "Tools"         |                                                                              |                                                                                              | Pass       |
-| Navigate using pagination       | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads | Pass       |
+| **Test**                        | **Description**                                                              | **Expected Outcome**                                                                                                         | **Result** |
+| ------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Contributors List Page**      |                                                                              |                                                                                                                              |            |
+| ---                             | ---                                                                          | ---                                                                                                                          | ---        |
+| Visiting profile of contributor | Going to the profile of a contributor                                        | When clicking on a contributor in the list, the profile page of the selected contributor loads                               | Pass       |
+| Sorting the list by "Votes"     | Sorting the list of contributors by the amount of accumulated votes          | When clicking in "Votes" filter, the list reloads and results are sorted with the contributor with the most votes at the top | Pass       |
+| Sorting the list by "Tools"     | Sorting the list of contributors by the amount of created tools              | When clicking in "Tools" filter, the list reloads and results are sorted with the contributor with the most tools at the top | Pass       |
+| Navigate using pagination       | Navigating the different pages by using navigation on the bottom of the list | When selecting a specific page of the pagination list at the bottom, the selected page loads                                 | Pass       |
 
 <br>
 </details>
@@ -866,21 +866,34 @@ Tests for this page is covered by the tests for the "Tools List Page" since it u
 <summary>Profile</summary>
 <br>
 
-| **Test**                                  | **Description** | **Expected Outcome** | **Result** |
-| ----------------------------------------- | --------------- | -------------------- | ---------- |
-| **Profile Page**                          |                 |                      |            |
-| ---                                       | ---             | ---                  | ---        |
-| Clicking "Delete profile" button as owner |                 |                      | Pass       |
+| **Test**                      | **Description**                                              | **Expected Outcome**                                                               | **Result** |
+| ----------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------- |
+| **Profile Page**              |                                                              |                                                                                    |            |
+| ---                           | ---                                                          | ---                                                                                | ---        |
+| Deleting the profile as owner | Deleting the profile by clicking the "Delete profile" button | When clicking the "Delete profile" button, a confirmation modal opens              | Pass       |
+| Confirm deletion as owner     | Confirming the deletion in the modal                         | When clicking the "Delete Profile!" button in the modal, the profile gets deleted  | Pass       |
+| Social media links            | Clicking on the social media links of the profile            | When clicking on one of the social media links, the linked page opens in a new tab | Pass       |
 
+<br>
 Test for the list of tools related to the profile are covered by the tests for the "Tools List Page" since it uses the same component.
 
 <br>
 
-| **Test**                                | **Description** | **Expected Outcome** | **Result** |
-| --------------------------------------- | --------------- | -------------------- | ---------- |
-| **Profile Editor**                      |                 |                      |            |
-| ---                                     | ---             | ---                  | ---        |
-| Clicking "Edit profile" button as owner |                 |                      | Pass       |
+| **Test**                                | **Description**                                                   | **Expected Outcome**                                                                                | **Result** |
+| --------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------- |
+| **Profile Editor**                      |                                                                   |                                                                                                     |            |
+| ---                                     | ---                                                               | ---                                                                                                 | ---        |
+| Navigate to profile editor              | Going to the profile editor by clicking the "Edit profile" button | When clicking the "Edit profile" button, the profile editor with the user's information loads       | Pass       |
+| Saving profile changes                  | Saving changes made to the profile                                | When clicking the "Save Profile" button, the profile of the user loads and the changes are shown    | Pass       |
+| Saving profile without first name       | Saving profile without first name entered                         | When clicking the "Save Profile" button, a warning is shown to fill in the "First Name" field       | Pass       |
+| Saving profile without last name        | Saving profile without last name entered                          | When clicking the "Save Profile" button, a warning is shown to fill in the "Last Name" field        | Pass       |
+| Saving profile without first name       | Saving profile without first name entered                         | When clicking the "Save Profile" button, a warning is shown to fill in the "First Name" field       | Pass       |
+| Selecting wrong data type               | Selecting a file with the wrong data type as profile image        | When trying to select a file type that is not allowed, the file browser doesn't allow the selection | Pass       |
+| Image file size to big                  | Selecting a file with a size of more then 2MB                     | When trying to select a file larger then 2MB a warning is shown                                     | Pass       |
+| Form field "Job Title" empty            | Letting the "Job Title" form field emtpy                          | Profile can be saved                                                                                | Pass       |
+| Form field "Profile Description" empty  | Letting the "Profile Description" form field emtpy                | Profile can be saved                                                                                | Pass       |
+| Form field "Profile Description" empty  | Letting the "Profile Description" form field emtpy                | Profile can be saved                                                                                | Pass       |
+| Form field for social media links empty | Letting the social media form field emtpy                         | Profile can be saved                                                                                | Pass       |
 
 <br>
 </details>

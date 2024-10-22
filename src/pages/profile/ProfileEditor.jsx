@@ -180,6 +180,7 @@ export default function ProfileEditor() {
           <Form.Control
             type="text"
             name="first_name"
+            maxLength="30"
             value={profileData.first_name}
             onChange={handleChange}
             placeholder="Enter your first name"
@@ -200,6 +201,7 @@ export default function ProfileEditor() {
           <Form.Control
             type="text"
             name="last_name"
+            maxLength="30"
             value={profileData.last_name}
             onChange={handleChange}
             placeholder="Enter your last name"
@@ -218,6 +220,7 @@ export default function ProfileEditor() {
           <Form.Control
             type="text"
             name="job_title"
+            maxLength="50"
             value={profileData.job_title}
             onChange={handleChange}
             placeholder="Enter your job title"
@@ -234,6 +237,7 @@ export default function ProfileEditor() {
           <Form.Label>Profile Description</Form.Label>
           <Form.Control
             as="textarea"
+            maxLength="350"
             rows={3}
             name="profile_description"
             value={profileData.profile_description}

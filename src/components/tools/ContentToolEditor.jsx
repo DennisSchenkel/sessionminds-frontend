@@ -9,22 +9,20 @@ import { UserContext } from "../../context/UserContext";
 import axios from "../../api/axiosDefault";
 
 export default function ContentToolEditor() {
-  // Get the tool ID from the URL
+  // Navigation und Parameter
   const navigate = useNavigate();
-
-  // Get the tool ID from the URL
   const { id } = useParams();
-  // Get the user context
+
+  // Kontext und Zustände
   const { user } = useContext(UserContext);
-
-  // Tool state
   const [is_owner, setIsOwner] = useState(false);
-  // Topic state
   const [topics, setTopics] = useState([]);
-  // Emoji state
   const [emoji, setEmoji] = useState(null);
+  const [validated, setValidated] = useState(false); // Validator-Zustand
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Tool state with default values
+  // Tool-Zustand mit Standardwerten
   const [tool, setTool] = useState({
     title: "",
     topic_id: "",
@@ -34,18 +32,12 @@ export default function ContentToolEditor() {
     icon: "26aa",
   });
 
-  // Loading states
-  const [loading, setLoading] = useState(true);
-  // Error state
-  const [error, setError] = useState(null);
-
-  // Number of items per page
+  // Anzahl der Elemente pro Seite
   const itemsPerPage = 100;
 
-  // Fetch topics and existing tool
+  // Daten abrufen
   useEffect(() => {
     const getTopics = async () => {
-      // Fetch topics
       try {
         const unsortedResponse = await axios.get("/topics/", {
           params: {
@@ -57,7 +49,6 @@ export default function ContentToolEditor() {
         );
         setTopics(response);
         setLoading(false);
-        // Handle errors
       } catch (error) {
         setError("Failed to load topics.");
         setLoading(false);
@@ -65,15 +56,11 @@ export default function ContentToolEditor() {
     };
     getTopics();
 
-    // Fetch existing tool or create a new one
     const getExistingToolOrCreateNew = async () => {
-      // Fetch existing tool
       if (id) {
-        // Fetch existing tool
         try {
           const existingTool = await axios.get(`/tools/${id}`);
           setIsOwner(existingTool.data.is_owner);
-          // Check if the user is the owner of the tool
           if (existingTool.data.is_owner) {
             setTool({
               title: existingTool.data.title,
@@ -85,11 +72,9 @@ export default function ContentToolEditor() {
             });
             setEmoji(existingTool.data.icon);
           }
-          // Handle errors
         } catch (error) {
           setError("Failed to load tool.");
         }
-        // Create a new tool
       } else {
         setTool({
           title: "",
@@ -104,7 +89,7 @@ export default function ContentToolEditor() {
     getExistingToolOrCreateNew();
   }, [id, user]);
 
-  // Handle emoji click
+  // Emoji-Auswahl-Handler
   const onEmojiClick = (emojiData) => {
     setEmoji(emojiData.unified);
     setTool((prevTool) => ({
@@ -113,56 +98,61 @@ export default function ContentToolEditor() {
     }));
   };
 
-  // Handle form submission
+  // Formular-Submit-Handler mit Validator
   const handleSubmit = (event) => {
+    const form = event.currentTarget;
     event.preventDefault();
-    // Check if the user is the owner of the tool
-    if (id && is_owner) {
-      axios
-        .put(`/tools/${id}/`, tool)
-        .then((response) => {
-          navigate(`/tools/${response.data.slug}`, {
-            state: {
-              message: `${tool.title} was updated successfully!`,
-              variant: "success",
-            },
-          });
-        })
-        .catch((error) => {
-          setError(error.response.data);
-        });
-      // Create a new tool
+
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
     } else {
-      axios
-        .post("/tools/", tool)
-        .then((response) => {
-          navigate(`/tools/${response.data.slug}`, {
-            state: {
-              message: `${tool.title} was created successfully!`,
-              variant: "success",
-            },
+      if (id && is_owner) {
+        axios
+          .put(`/tools/${id}/`, tool)
+          .then((response) => {
+            navigate(`/tools/${response.data.slug}`, {
+              state: {
+                message: `${tool.title} was updated successfully!`,
+                variant: "success",
+              },
+            });
+          })
+          .catch((error) => {
+            setError(error.response.data);
           });
-        })
-        .catch((error) => {
-          setError(error.response.data);
-        });
+      } else {
+        axios
+          .post("/tools/", tool)
+          .then((response) => {
+            navigate(`/tools/${response.data.slug}`, {
+              state: {
+                message: `${tool.title} was created successfully!`,
+                variant: "success",
+              },
+            });
+          })
+          .catch((error) => {
+            setError(error.response.data);
+          });
+      }
     }
+
+    setValidated(true);
   };
 
-  // Display loading message
+  // Rendering loading and error
   if (loading) return <p>Loading...</p>;
-  // Display error message
   if (error) return <p>{error}</p>;
 
-  // Display the tool editor
+  // Rendering des F
   return (
     <>
       <div className={`${styles["headline-row"]} mb-4`}>
         <h1>Tools</h1>
         <p>Here you can create a new tool or edit an existing one.</p>
       </div>
-      <Form>
-        {/* Title */}
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        {/* Titel */}
         <Form.Group className="mb-4" controlId="TitleInput">
           <Form.Label className={`${styles["editor-title"]}`}>Title</Form.Label>
           <Form.Control
@@ -176,6 +166,9 @@ export default function ContentToolEditor() {
             }
             value={tool.title}
           />
+          <Form.Control.Feedback type="invalid">
+            Please provide a title.
+          </Form.Control.Feedback>
         </Form.Group>
 
         {/* Topic */}
@@ -190,12 +183,16 @@ export default function ContentToolEditor() {
             }
             value={tool.topic_id}
           >
+            <option value="">Select a topic</option>
             {topics.map((topic) => (
               <option key={topic.id} value={topic.id}>
                 {topic.title}
               </option>
             ))}
           </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            Please select a topic.
+          </Form.Control.Feedback>
         </Form.Group>
 
         {/* Icon */}
@@ -205,7 +202,7 @@ export default function ContentToolEditor() {
             <div className="col pb-3">
               <EmojiPicker
                 onEmojiClick={onEmojiClick}
-                skinTonesDisabled="false"
+                skinTonesDisabled={false}
                 height={500}
                 width="100%"
                 aria-label="Tool Icon"
@@ -228,10 +225,10 @@ export default function ContentToolEditor() {
           </div>
         </Form.Group>
 
-        {/* Short-Description */}
+        {/* Kurzbeschreibung */}
         <Form.Group className="mb-4" controlId="Textarea1">
           <Form.Label className={`${styles["editor-title"]}`}>
-            Short-Description
+            Short Description
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -245,9 +242,12 @@ export default function ContentToolEditor() {
             }
             value={tool.short_description}
           />
+          <Form.Control.Feedback type="invalid">
+            Please provide a short description.
+          </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Full-Description */}
+        {/* Vollständige Beschreibung */}
         <Form.Group className="mb-4" controlId="Textarea2">
           <Form.Label className={`${styles["editor-title"]}`}>
             Description
@@ -264,9 +264,12 @@ export default function ContentToolEditor() {
             }
             value={tool.full_description}
           />
+          <Form.Control.Feedback type="invalid">
+            Please provide a description.
+          </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Instructions */}
+        {/* Anweisungen */}
         <Form.Group className="mb-4" controlId="Textarea3">
           <Form.Label className={`${styles["editor-title"]}`}>
             Instructions
@@ -283,14 +286,12 @@ export default function ContentToolEditor() {
             }
             value={tool.instructions}
           />
+          <Form.Control.Feedback type="invalid">
+            Please provide instructions.
+          </Form.Control.Feedback>
         </Form.Group>
 
-        <Button
-          variant="primary"
-          type="submit"
-          aria-label="Save Tool"
-          onClick={handleSubmit}
-        >
+        <Button variant="primary" type="submit" aria-label="Save Tool">
           Save Tool
         </Button>
       </Form>
