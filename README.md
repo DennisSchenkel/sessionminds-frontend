@@ -942,6 +942,9 @@ Test for the list of tools related to the profile are covered by the tests for t
 **HTTP Only Cookie Tokens**
 At the moment, access tokens and refresh tokens are saved in the local storage. To increase the safety of the platform, tokens should be saves using HTTP only cookies.<br>
 
+**Using different Emoji Picker**
+The currently used Emoji Picker is effecting the performance of the tool editor dramatically. For further development, a more lightweight Emoji Picker should be implemented<br>
+
 **More Reusable Components**
 One possible improvement would be refactoring more components to be usable in multiple places within the application.<bt>
 
