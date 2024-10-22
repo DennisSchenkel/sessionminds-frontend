@@ -12,6 +12,8 @@ The idea for this project comes from real world experience and the struggle to f
 
 [Documentation for the Backend with API can be found here!](https://github.com/DennisSchenkel/sessionminds-backend)
 
+![Website Mockup](/documentation/images/mockup.png)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -24,12 +26,12 @@ The idea for this project comes from real world experience and the struggle to f
     - [Typography](#typography)
     - [Wireframes](#wireframes)
   - [Features](#features)
-    - [UX/UI](#ux/ui)
+    - [UX/UI](#uxui)
     - [CRUD](#crud)
     - [Future Features](#future-features)
 - [Agile Project Management](#agile-project-management)
   - [Naming Conventions](#naming-conventions)
-  - [Milestones, User Stories & Tasks](#milestones-user-storie--tasks)
+  - [Milestones, User Stories & Tasks](#milestones-user-stories--tasks)
 - [Development](#development)
   - [Database](#database)
   - [Technologies Used](#technologies-used)
@@ -45,7 +47,7 @@ The idea for this project comes from real world experience and the struggle to f
   - [Testing](#testing)
     - [Validator Testing](#validator-testing)
     - [Manual Testing](#manual-testing)
-    - [Possible Improvements](#possible-improvments)
+    - [Possible Improvements](#possible-improvements)
     - [Issues During Development](#issues-during-development)
     - [Known Unfixed Bugs](#known-unfixed-bugs)
 - [Credits](#credits)
@@ -513,13 +515,11 @@ During the development of this application, the following programs and tools hav
 - [Git](https://git-scm.com/) (Version control)
 - [GitHub](https://github.com/) (Used as cloud repository)
 - [CI Postgres Database](https://dbs.ci-dbs.net/) (Used for database hosting)
-- [CI Python Linter](https://pep8ci.herokuapp.com/) (Python testing)
-- [JSHint](https://jshint.com/) (JavaScript testing)
+- [ESLint](https://eslint.org/) (JavaScript testing)
 - [W3C HTML Validator](https://validator.w3.org/) (HTML testing)
 - [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) (CSS testing)
 - [Lighthouse](https://lighthouse-metrics.com/) (Testing of Performance, Accessibility, Best Practices and SEO)
 - [Google Chrome Dev Tools](https://developer.chrome.com/) (Working with console and HTML output)
-- [Flake8](https://flake8.pycqa.org/en/latest/) (Formatting support for Python)
 - [Affinity Design 2](https://affinity.serif.com/de/designer/) (Image editing)
 - [DALL-E 3](https://openai.com/index/dall-e-3/) (For generating profile images)
 - [SVGLogoMaker.org](https://svglogomaker.org/) (Creating a simple logo)
@@ -992,13 +992,12 @@ No bugs are know at the time of the project submission.
 
 ## Credits
 
-- All content was written and created by Dennis Schenkel.<br>
-- Images were created with the help of DALL-E.<br>
-- When trying to understand concepts and build this full-stack-application, an unlimited amount of Google searches were conducted and various sources like Stack Overflow, Reddit and the different documentations for Django, Bootstrap and React were used.<br>
-
 ### Resources
 
-To give topics unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)
+- All content was written and created by Dennis Schenkel.<br>
+- Images were created with the help of DALL-E.<br>
+- To give topics unique icons, emojis have been used. A great resource for finding the correct code was [prosettings.com](https://www.prosettings.com/emoji-list/)<br>
+- When trying to understand concepts and build this full-stack-application, an unlimited amount of Google searches were conducted and various sources like Stack Overflow, Reddit and the different documentations for Django, Bootstrap and React were used.<br>
 
 ### Acknowledgements
 
