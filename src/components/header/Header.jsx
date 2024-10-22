@@ -187,7 +187,7 @@ export default function Header() {
                     Regist
                   </Link>
                 </li>
-                <li>
+                <li className="align-self-center">
                   <Dropdown>
                     <Dropdown.Toggle
                       id="dropdown-basic"
