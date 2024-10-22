@@ -641,6 +641,38 @@ One of the main featured of React is the reusability of components. In this proj
 
 #### Validator Testing
 
+<details>
+<summary>CSS Validator</summary>
+<br>
+The application passed the WC3 CSS Validator without errors.<br>
+
+![CSS Validator](/documentation/images/css-validator.png)
+
+<br>
+</details>
+
+<details>
+<summary>Lighthouse Desktop</summary>
+<br>
+
+The issue with bad performance of the tool editor stems from the used module for the Emoji Picker. This module is causing very long loading times for lighthouse.
+
+![Lighthouse Desktop](/documentation/images/lighthouse-desktop.png)
+
+<br>
+</details>
+
+<details>
+<summary>Lighthouse Mobile</summary>
+<br>
+
+The issue with bad performance of the tool editor stems from the used module for the Emoji Picker. This module is causing very long loading times for lighthouse.
+
+![Lighthouse Mobile](/documentation/images/lighthouse-mobile.png)
+
+<br>
+</details>
+
 #### Manuel Testing
 
 <details>
