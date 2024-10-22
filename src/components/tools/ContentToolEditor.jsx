@@ -1,12 +1,16 @@
 import styles from "../content/Content.module.css";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import EmojiPicker, { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
-
 import axios from "../../api/axiosDefault";
+
+// Lazy Loading der Emoji-Komponenten
+const EmojiPicker = lazy(() => import("emoji-picker-react"));
+const Emoji = lazy(() =>
+  import("emoji-picker-react").then((module) => ({ default: module.Emoji }))
+);
 
 export default function ContentToolEditor() {
   // Get the tool ID from the URL
@@ -149,10 +153,10 @@ export default function ContentToolEditor() {
     }
   };
 
-  // Fehler anzeigen
+  // Display error message
   if (error) return <p>{error}</p>;
 
-  // Anzeige des Tool-Editors
+  // Display the tool editor
   return (
     <>
       <div className={`${styles["headline-row"]} mb-4`}>
@@ -205,21 +209,25 @@ export default function ContentToolEditor() {
           <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
           <div className="row">
             <div className="col pb-3">
-              <EmojiPicker
-                onEmojiClick={onEmojiClick}
-                skinTonesDisabled="false"
-                height={500}
-                width="100%"
-                aria-label="Tool Icon"
-                aria-required="true"
-              />
+              <Suspense fallback={<div>Loading emoji picker...</div>}>
+                <EmojiPicker
+                  onEmojiClick={onEmojiClick}
+                  skinTonesDisabled={false}
+                  height={500}
+                  width="100%"
+                  aria-label="Tool Icon"
+                  aria-required="true"
+                />
+              </Suspense>
             </div>
             <div className="col d-flex flex-column align-items-center mb-4">
               <div className="py-5">
                 {emoji !== null && <h3>Selected Tool Icon:</h3>}
               </div>
               <div className="pb-5 text-center">
-                <Emoji unified={emoji} size={64} />
+                <Suspense fallback={<div>Loading emoji...</div>}>
+                  {emoji !== null && <Emoji unified={emoji} size={64} />}
+                </Suspense>
               </div>
               <div className="text-center">
                 {emoji !== null && (
