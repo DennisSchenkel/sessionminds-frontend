@@ -149,12 +149,10 @@ export default function ContentToolEditor() {
     }
   };
 
-  // Display loading message
-  if (loading) return <p>Loading...</p>;
-  // Display error message
+  // Fehler anzeigen
   if (error) return <p>{error}</p>;
 
-  // Display the tool editor
+  // Anzeige des Tool-Editors
   return (
     <>
       <div className={`${styles["headline-row"]} mb-4`}>
@@ -181,21 +179,25 @@ export default function ContentToolEditor() {
         {/* Topic */}
         <Form.Group className="mb-4" controlId="TopicDropdown">
           <Form.Label className={`${styles["editor-title"]}`}>Topic</Form.Label>
-          <Form.Select
-            required
-            aria-label="Tool Topic"
-            aria-required="true"
-            onChange={(event) =>
-              setTool({ ...tool, topic_id: event.target.value })
-            }
-            value={tool.topic_id}
-          >
-            {topics.map((topic) => (
-              <option key={topic.id} value={topic.id}>
-                {topic.title}
-              </option>
-            ))}
-          </Form.Select>
+          {loading ? (
+            <p>Loading topics...</p>
+          ) : (
+            <Form.Select
+              required
+              aria-label="Tool Topic"
+              aria-required="true"
+              onChange={(event) =>
+                setTool({ ...tool, topic_id: event.target.value })
+              }
+              value={tool.topic_id}
+            >
+              {topics.map((topic) => (
+                <option key={topic.id} value={topic.id}>
+                  {topic.title}
+                </option>
+              ))}
+            </Form.Select>
+          )}
         </Form.Group>
 
         {/* Icon */}
