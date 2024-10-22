@@ -11,8 +11,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import Logout from "../../pages/auth/Logout";
-import logo from "../../assets/images/logo.svg";
-import favicon from "../../assets/images/favicon.svg";
+import logo from "../../assets/images/logo.png";
+import logomin from "../../assets/images/logo-min.png";
 
 export default function Header() {
   // Get the user profile and loading state from the context
@@ -65,10 +65,10 @@ export default function Header() {
           <div className="col-3 g-0 d-block d-md-none">
             <Link to="/">
               <Image
-                src={favicon}
+                src={logomin}
                 alt="Session Minds Logo"
                 className="logo"
-                width={60}
+                width={50}
               />
             </Link>
           </div>
@@ -112,15 +112,16 @@ export default function Header() {
                 show={showDropdown}
               >
                 <Dropdown.Toggle
-                  variant="none"
                   id="dropdown-basic"
                   as="span"
+                  role="button"
                   className={`${styles.dropdownToggleWithoutCaret}`}
                 >
                   <Image
                     src={profile.image}
                     width={50}
                     className="rounded-circle"
+                    alt={profile.first_name + " " + profile.last_name}
                   />
                 </Dropdown.Toggle>
 
@@ -184,8 +185,9 @@ export default function Header() {
                 <li>
                   <Dropdown>
                     <Dropdown.Toggle
-                      variant="none"
                       id="dropdown-basic"
+                      as="span"
+                      role="button"
                       className={`${styles.dropdownToggleWithoutCaret}`}
                     >
                       <FontAwesomeIcon icon={faMagnifyingGlass} />
