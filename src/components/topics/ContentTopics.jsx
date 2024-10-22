@@ -42,7 +42,7 @@ export default function ContentTopics() {
         setLoading(false);
         // Handle errors
       } catch (error) {
-        setError("Failed to load tools.");
+        setError("Failed to load topics.");
         setLoading(false);
       }
     };
@@ -63,8 +63,6 @@ export default function ContentTopics() {
     }
   };
 
-  // Display loading message
-  if (loading) return <p>Loading...</p>;
   // Display error message
   if (error) return <p>{error}</p>;
 
@@ -100,16 +98,23 @@ export default function ContentTopics() {
         </div>
       </div>
       <div>
-        {topics.map((topic) => (
-          <TopicsListItem key={topic.id} topic={topic} />
-        ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : topics.map((topic) => (
+              <TopicsListItem key={topic.id} topic={topic} />
+            ))}
       </div>
       <div className="d-flex justify-content-center mt-4">
-        <Paginator
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        {!loading && (
+          <Paginator
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
       </div>
     </>
   );

@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import ToolsListItem from "../../components/tools/ToolsListItem";
-
 import axios from "../../api/axiosDefault";
 
 export default function Profile() {
@@ -23,7 +22,8 @@ export default function Profile() {
   const navigate = useNavigate();
 
   // Loading states
-  const [loading, setLoading] = useState(true);
+  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [loadingTools, setLoadingTools] = useState(true);
   // Error state
   const [error, setError] = useState(null);
 
@@ -35,8 +35,10 @@ export default function Profile() {
         const response = await axios.get(`/profiles/${slug}/`);
         const profile = response.data;
         setProfileData(profile);
+        setLoadingProfile(false);
       } catch (error) {
         setError(error);
+        setLoadingProfile(false);
       }
     };
     fetchProfile();
@@ -50,10 +52,10 @@ export default function Profile() {
         const response = await axios.get(`/tools/user/${profileData.user_id}/`);
         const tools = response.data.results;
         setTools(tools);
-        setLoading(false);
-        // Handle errors
+        setLoadingTools(false);
       } catch (error) {
         setError(error);
+        setLoadingTools(false);
       }
     };
     // Fetch profile tools if profile data is available
@@ -86,123 +88,150 @@ export default function Profile() {
     }
   };
 
-  // Display loading message
-  if (loading) return <p>Loading...</p>;
-  // Display error message
+  // Display loading state
   if (error) return <p>{error.message}</p>;
 
-  // Return profile data
+  // Preload the profile image
+  const profileImageUrl = profileData.image
+    ? profileData.image.replace("/upload/", "/upload/f_auto,q_auto,w_150/")
+    : null;
+
   return (
     <>
+      {profileImageUrl && (
+        <img
+          src={profileImageUrl}
+          style={{ display: "none" }}
+          alt=""
+          aria-hidden="true"
+        />
+      )}
+
       <div className="row">
-        <div className="col-auto text-center">
-          <Image
-            src={profileData.image}
-            width={150}
-            className="rounded-circle"
-            alt={
-              profileData.first_name ? profileData.first_name : "Profile image"
-            }
-          />
+        <div className="col-12 col-md-4">
+          {loadingProfile ? (
+            <div
+              style={{
+                width: 150,
+                height: 150,
+                backgroundColor: "#ccc",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            <Image
+              src={profileImageUrl}
+              width={150}
+              className="rounded-circle"
+              alt={
+                profileData.first_name
+                  ? profileData.first_name
+                  : "Profile image"
+              }
+            />
+          )}
         </div>
-        <div className="col-auto">
-          <h1>{profileData.first_name + " " + profileData.last_name} </h1>
-          {profileData.job_title ? (
+        <div className="col-12 col-md-8">
+          <h1>
+            {loadingProfile
+              ? "Loading..."
+              : `${profileData.first_name} ${profileData.last_name}`}
+          </h1>
+          {profileData.job_title && (
             <p>
               <b>Job Title: </b> {profileData.job_title}
             </p>
-          ) : (
-            <></>
           )}
-          {profileData.profile_description ? (
+          {profileData.profile_description && (
             <p>{profileData.profile_description}</p>
-          ) : (
-            <></>
           )}
-          {profileData.linkedin &&
-          profileData.twitter &&
-          profileData.facebook &&
-          profileData.instagram ? (
+          {(profileData.linkedin ||
+            profileData.twitter ||
+            profileData.facebook ||
+            profileData.instagram) && (
             <>
               <h2>Social Media</h2>
               <ul className="list-unstyled mb-5">
-                {profileData.linkedin ? (
+                {profileData.linkedin && (
                   <li>
-                    <a href={profileData.linkedin} target="_blank">
+                    <a
+                      href={profileData.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       LinkedIn
                     </a>
                   </li>
-                ) : (
-                  <></>
                 )}
-                {profileData.twitter ? (
+                {profileData.twitter && (
                   <li>
-                    <a href={profileData.twitter} target="_blank">
+                    <a
+                      href={profileData.twitter}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Twitter
                     </a>
                   </li>
-                ) : (
-                  <></>
                 )}
-                {profileData.facebook ? (
+                {profileData.facebook && (
                   <li>
-                    <a href={profileData.facebook} target="_blank">
+                    <a
+                      href={profileData.facebook}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Facebook
                     </a>
                   </li>
-                ) : (
-                  <></>
                 )}
-                {profileData.instagram ? (
+                {profileData.instagram && (
                   <li>
-                    <a href={profileData.instagram} target="_blank">
+                    <a
+                      href={profileData.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Instagram
                     </a>
                   </li>
-                ) : (
-                  <></>
                 )}
               </ul>
             </>
-          ) : (
-            <></>
           )}
         </div>
       </div>
       <div className="w-25 d-grid gap-2">
-        {profileData.is_owner ? (
-          <Button href={`/profile/editor/${slug}/`} className="mt-4">
-            Edit profile
-          </Button>
-        ) : (
-          <></>
-        )}
-        {profileData.is_owner ? (
-          <Button
-            onClick={() => setShowDeleteModal(true)}
-            className="mt-2 wd-300"
-            variant="danger"
-          >
-            Delete profile
-          </Button>
-        ) : (
-          <></>
+        {profileData.is_owner && (
+          <>
+            <Button href={`/profile/editor/${slug}/`} className="mt-4">
+              Edit profile
+            </Button>
+            <Button
+              onClick={() => setShowDeleteModal(true)}
+              className="mt-2 wd-300"
+              variant="danger"
+            >
+              Delete profile
+            </Button>
+          </>
         )}
       </div>
 
       <div className="mt-5">
-        {profileData.tool_count ? (
+        {loadingTools ? (
+          <p>Loading tools...</p>
+        ) : profileData.tool_count ? (
           <>
             <h2>Tools ({profileData.tool_count})</h2>
             <hr />
+            {tools.map((tool) => (
+              <ToolsListItem key={tool.id} tool={tool} />
+            ))}
           </>
         ) : (
-          <></>
+          <p>No tools available.</p>
         )}
-
-        {tools.map((tool) => (
-          <ToolsListItem key={tool.id} tool={tool} />
-        ))}
       </div>
 
       {showDeleteModal && (
@@ -211,7 +240,7 @@ export default function Profile() {
             <Modal.Title>Delete Session Minds Profile</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Do you really want to delete you profile?</p>
+            <p>Do you really want to delete your profile?</p>
           </Modal.Body>
           <Modal.Footer>
             <Button

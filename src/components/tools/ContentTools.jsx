@@ -63,8 +63,6 @@ export default function ContentTools() {
     }
   };
 
-  // Display loading message
-  if (loading) return <p>Loading...</p>;
   // Display error message
   if (error) return <p>{error}</p>;
 
@@ -100,16 +98,21 @@ export default function ContentTools() {
         </div>
       </div>
       <div>
-        {tools.map((tool) => (
-          <ToolsListItem key={tool.id} tool={tool} />
-        ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : tools.map((tool) => <ToolsListItem key={tool.id} tool={tool} />)}
       </div>
       <div className="d-flex justify-content-center mt-4">
-        <Paginator
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        {!loading && (
+          <Paginator
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
       </div>
     </>
   );

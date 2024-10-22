@@ -28,7 +28,7 @@ export default function ContentContributors() {
         setLoading(false);
         // Handle errors
       } catch (error) {
-        setError("Failed to load tools.");
+        setError("Failed to load contributors.");
         setLoading(false);
       }
     };
@@ -43,9 +43,6 @@ export default function ContentContributors() {
       setOrder(newOrder);
     }
   };
-
-  // Display loading message
-  if (loading) return <p>Loading...</p>;
 
   // Display error message
   if (error) return <p>{error}</p>;
@@ -83,19 +80,24 @@ export default function ContentContributors() {
       </div>
 
       <div>
-        {contributors
-          .filter(
-            (contributor) =>
-              contributor.first_name &&
-              contributor.last_name &&
-              contributor.tool_count !== 0
-          )
-          .map((contributor) => (
-            <ContributorsListItem
-              key={contributor.id}
-              contributor={contributor}
-            />
-          ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : contributors
+              .filter(
+                (contributor) =>
+                  contributor.first_name &&
+                  contributor.last_name &&
+                  contributor.tool_count !== 0
+              )
+              .map((contributor) => (
+                <ContributorsListItem
+                  key={contributor.id}
+                  contributor={contributor}
+                />
+              ))}
       </div>
     </>
   );

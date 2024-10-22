@@ -99,7 +99,11 @@ export default function Header() {
           </div>
 
           <div className="col-6 d-block d-sm-none text-center">
-            <Button variant="" onClick={handleShowMobileMenu}>
+            <Button
+              variant=""
+              onClick={handleShowMobileMenu}
+              aria-label="Mobile menu"
+            >
               <FontAwesomeIcon icon={faBars} className="fa-2x" />
             </Button>
           </div>
@@ -116,6 +120,7 @@ export default function Header() {
                   as="span"
                   role="button"
                   className={`${styles.dropdownToggleWithoutCaret}`}
+                  aria-label="Search"
                 >
                   <Image
                     src={profile.image}
@@ -189,6 +194,7 @@ export default function Header() {
                       as="span"
                       role="button"
                       className={`${styles.dropdownToggleWithoutCaret}`}
+                      aria-label="Profile Menu"
                     >
                       <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </Dropdown.Toggle>
