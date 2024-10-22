@@ -642,6 +642,33 @@ One of the main featured of React is the reusability of components. In this proj
 #### Validator Testing
 
 <details>
+<summary>HTML Validator</summary>
+<br>
+
+All tested pages of the application passed the WC3 HTML Validator without errors.<br>
+
+**Home Page**
+![HTML Validator Home](/documentation/images/html-valid-home.png)
+
+**Tools Page**
+![HTML Validator Home](/documentation/images/html-valid-tools.png)
+
+**Tool Details Page**
+![HTML Validator Home](/documentation/images/html-valid-tool-details.png)
+
+**Topics Page**
+![HTML Validator Home](/documentation/images/html-valid-topics.png)
+
+**Contributors Page**
+![HTML Validator Home](/documentation/images/html-valid-contributors.png)
+
+**Profile Page**
+![HTML Validator Home](/documentation/images/html-valid-profile.png)
+
+<br>
+</details>
+
+<details>
 <summary>CSS Validator</summary>
 <br>
 The application passed the WC3 CSS Validator without errors.<br>
