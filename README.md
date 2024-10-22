@@ -12,6 +12,8 @@ The idea for this project comes from real world experience and the struggle to f
 
 [Documentation for the Backend with API can be found here!](https://github.com/DennisSchenkel/sessionminds-backend)
 
+<br>
+
 ![Website Mockup](/documentation/images/mockup.png)
 
 ## Table of Contents
@@ -47,6 +49,7 @@ The idea for this project comes from real world experience and the struggle to f
   - [Testing](#testing)
     - [Validator Testing](#validator-testing)
     - [Manual Testing](#manual-testing)
+    - [Browsers Tested](#browsers-tested)
     - [Possible Improvements](#possible-improvements)
     - [Issues During Development](#issues-during-development)
     - [Known Unfixed Bugs](#known-unfixed-bugs)
@@ -298,6 +301,9 @@ At the moment, access tokens and refresh tokens are saved in the local storage. 
 
 **Social Auth**
 Users should be able to register and login by using a social authentication feature. Platforms for registration could be Google, LinkedIn and GitHub.<br>
+
+**Email Validation**
+Users should be required to validate their email address for completing the registration
 
 **Needed Materials**
 Every tool should have a list of all the materials needed to facilitate a workshop with the given tool.<br>
@@ -936,6 +942,19 @@ Test for the list of tools related to the profile are covered by the tests for t
 <br>
 
 </details>
+
+#### Browsers Tested
+
+The following browsers were used for conducting the tests.
+
+- Google Chrome MacOS (Version 127.0.6533.119)
+- Google Chrome iOS (Version 130.0.6723.37)
+- Google Chrome Win (Version 130.0.6723.58)
+  <br>
+- Safari MacOS (Version 17.5)
+- Safari iOS (iOS-Version 17.6.1)
+  <br>
+- Microsoft Edge Win (Version 130.0.2849.46)
 
 #### Possible Improvements
 
