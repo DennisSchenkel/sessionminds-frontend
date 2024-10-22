@@ -52,9 +52,6 @@ export default function ContentHome() {
     fetchData();
   }, []);
 
-  // Display loading message
-  if (loading) return <div>Loading...</div>;
-
   // Display error message
   if (error) return <p>{error}</p>;
 
@@ -73,30 +70,45 @@ export default function ContentHome() {
           users.
         </p>
       </div>
+
       <div className="pb-4">
         <div className={`row ${styles["headline-row"]}`}>
           <h2>Top Tools</h2>
         </div>
-        {topTools.map((tool) => (
-          <ToolsListItem key={tool.id} tool={tool} />
-        ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : topTools.map((tool) => <ToolsListItem key={tool.id} tool={tool} />)}
       </div>
+
       <div className="pb-4">
         <div className={`row ${styles["headline-row"]}`}>
           <h2>Latest Tools</h2>
         </div>
-        {latestTools.map((tool) => (
-          <ToolsListItem key={tool.id} tool={tool} />
-        ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : latestTools.map((tool) => (
+              <ToolsListItem key={tool.id} tool={tool} />
+            ))}
       </div>
+
       <div className="pb-4">
         <div className={`row ${styles["headline-row"]}`}>
           <h2>Top Topics</h2>
         </div>
-
-        {topTopics.map((topic) => (
-          <TopicsListItem key={topic.id} topic={topic} />
-        ))}
+        {loading
+          ? // Display placeholders while loading
+            [...Array(itemsPerPage)].map((_, index) => (
+              <div key={index}>Loading...</div>
+            ))
+          : topTopics.map((topic) => (
+              <TopicsListItem key={topic.id} topic={topic} />
+            ))}
       </div>
     </>
   );
