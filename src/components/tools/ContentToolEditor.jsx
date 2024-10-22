@@ -1,16 +1,12 @@
 import styles from "../content/Content.module.css";
-import { useEffect, useState, useContext, lazy, Suspense } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import EmojiPicker, { Emoji } from "emoji-picker-react";
 import { UserContext } from "../../context/UserContext";
-import axios from "../../api/axiosDefault";
 
-// Lazy Loading der Emoji-Komponenten
-const EmojiPicker = lazy(() => import("emoji-picker-react"));
-const Emoji = lazy(() =>
-  import("emoji-picker-react").then((module) => ({ default: module.Emoji }))
-);
+import axios from "../../api/axiosDefault";
 
 export default function ContentToolEditor() {
   // Get the tool ID from the URL
@@ -153,6 +149,8 @@ export default function ContentToolEditor() {
     }
   };
 
+  // Display loading message
+  if (loading) return <p>Loading...</p>;
   // Display error message
   if (error) return <p>{error}</p>;
 
@@ -183,25 +181,21 @@ export default function ContentToolEditor() {
         {/* Topic */}
         <Form.Group className="mb-4" controlId="TopicDropdown">
           <Form.Label className={`${styles["editor-title"]}`}>Topic</Form.Label>
-          {loading ? (
-            <p>Loading topics...</p>
-          ) : (
-            <Form.Select
-              required
-              aria-label="Tool Topic"
-              aria-required="true"
-              onChange={(event) =>
-                setTool({ ...tool, topic_id: event.target.value })
-              }
-              value={tool.topic_id}
-            >
-              {topics.map((topic) => (
-                <option key={topic.id} value={topic.id}>
-                  {topic.title}
-                </option>
-              ))}
-            </Form.Select>
-          )}
+          <Form.Select
+            required
+            aria-label="Tool Topic"
+            aria-required="true"
+            onChange={(event) =>
+              setTool({ ...tool, topic_id: event.target.value })
+            }
+            value={tool.topic_id}
+          >
+            {topics.map((topic) => (
+              <option key={topic.id} value={topic.id}>
+                {topic.title}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         {/* Icon */}
@@ -209,25 +203,21 @@ export default function ContentToolEditor() {
           <Form.Label className={`${styles["editor-title"]}`}>Icon</Form.Label>
           <div className="row">
             <div className="col pb-3">
-              <Suspense fallback={<div>Loading emoji picker...</div>}>
-                <EmojiPicker
-                  onEmojiClick={onEmojiClick}
-                  skinTonesDisabled={false}
-                  height={500}
-                  width="100%"
-                  aria-label="Tool Icon"
-                  aria-required="true"
-                />
-              </Suspense>
+              <EmojiPicker
+                onEmojiClick={onEmojiClick}
+                skinTonesDisabled="false"
+                height={500}
+                width="100%"
+                aria-label="Tool Icon"
+                aria-required="true"
+              />
             </div>
             <div className="col d-flex flex-column align-items-center mb-4">
               <div className="py-5">
                 {emoji !== null && <h3>Selected Tool Icon:</h3>}
               </div>
               <div className="pb-5 text-center">
-                <Suspense fallback={<div>Loading emoji...</div>}>
-                  {emoji !== null && <Emoji unified={emoji} size={64} />}
-                </Suspense>
+                <Emoji unified={emoji} size={64} />
               </div>
               <div className="text-center">
                 {emoji !== null && (
