@@ -98,6 +98,8 @@ Only different font-size and boldness were used.<br>
 
 #### Wireframes
 
+Wireframes show the design for the desktop view. For the mobile use, the sidebar disappiears and the main content stretches over the whole screen.
+
 <details>
 <summary>Home</summary>
 
@@ -886,20 +888,23 @@ Test for the list of tools related to the profile are covered by the tests for t
 | Navigate to profile editor              | Going to the profile editor by clicking the "Edit profile" button | When clicking the "Edit profile" button, the profile editor with the user's information loads       | Pass       |
 | Saving profile changes                  | Saving changes made to the profile                                | When clicking the "Save Profile" button, the profile of the user loads and the changes are shown    | Pass       |
 | Saving profile without first name       | Saving profile without first name entered                         | When clicking the "Save Profile" button, a warning is shown to fill in the "First Name" field       | Pass       |
+| Long "First Name"                       | Enter "First Name" longer than 30 characters                      | Form field only accepts 30 characters                                                               | Pass       |
 | Saving profile without last name        | Saving profile without last name entered                          | When clicking the "Save Profile" button, a warning is shown to fill in the "Last Name" field        | Pass       |
-| Saving profile without first name       | Saving profile without first name entered                         | When clicking the "Save Profile" button, a warning is shown to fill in the "First Name" field       | Pass       |
+| Long "Last Name"                        | Enter "Last Name" longer than 30 characters                       | Form field only accepts 30 characters                                                               | Pass       |
 | Selecting wrong data type               | Selecting a file with the wrong data type as profile image        | When trying to select a file type that is not allowed, the file browser doesn't allow the selection | Pass       |
 | Image file size to big                  | Selecting a file with a size of more then 2MB                     | When trying to select a file larger then 2MB a warning is shown                                     | Pass       |
 | Form field "Job Title" empty            | Letting the "Job Title" form field emtpy                          | Profile can be saved                                                                                | Pass       |
+| Long "Job Title"                        | Enter "Job Title" longer than 50 characters                       | Form field only accepts 50 characters                                                               | Pass       |
 | Form field "Profile Description" empty  | Letting the "Profile Description" form field emtpy                | Profile can be saved                                                                                | Pass       |
-| Form field "Profile Description" empty  | Letting the "Profile Description" form field emtpy                | Profile can be saved                                                                                | Pass       |
+| Long "Profile Description"              | Enter "Profile Description" longer than 350 characters            | Form field only accepts 350 characters                                                              | Pass       |
 | Form field for social media links empty | Letting the social media form field emtpy                         | Profile can be saved                                                                                | Pass       |
+| Non-URL in social media form fiels      | Saving profile with a no valid url in a social media form field   | Profile can not be saved and a warning is shown to use a valid URL                                  | Pass       |
 
 <br>
 </details>
 
 <details>
-<summary>Features</summary>
+<summary>Login & Registration</summary>
 <br>
 
 | **Test**   | **Description**                                                 | **Expected Outcome**                                    | **Result** |
