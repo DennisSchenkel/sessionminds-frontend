@@ -61,6 +61,7 @@ export default function CommentForm({ toolId, onAddingComment }) {
                     placeholder="Write a nice comment..."
                     value={comment}
                     onChange={handleChange}
+                    maxLength={500}
                     required
                   />
                 </Form.Group>
