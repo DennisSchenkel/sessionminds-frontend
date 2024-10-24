@@ -168,8 +168,13 @@ Right: Registration page<br>
 
 ![Login & Regist](/documentation/images/wireframes/Login-Regist.png)
 
-**User Menus**
-![User Menus](/documentation/images/wireframes/User-Menus.png)
+**User Menus Logged-Out**
+
+![User Menus Logged-Out](/documentation/images/wireframes/Menus-Logged-Out.png)
+
+**User Menus Logged-In**
+
+![User Menus Logged-In](/documentation/images/wireframes/Menus-Logged-In.png)
 
 </details>
 

@@ -62,6 +62,7 @@ export default function Header() {
               />
             </Link>
           </div>
+
           <div className="col-3 g-0 d-block d-md-none">
             <Link to="/">
               <Image
@@ -177,16 +178,17 @@ export default function Header() {
               </Dropdown>
             ) : (
               <ul className="nav justify-content-end">
-                <li>
+                <li className="d-md-block d-none">
                   <Link className={`${styles["nav-link"]}`} to="/login">
                     Login
                   </Link>
                 </li>
-                <li>
+                <li className="d-md-block d-none">
                   <Link className={`${styles["nav-link"]}`} to="/regist">
                     Regist
                   </Link>
                 </li>
+
                 <li className="align-self-center">
                   <Dropdown>
                     <Dropdown.Toggle
@@ -226,12 +228,35 @@ export default function Header() {
           </div>
         </div>
       </div>
-
       <Offcanvas show={showMobileMenu} onHide={handleCloseMobileMenu}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Session Minds Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
+          {profile ? (
+            ""
+          ) : (
+            <ul className="list-unstyled justify-content-center">
+              <li>
+                <Link
+                  className={`${styles["nav-link"]}`}
+                  to="/login"
+                  onClick={handleCloseMobileMenu}
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`${styles["nav-link"]}`}
+                  to="/regist"
+                  onClick={handleCloseMobileMenu}
+                >
+                  Regist
+                </Link>
+              </li>
+            </ul>
+          )}
           <ul className="list-unstyled justify-content-center">
             <li>
               <Link
