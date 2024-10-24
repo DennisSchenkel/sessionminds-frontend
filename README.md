@@ -1,5 +1,9 @@
 # Session Minds Frontend Documentation
 
+This documentation covers the frontend build with React.<br>
+
+[Documentation for the Backend with API can be found here!](https://github.com/DennisSchenkel/sessionminds-backend)
+
 ## Introduction
 
 Code Institute - Portfolio Project 5 - Advanced Frontend with React<br>
@@ -9,8 +13,6 @@ The developed application of this project is called Session Minds and acts as a 
 The idea for this project comes from real world experience and the struggle to find the best method or tool for conducting workshops with clients to solve their problems as best as possible.<br>
 
 [The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
-
-[Documentation for the Backend with API can be found here!](https://github.com/DennisSchenkel/sessionminds-backend)
 
 <br>
 
@@ -35,7 +37,6 @@ The idea for this project comes from real world experience and the struggle to f
   - [Naming Conventions](#naming-conventions)
   - [Milestones, User Stories & Tasks](#milestones-user-stories--tasks)
 - [Development](#development)
-  - [Database](#database)
   - [Technologies Used](#technologies-used)
     - [Languages](#languages)
     - [Frameworks](#frameworks)
@@ -43,7 +44,6 @@ The idea for this project comes from real world experience and the struggle to f
     - [Programs & Tools](#programs--tools)
   - [Deployment](#deployment)
     - [Version Control](#version-control)
-    - [Cloudinary](#cloudinary)
     - [Heroku Deployment](#heroku-deployment)
   - [Component Reusability](#component-reusability)
   - [Testing](#testing)
@@ -513,25 +513,20 @@ The following modules, libraries and plugins have been used.<br>
 During the development of this application, the following programs and tools have been used.<br>
 <br>
 
-- [Visual Studio Code](https://code.visualstudio.com/) (IDE - Integrated Development Environment)
-- [Figma](https://www.figma.com/) (Creating Mockups)
-- [dbdiagram.io](https://dbdiagram.io/) (Creating database visualization)
-- [Postman](https://www.postman.com/) (For API testing)
-- [Heroku](https://www.heroku.com/home) (Deployment of final application)
+- [Affinity Design 2](https://affinity.serif.com/de/designer/) (Image editing)
+- [Coolors](https://coolors.co/) (For creating a color palette)
+- [DALL-E 3](https://openai.com/index/dall-e-3/) (For generating profile images)
+- [ESLint](https://eslint.org/) (JavaScript testing)
 - [Git](https://git-scm.com/) (Version control)
 - [GitHub](https://github.com/) (Used as cloud repository)
-- [CI Postgres Database](https://dbs.ci-dbs.net/) (Used for database hosting)
-- [ESLint](https://eslint.org/) (JavaScript testing)
-- [W3C HTML Validator](https://validator.w3.org/) (HTML testing)
+- [Google Chrome Dev Tools](https://developer.chrome.com/) (Working with console and HTML output)
+- [Heroku](https://www.heroku.com/home) (Deployment of final application)
 - [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) (CSS testing)
 - [Lighthouse](https://lighthouse-metrics.com/) (Testing of Performance, Accessibility, Best Practices and SEO)
-- [Google Chrome Dev Tools](https://developer.chrome.com/) (Working with console and HTML output)
-- [Affinity Design 2](https://affinity.serif.com/de/designer/) (Image editing)
-- [DALL-E 3](https://openai.com/index/dall-e-3/) (For generating profile images)
 - [SVGLogoMaker.org](https://svglogomaker.org/) (Creating a simple logo)
-- [Cloudinary](https://cloudinary.com/) (As external hosting services for images)
+- [W3C HTML Validator](https://validator.w3.org/) (HTML testing)
 - [Website Mockup Generator](https://websitemockupgenerator.com/) (For creating a mockup of deployed application)
-- [Coolors](https://coolors.co/) (For creating a color palette)
+- [Visual Studio Code](https://code.visualstudio.com/) (IDE - Integrated Development Environment)
 
 **Vite & React**
 
@@ -553,19 +548,6 @@ Git was used for version control by using the following comments:<br>
 - git add filename - Select the files that should be uploaded and updated to the GitHub repository.
 - git commit -m "commit message" - Commenting the commit to better understand the changes in this specific commit.
 - git push - Upload the commit to GitHub.
-
-#### Cloudinary
-
-For using Cloudinary as a hosting provider for images, the following steps have to be conducted:<br>
-<br>
-
-- Create a Cloudinary account.
-- Login and visit the Cloudinary user account.
-- On the bottom left side, click on the gear symbol.
-- On the top left, click on "API Keys".
-- Click "Generate New API Key" on the top right.
-- Update the Django settings.py with API key.
-- Use the API in the Heroku deployment settings like described in the next step.
 
 #### Heroku Deployment
 
@@ -965,6 +947,18 @@ The following browsers were used for conducting the tests.
   <br>
 - Microsoft Edge Win (Version 130.0.2849.46)
 
+#### Automated Testing
+
+Due to time limitations, no automated testing was conducted for the frontend application.<br>
+The backend application contains a wide range of automated testing.<br>
+
+Future automated test would contain:
+
+- CRUD functionality
+- Form validation
+- Response validation
+- Error handling
+
 #### Possible Improvements
 
 **HTTP Only Cookie Tokens**
@@ -1029,6 +1023,6 @@ No bugs are know at the time of the project submission.
 
 ### Acknowledgements
 
-- Thanks to Gareth McGirr for providing great mentorship as part of the Code Academy course.
+- Thanks to Gareth McGirr for providing great mentorship and awesome support as part of the Code Academy course.
 - Thanks to Kay for they effort as a facilitator of the Code Institute team.
 - Great thanks go to [Dajana Isbaner](https://github.com/queenisabaer) for being the best fellow student I could wish for.
