@@ -326,6 +326,8 @@ This project was developed using an agile approach for structuring backend and f
 <br>
 Each user story and task was also labeled using the MoSCoW methodology with the tags must have, should have, could have and won't have. Also tags for user story, task and draft were used.
 
+[The project board can be found here](https://github.com/users/DennisSchenkel/projects/3)
+
 ### Naming Conventions
 
 For naming conventions, milestones were numbered, starting with 0 for the basic project setup and going up in numbers, based on the logical next development steps. Each User Story was marked with "MS-X", and X standing for the associated milestone. Each task was then marked with (FE) for frontend and (BE) for backend. For the milestone covering the documentation, "MS-D" was introduced.<br>
