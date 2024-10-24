@@ -608,9 +608,24 @@ Git was used for version control by using the following comments:<br>
 
 One of the main featured of React is the reusability of components. In this project, multiple components were used at multiple places within the application.
 
-- The ToolListItem.jsx component is used in lists for tools on the home page, the tools page, the search results, the page of each specific topic and the contributors page.
+**ToolListItem.jsx**
+The ToolListItem.jsx component is used in the following places:
 
-- The various Sidebar components are used at various places of the app. This includes the home page and the pages of tools, topic and contributors.
+- Lists for tools on the home page
+- Lists for tools on the tools page
+- Lists for tools on the search results page
+- On the page of each specific topic with the listed associated tools
+- The contributors profile page as tools created by given user
+
+**Sidebar Components**
+The various Sidebar components are used at various places of the app, including:
+
+- Home page
+- Tools pages
+- Topics page
+- Contributors page
+
+**Paginator.jsx**
 
 - The Paginator.jsx component was used in all list to enable pagination.
 

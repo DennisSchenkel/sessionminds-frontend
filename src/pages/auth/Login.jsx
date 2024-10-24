@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -125,6 +125,12 @@ export default function Login() {
           Login
         </Button>
       </Form>
+      <div className="text-center mt-3">
+        <Link to="/register" className="text-decoration-none">
+          Not registered yet?{" "}
+          <span className="text-primary">Create an account!</span>
+        </Link>
+      </div>
     </Container>
   );
 }
