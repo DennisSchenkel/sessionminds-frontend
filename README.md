@@ -103,7 +103,7 @@ Only different font-size and boldness were used.<br>
 
 #### Wireframes
 
-Wireframes show the design for the desktop view. For the mobile use, the sidebar disappiears and the main content stretches over the whole screen.
+Wireframes show the design for the desktop view. For the mobile use, the sidebar disappears and the main content stretches over the whole screen.
 
 <details>
 <summary>Home</summary>
@@ -294,7 +294,7 @@ CRUD functionality is implemented with the following features:
 
 - Create - Comment on a tool
 - Read - Get tool comments
-- Delete - Delete a existing comment
+- Delete - Delete an existing comment
   <br>
 
 #### Future Features
@@ -618,9 +618,9 @@ One of the main featured of React is the reusability of components. In this proj
 **ToolListItem.jsx**
 The ToolListItem.jsx component is used in the following places:
 
-- Lists for tools on the home page
-- Lists for tools on the tools page
-- Lists for tools on the search results page
+- Lists of tools on the home page
+- Lists of tools on the tools page
+- Lists of tools on the search results page
 - On the page of each specific topic with the listed associated tools
 - The contributors profile page as tools created by given user
 
@@ -1004,7 +1004,7 @@ The search feature can be improved by not only searching for the title of a tool
 
 #### Issues During Development
 
-The following frontend related issues came up during development but where solved.
+The following frontend related issues came up during development but were solved.
 
 **Localhost as baseURL on Heroku frontend**
 
@@ -1045,7 +1045,7 @@ Increase of max-length from 10 to 50 for allowed Emoji codes in the tool model o
 
 #### Known Unfixed Bugs
 
-No bugs are know at the time of the project submission.
+No bugs are known at the time of the project submission.
 
 ## Credits
 
