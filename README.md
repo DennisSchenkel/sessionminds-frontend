@@ -996,6 +996,9 @@ Examples would be: - Tool elements in the lists for results and on the sidebar -
 
 When trying to refactor components to be usable in multiple places, it should always be kept in mind to find the best solution so achieve the desired outcome. A lot can be done with a lot of work and complexity that could be done more easily and maintainable when not trying to create the most advanced code.<br>
 
+**Add WYSIWYG Text Editor**
+With a WYSIWYG editor, the instructions and other information can be formatted in a more readable way.
+
 **Improved Search**
 The search feature can be improved by not only searching for the title of a tool, but also search for author name or the topic of a tool.<br>
 
@@ -1029,6 +1032,16 @@ Although the wrong login credentials were used, no error was retuned by the API 
 Solution:<br>
 In the backend, the login view was updated and an error response for wrong login credentials was added.<br>
 In the frontend, the login modal was exchanged with a complete login page that can not close like a modal, when the form is submitted. Due to not closing the modal with the form, the newly created backend response was used for showing the expected error message.<br>
+
+**Fatal Error when selecting certain Emojis (BE & FE)**
+
+Issue:<br>
+When selecting certain Emojis on the tool editor form, a fatal error occurred when saving the form.<br>
+The issue came from the set max-length (10) for Emoji code in the tool modal of the backend.<br>
+Certain Emojis have a code length of more than 10.<br>
+
+Solution:<br>
+Increase of max-length from 10 to 20 for allowed Emoji codes in the tool model of the backend.<br>
 
 #### Known Unfixed Bugs
 
