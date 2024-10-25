@@ -1041,7 +1041,7 @@ The issue came from the set max-length (10) for Emoji code in the tool modal of 
 Certain Emojis have a code length of more than 10.<br>
 
 Solution:<br>
-Increase of max-length from 10 to 20 for allowed Emoji codes in the tool model of the backend.<br>
+Increase of max-length from 10 to 50 for allowed Emoji codes in the tool model of the backend.<br>
 
 #### Known Unfixed Bugs
 

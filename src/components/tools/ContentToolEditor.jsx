@@ -158,6 +158,7 @@ export default function ContentToolEditor() {
           <Form.Control
             type="text"
             required
+            maxLength="100"
             placeholder="Give your tool a unique title"
             aria-required="true"
             aria-describedby="titleHelp"
@@ -225,7 +226,7 @@ export default function ContentToolEditor() {
           </div>
         </Form.Group>
 
-        {/* Kurzbeschreibung */}
+        {/* Short Description */}
         <Form.Group className="mb-4" controlId="Textarea1">
           <Form.Label className={`${styles["editor-title"]}`}>
             Short Description
@@ -234,6 +235,7 @@ export default function ContentToolEditor() {
             as="textarea"
             rows={3}
             required
+            maxLength="50"
             placeholder="A short description with no more than 50 characters."
             aria-required="true"
             aria-describedby="short_descriptionHelp"
@@ -247,15 +249,16 @@ export default function ContentToolEditor() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Vollständige Beschreibung */}
+        {/* Full Description */}
         <Form.Group className="mb-4" controlId="Textarea2">
           <Form.Label className={`${styles["editor-title"]}`}>
-            Description
+            Full Description
           </Form.Label>
           <Form.Control
             as="textarea"
             rows={5}
             required
+            maxLength="500"
             placeholder="Feel free to write a longer description with up to 500 characters. Tell people what they can use this tool for."
             aria-required="true"
             aria-describedby="full_descriptionHelp"
@@ -269,7 +272,7 @@ export default function ContentToolEditor() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Anweisungen */}
+        {/* Instructions */}
         <Form.Group className="mb-4" controlId="Textarea3">
           <Form.Label className={`${styles["editor-title"]}`}>
             Instructions
@@ -278,6 +281,7 @@ export default function ContentToolEditor() {
             as="textarea"
             rows={5}
             required
+            maxLength="5000"
             placeholder="Describe in detail all the steps of this tool and what facilitators, as well as participants, have to do. Also think about materials that will be handy."
             aria-required="true"
             aria-describedby="instructionsHelp"
