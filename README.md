@@ -12,6 +12,8 @@ The developed application of this project is called Session Minds and acts as a 
 
 The idea for this project comes from real world experience and the struggle to find the best method or tool for conducting workshops with clients to solve their problems as best as possible.<br>
 
+With this identified need in mind, the Seesion Minds platform is planned to be released to the public after final assertion by Code Institute.<br>
+
 [The deployed version can be found here!](https://sessionminds-fe-0b8daceb91f0.herokuapp.com/)
 
 <br>
